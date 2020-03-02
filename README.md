@@ -25,7 +25,7 @@ Expenses Management Platform
 - Please checkout to `dev` since we're going to pool everything there first
 - Create a new branch for each features, please
 - `dev-[action]-[feature]` as a branch name, with everything in lower case.
-- Don't forget to make a `Pull Request` for each branch/development you're working on
+- Don't forget to make a `Pull Request` for each features you're working on
 - Change the tag both in our [Trello](https://trello.com/b/q1IAdoJX/bokkun) and your ongoing [Pull Requests](https://github.com/rnd00/bokkun/pulls)
 - _Optional_ : Ask someone to review your newly-done function by adding them as the reviewer
 
