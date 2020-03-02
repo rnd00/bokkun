@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_03_02_093924) do
+ActiveRecord::Schema.define(version: 2020_03_02_103600) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -41,7 +41,19 @@ ActiveRecord::Schema.define(version: 2020_03_02_093924) do
     t.datetime "updated_at", null: false
     t.bigint "user_id"
     t.string "category"
+    t.bigint "trip_id"
+    t.index ["trip_id"], name: "index_receipts_on_trip_id"
     t.index ["user_id"], name: "index_receipts_on_user_id"
+  end
+
+  create_table "trip_budgets", force: :cascade do |t|
+    t.bigint "trip_id"
+    t.bigint "budget_id"
+    t.integer "remaining_amount"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["budget_id"], name: "index_trip_budgets_on_budget_id"
+    t.index ["trip_id"], name: "index_trip_budgets_on_trip_id"
   end
 
   create_table "trip_users", force: :cascade do |t|
@@ -81,7 +93,10 @@ ActiveRecord::Schema.define(version: 2020_03_02_093924) do
   end
 
   add_foreign_key "receipt_items", "receipts"
+  add_foreign_key "receipts", "trips"
   add_foreign_key "receipts", "users"
+  add_foreign_key "trip_budgets", "budgets"
+  add_foreign_key "trip_budgets", "trips"
   add_foreign_key "trip_users", "trips"
   add_foreign_key "trip_users", "users"
 end
