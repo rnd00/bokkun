@@ -5,7 +5,7 @@ Expenses Management Platform
 
 ## NOTICE!
 - I changed our main branch name to `dev` rather than using the usual `development` because it will be easier for everyone to write.
-- Then again, please *read* everything inside this `README.md`
+- Then again, please **read** everything inside this `README.md`
 
 ### Very-very Important!
 - `master` branch will be used for releases to heroku only.
@@ -32,10 +32,9 @@ Expenses Management Platform
 ## Running on your local
 
 - Checkout to `dev` and then run `git fetch --all` and `git pull`
-- Run bundle install and yarn install to make sure any newly added gems/packages are present
+- Run `bundle install` and `yarn install` to make sure any newly added gems/packages are present
 - Run `rails db:create db:migrate` to get the _migration_ running up to the latest version
-- run `rails db:seed` to get the db
-ready with seeds
+- run `rails db:seed` to get the db ready with seeds
 - Run `rails s` to get the server up **locally**
 
 ---
