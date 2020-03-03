@@ -1,0 +1,17 @@
+.mobile-cards {
+  display: flex;
+  flex-direction: vertical;
+  margin: $spacer;
+}
+
+.mobile-card {
+  background-color: $light-blue !important;
+  width: 90%;
+  margin: ($spacer / 2) auto;
+  border-radius: 30px;
+  text-align: center;
+
+  p {
+    line-height: 0.25;
+  }
+}

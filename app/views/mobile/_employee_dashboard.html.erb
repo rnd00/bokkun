@@ -1,1 +1,19 @@
-<%= render 'mobile/heading' %>
+<%= render 'mobile/heading', current_trip: @trips.first %>
+<div class="mobile-cards">
+  <div class="mobile-card">
+    <%= text_field_tag :query,
+                params[:query],
+                class: "form-control",
+                placeholder: "Search trips"
+              %>
+  </div>
+</div>
+<div class="mobile-cards">
+  <% @trips.each do |trip| %>
+    <div class="mobile-card">
+      <h3><%= trip.destination %></h3>
+      <p> <%= trip.customer %></p>
+      <p><%= trip.start_date.strftime("%m/%d/%y") %> &#8212;<%= trip.end_date.strftime("%m/%d/%y") %></p>
+    </div>
+  <% end %>
+</div>
