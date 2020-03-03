@@ -6,5 +6,8 @@ Rails.application.routes.draw do
   end
   resources :trips do
     get '/export', to: 'trips#export', as: :export
+    resources :receipts, only: [:new, :create]
   end
+  resources :receipts, except: [:new, :create, :index]
+  get '/users/:id', to: 'users#show', as: :user_show
 end
