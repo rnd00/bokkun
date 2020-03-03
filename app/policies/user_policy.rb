@@ -6,18 +6,22 @@ class UserPolicy < ApplicationPolicy
   end
 
   def create?
-    current_user.manager
+    user.manager
   end
 
   def new?
-    current_user.manager
+    user.manager
   end
 
   def edit?
-    record.user == user
+    record == user
   end
 
   def update?
-    record.user == user
+    record == user
+  end
+
+  def show?
+    record == user || user.manager
   end
 end
