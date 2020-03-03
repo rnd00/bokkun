@@ -7,14 +7,14 @@
   flex-direction: row;
   justify-content: space-evenly;
   align-items: stretch;
-  padding: $spacer * 2;
+  padding: $spacer;
 }
 
 .argument {
   display: flex;
   align-self: stretch;
   background-color: $off-white;
-  margin: auto $spacer * 3;
+  margin: auto $spacer * 1.5;
   border: 1px solid $black;
   border-radius: 8px;
   width: 600px;
@@ -22,7 +22,7 @@
 }
 
 .argument-info {
-  padding: $spacer * 2;
+  padding: $spacer;
   margin: auto 0;
   & h2 {
     font-size: 2vw;
