@@ -13,6 +13,12 @@ class UserPolicy < ApplicationPolicy
     user.manager
   end
 
+  def dashboard?
+    true
+  end
+
+
+
   def edit?
     record == user
   end
