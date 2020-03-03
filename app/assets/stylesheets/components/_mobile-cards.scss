@@ -8,10 +8,16 @@
   background-color: $light-blue !important;
   width: 90%;
   margin: ($spacer / 2) auto;
+  // padding: $spacer;
   border-radius: 30px;
   text-align: center;
 
   p {
     line-height: 0.25;
+  }
+
+  input {
+    margin: ($spacer * 2) auto;
+    width: 90%;
   }
 }
