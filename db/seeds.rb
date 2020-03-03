@@ -6,8 +6,19 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-def budget_gen(n, a)
-  Budget.create!( name: n, amount: a)
+# generators
+
+def budget_gen(name, amount)
+  Budget.create!(
+    name: name,
+    amount: amount )
+end
+
+def trip_budget_gen(trip, budget)
+  TripBudget.create!(
+    trip: trip,
+    budget: budget,
+    remaining_amount: budget.amount )
 end
 
 
@@ -53,6 +64,15 @@ tokyo = Trip.create!(
   customer: "Adil Omary",
   start_date: Date.today - 2,
   end_date: Date.today - 1)
+
+tokyo_meal = budget_gen('meal', 15000)
+tokyo_travel = budget_gen('travel', 15000)
+tokyo_accomodations = budget_gen('accomodations', 20000)
+
+trip_budget_gen(tokyo, tokyo_meal)
+trip_budget_gen(tokyo, tokyo_travel)
+trip_budget_gen(tokyo, tokyo_accomodations)
+
 fukuoka = Trip.create!(
   name: "Fukuoka Trip",
   destination: "Fukuoka, Japan",
@@ -61,8 +81,14 @@ fukuoka = Trip.create!(
   start_date: Date.today,
   end_date: Date.today + 2)
 
-tbudget = Budget.create!(
-  name: Meal)
+fukuoka_meal = budget_gen('meal', 15000)
+fukuoka_travel = budget_gen('travel', 15000)
+fukuoka_accomodations = budget_gen('accomodations', 20000)
+
+trip_budget_gen(fukuoka, fukuoka_meal)
+trip_budget_gen(fukuoka, fukuoka_travel)
+trip_budget_gen(fukuoka, fukuoka_accomodations)
+
 puts "done with trip & budget generation!"
 
 puts "connecting trip-user..."
