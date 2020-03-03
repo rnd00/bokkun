@@ -10,14 +10,36 @@ class ReceiptsController < ApplicationController
     @receipt.user = @user
     @receipt.trip = @trip
     if @receipt.save
-      redirect_to receipt_path(id: @receipt.id)
+      redirect_to receipt_path(@receipt)
     else
       render :new
     end
   end
 
   def show
+    @receipt = Receipt.find_by(id: params[:id])
     authorize @receipt
+  end
+
+  def edit
+    @receipt = Receipt.find_by(id: params[:id])
+    authorize @receipt
+  end
+
+  def update
+    @receipt = Receipt.find_by(id: params[:id])
+    authorize @receipt
+    if @receipt.update(receipt_params)
+      redirect_to receipt_path(@receipt)
+    else
+      render :edit
+    end
+  end
+
+  def destroy
+    @receipt = Receipt.find_by(id: params[:id])
+    @receipt.destroy
+    redirect_to dashboard_path
   end
 
   private
