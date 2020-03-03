@@ -18,7 +18,7 @@ class TripPolicy < ApplicationPolicy
   end
 
   def create?
-    true
+    user.manager
   end
 
   def edit?
