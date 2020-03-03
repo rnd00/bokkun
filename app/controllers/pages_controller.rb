@@ -1,5 +1,5 @@
 class PagesController < ApplicationController
-  skip_before_action :authenticate_user!, only: [:landing, :home, :mobile]
+  skip_before_action :authenticate_user!, only: [:landing, :home, :desktop, :mobile]
 
   def landing
     skip_authorization
@@ -10,6 +10,10 @@ class PagesController < ApplicationController
   end
 
   def mobile
+    skip_authorization
+  end
+  
+  def desktop
     skip_authorization
   end
 end
