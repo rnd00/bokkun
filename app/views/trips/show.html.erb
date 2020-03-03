@@ -15,5 +15,8 @@
     </div>
   </div>
   <%= link_to "Edit this trip", edit_trip_path, class: "btn btn-gradient" %>
+  <% if current_user.manager %>
+  <%= link_to "Delete this trip", trip_path(@trip), method: :delete, class: "btn btn-gradient" %>
+  <% end %>
   <%= link_to "Go back", dashboard_path, class: "btn btn-gradient" %>
 </div>
