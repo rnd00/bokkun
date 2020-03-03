@@ -14,10 +14,10 @@ class UserPolicy < ApplicationPolicy
   end
 
   def edit?
-    current_user == user
+    record.user == user
   end
 
   def update?
-    current_user == user
+    record.user == user
   end
 end
