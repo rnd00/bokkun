@@ -28,4 +28,8 @@ class TripPolicy < ApplicationPolicy
   def update?
     record.users.include?(user) || user.manager
   end
+
+  def destroy?
+    user.manager
+  end
 end
