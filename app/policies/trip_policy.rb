@@ -6,10 +6,10 @@ class TripPolicy < ApplicationPolicy
   end
 
   def show?
-    record.user == user || user.manager
+    record.users.include?(user) || user.manager
   end
 
   def export?
-    record.user == user || user.manager
+    record.users.include?(user) || user.manager
   end
 end

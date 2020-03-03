@@ -1,6 +1,4 @@
 Rails.application.routes.draw do
-  get 'trips/show'
-  get 'trips/export'
   devise_for :users
   root to: 'pages#landing'
   get '/dashboard', to: 'users#dashboard', as: :dashboard
