@@ -3,6 +3,7 @@ Rails.application.routes.draw do
 
   #temporary testing route -- delete later
   get '/home', to: 'pages#home'
+  get '/desktop', to: 'pages#desktop'
 
   root to: 'pages#landing'
   get '/dashboard', to: 'users#dashboard', as: :dashboard
