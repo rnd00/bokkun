@@ -6,30 +6,29 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-# generators
+# begin generators
 
-def budget_gen(name, amount)
-  Budget.create!(
+def trip_budget_gen(name, amount, trip)
+  budget = Budget.create!(
     name: name,
     amount: amount )
-end
-
-def trip_budget_gen(trip, budget)
   TripBudget.create!(
     trip: trip,
     budget: budget,
-    remaining_amount: budget.amount )
+    remaining_amount: amount )
 end
 
+# end generators
 
 puts "destroy_all everything..."
-Budget.destroy_all
-ReceiptItem.destroy_all
-Receipt.destroy_all
+# join tables first then the data table
 TripBudget.destroy_all
 TripUser.destroy_all
+ReceiptItem.destroy_all
+Budget.destroy_all
 Trip.destroy_all
 User.destroy_all
+Receipt.destroy_all
 puts "done with destroy_all!"
 
 puts "generating default users..."
@@ -65,13 +64,9 @@ tokyo = Trip.create!(
   start_date: Date.today - 2,
   end_date: Date.today - 1)
 
-tokyo_meal = budget_gen('meal', 15000)
-tokyo_travel = budget_gen('travel', 15000)
-tokyo_accomodations = budget_gen('accomodations', 20000)
-
-trip_budget_gen(tokyo, tokyo_meal)
-trip_budget_gen(tokyo, tokyo_travel)
-trip_budget_gen(tokyo, tokyo_accomodations)
+trip_budget_gen("meal", 15000, tokyo)
+trip_budget_gen("travel", 15000, tokyo)
+trip_budget_gen("accomodations", 15000, tokyo)
 
 fukuoka = Trip.create!(
   name: "Fukuoka Trip",
@@ -81,13 +76,9 @@ fukuoka = Trip.create!(
   start_date: Date.today,
   end_date: Date.today + 2)
 
-fukuoka_meal = budget_gen('meal', 15000)
-fukuoka_travel = budget_gen('travel', 15000)
-fukuoka_accomodations = budget_gen('accomodations', 20000)
-
-trip_budget_gen(fukuoka, fukuoka_meal)
-trip_budget_gen(fukuoka, fukuoka_travel)
-trip_budget_gen(fukuoka, fukuoka_accomodations)
+trip_budget_gen("meal", 15000, tokyo)
+trip_budget_gen("travel", 15000, tokyo)
+trip_budget_gen("accomodations", 15000, tokyo)
 
 puts "done with trip & budget generation!"
 
@@ -99,5 +90,3 @@ tu2 = TripUser.create(
   user: yamada,
   trip: fukuoka)
 puts "trip-user connected!"
-
-
