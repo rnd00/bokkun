@@ -38,6 +38,17 @@ def trip_budget_gen(name, amount, trip)
     remaining_amount: amount )
 end
 
+def receipt_gen(company, total, date, tax, cat, user, trip)
+  receipt = Receipt.create!(
+    company: company,
+    total_amount: total,
+    date: date,
+    tax_amount: tax,
+    category: cat,
+    user: user,
+    trip: trip)
+end
+
 today = Date.today
 
 # end generators
@@ -86,3 +97,8 @@ tu2 = TripUser.create(
   user: yamada,
   trip: fukuoka)
 puts "trip-user connected!"
+
+puts "generating 2 receipts..."
+sukiya = receipt_gen("Sukiya", "2000", today, 10, 'meal', yamada, fukuoka)
+sukiya = receipt_gen("Izakaya Hopper", "7000", today, 10, 'meal',yamada, fukuoka)
+puts "done with receipts generation!"

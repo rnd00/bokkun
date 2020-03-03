@@ -4,4 +4,7 @@ class PagesController < ApplicationController
   def landing
     skip_authorization
   end
+
+  def home
+  end
 end

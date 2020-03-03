@@ -5,16 +5,21 @@ class UserPolicy < ApplicationPolicy
     end
   end
 
+  def dashboard?
+    true
+  end
+
+  def new?
+    create?
+  end
+
   def create?
     current_user.manager
   end
 
-  def new?
-    current_user.manager
-  end
 
   def edit?
-    record.user == user
+    update?
   end
 
   def update?

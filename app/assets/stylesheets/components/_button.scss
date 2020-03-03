@@ -1,0 +1,18 @@
+.btn-main {
+  border: 1px solid #2A3347;
+  background-color: $white;
+  border-radius: 30px;
+  margin-right: $spacer;
+  transition: 0.5s;
+  &:hover {
+    box-shadow: 2px 2px 2px 1px rgba(0,0,0,0.3);
+  }
+}
+
+.btn-flat {
+  color: white;
+  padding: 8px 24px;
+  border-radius: 4px;
+  background: #2A3347;
+  transition: background 0.3s ease;
+}
