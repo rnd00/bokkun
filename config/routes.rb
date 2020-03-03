@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
   devise_for :users
-  root to: 'pages#landing'
-  resources :receipts, only: :show
+  root to: 'users#landing'
+  resources :receipts, only: :show do
+    resources :receipt_items, only: [:new, :create]
+  end
 end
