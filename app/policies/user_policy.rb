@@ -5,6 +5,10 @@ class UserPolicy < ApplicationPolicy
     end
   end
 
+  def dashboard?
+    true
+  end
+
   def new?
     create?
   end
