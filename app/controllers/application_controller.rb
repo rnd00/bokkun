@@ -17,9 +17,9 @@ class ApplicationController < ActionController::Base
     dashboard_path
   end
 
-  # private
+  private
 
-  # def skip_pundit?
-  #   devise_controller? || params[:controller] =~ /(^(rails_)?admin)|(^pages$)/
-  # end
+  def skip_pundit?
+    devise_controller? || params[:controller] =~ /(^(rails_)?admin)|(^pages$)/
+  end
 end
