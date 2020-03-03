@@ -4,4 +4,7 @@ Rails.application.routes.draw do
   resources :receipts, only: :show do
     resources :receipt_items, only: [:new, :create]
   end
+  resources :trips do
+    get '/export', to: 'trips#export', as: :export
+  end
 end
