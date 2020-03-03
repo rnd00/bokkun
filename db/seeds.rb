@@ -66,7 +66,6 @@ puts "done with user generation!"
 
 
 puts "generating 2 trips and budgets..."
-
 tokyo = trip_gen("Tokyo Trip", "Tokyo, Japan", "First Contact", "Adil Omary", today - 2, today - 1)
 fukuoka = trip_gen("Fukuoka Trip", "Fukuoka, Japan", "Currying Favor", "Mike Warren", today, today + 2)
 
@@ -74,10 +73,9 @@ trip_budget_gen("meal", 15000, tokyo)
 trip_budget_gen("travel", 15000, tokyo)
 trip_budget_gen("accomodations", 15000, tokyo)
 
-trip_budget_gen("meal", 15000, tokyo)
-trip_budget_gen("travel", 15000, tokyo)
-trip_budget_gen("accomodations", 15000, tokyo)
-
+trip_budget_gen("meal", 15000, fukuoka)
+trip_budget_gen("travel", 15000, fukuoka)
+trip_budget_gen("accomodations", 15000, fukuoka)
 puts "done with trip & budget generation!"
 
 puts "connecting trip-user..."
