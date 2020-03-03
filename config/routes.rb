@@ -1,6 +1,9 @@
 Rails.application.routes.draw do
   devise_for :users
   root to: 'users#landing'
+  #temporary testing route -- delete later
+  get '/home', to: 'pages#home'
+
   resources :receipts, only: :show do
     resources :receipt_items, only: [:new, :create]
   end
