@@ -33,7 +33,7 @@ class TripsController < ApplicationController
     @trip = Trip.find_by(id: params[:id])
     authorize @trip
     if @trip.update(trip_params)
-      redirect_to trip_path(@path)
+      redirect_to trip_path(@trip)
     else
       render :edit
     end
