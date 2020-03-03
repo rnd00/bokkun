@@ -1,8 +1,7 @@
-footer {
-  // margin-top: 6.25rem;
-  // margin-top: -50px;
-
-}
+// footer {
+//   margin-top: 6.25rem;
+//   margin-top: -50px;
+// }
 
 // .bg-light-blue {
 //   background: $light-blue;
@@ -10,7 +9,7 @@ footer {
 
 .footer {
   flex-shrink: 0;
-  background: $off-white;
+  background: $blue;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -41,4 +40,8 @@ footer {
 }
 .footer .fa-heart {
   color: #D23333;
+}
+
+.footer-copyright{
+  color: $off-white
 }

@@ -1,0 +1,32 @@
+.card-detail {
+  padding-top: 20px;
+  margin-bottom: 20px;
+  overflow: hidden;
+  background: white;
+  box-shadow: 0 0 15px rgba(0,0,0,0.2);
+  border-radius: 5px;
+}
+
+.card-detail-body {
+  margin-top: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+
+.card-detail-info {
+  margin-left: 40px;
+  flex-grow: 1;
+  position: relative;
+
+  & h3, p {
+    text-align: left;
+  }
+
+  & a {
+    color: $gray;
+    opacity: 0.3;
+    margin-left: 10px;
+  }
+}
