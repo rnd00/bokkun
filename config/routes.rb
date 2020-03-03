@@ -10,4 +10,7 @@ Rails.application.routes.draw do
   end
   resources :receipts, except: [:new, :create, :index]
   get '/users/:id', to: 'users#show', as: :user_show
+
+  #test route for partial development -- will be deleted
+  get '/home', to: 'pages#home'
 end
