@@ -8,6 +8,26 @@
 
 # begin generators
 
+def user_gen(email, fname, lname, job, manager_status)
+  User.create!(
+    email: email,
+    password: "123456",
+    first_name: fname,
+    last_name: lname,
+    job_title: job,
+    manager: manager_status)
+end
+
+def trip_gen(name, dest, purpose, customer, sdate, edate)
+  Trip.create!(
+  name: name,
+  destination: dest,
+  purpose: purpose,
+  customer: customer,
+  start_date: sdate,
+  end_date: edate)
+end
+
 def trip_budget_gen(name, amount, trip)
   budget = Budget.create!(
     name: name,
@@ -17,6 +37,8 @@ def trip_budget_gen(name, amount, trip)
     budget: budget,
     remaining_amount: amount )
 end
+
+today = Date.today
 
 # end generators
 
@@ -38,43 +60,19 @@ User.create!( email: "admin@bokkun.me",
   last_name: "bokkun",
   job_title: "admin",
   manager: true)
-uemura = User.create!(
-  email: "manager@bokkun.me",
-  password: "123123",
-  first_name: "Uemura",
-  last_name: "Mitsuo",
-  job_title: "Sales Rep",
-  manager: true)
-yamada = User.create!(
-  email: "employee@bokkun.me",
-  password: "123456",
-  first_name: "Yamada",
-  last_name: "Taro",
-  job_title: "Sales Rep",
-  manager: false)
+uemura = user_gen("uemura@bokkun.me", "Uemura", "Mitsuo", "Sales Rep", true)
+yamada = user_gen("yamada@bokkun.me", "Yamada", "Taro", "Sales Rep", false)
 puts "done with user generation!"
 
 
 puts "generating 2 trips and budgets..."
-tokyo = Trip.create!(
-  name: "Tokyo Trip",
-  destination: "Tokyo, Japan",
-  purpose: "First Contact",
-  customer: "Adil Omary",
-  start_date: Date.today - 2,
-  end_date: Date.today - 1)
+
+tokyo = trip_gen("Tokyo Trip", "Tokyo, Japan", "First Contact", "Adil Omary", today - 2, today - 1)
+fukuoka = trip_gen("Fukuoka Trip", "Fukuoka, Japan", "Currying Favor", "Mike Warren", today, today + 2)
 
 trip_budget_gen("meal", 15000, tokyo)
 trip_budget_gen("travel", 15000, tokyo)
 trip_budget_gen("accomodations", 15000, tokyo)
-
-fukuoka = Trip.create!(
-  name: "Fukuoka Trip",
-  destination: "Fukuoka, Japan",
-  purpose: "Currying favor",
-  customer: "Mike Warren",
-  start_date: Date.today,
-  end_date: Date.today + 2)
 
 trip_budget_gen("meal", 15000, tokyo)
 trip_budget_gen("travel", 15000, tokyo)
