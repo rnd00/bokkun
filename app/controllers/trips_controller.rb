@@ -12,6 +12,8 @@ class TripsController < ApplicationController
   def new
     @trip = Trip.new
     authorize @trip
+    @employees = User.all
+    @budgets = Budget.all
   end
 
   def create
