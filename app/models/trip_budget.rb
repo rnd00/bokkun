@@ -1,6 +1,7 @@
 class TripBudget < ApplicationRecord
   belongs_to :trip
   belongs_to :budget
+  has_many :receipts
 
   validates :remaining_amount, numericality: { only_integer: true }
 

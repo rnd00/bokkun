@@ -28,15 +28,15 @@ def trip_gen(name, dest, purpose, customer, sdate, edate)
   end_date: edate)
 end
 
-def receipt_gen(company, total, date, tax, cat, user, trip)
+def receipt_gen(company, total, date, tax, user, trip_budget)
   receipt = Receipt.create!(
     company: company,
     total_amount: total,
     date: date,
     tax_amount: tax,
-    category: cat,
     user: user,
-    trip: trip)
+    trip_budget: trip_budget
+    )
 end
 
 def budget_gen(name, amount)
@@ -86,11 +86,11 @@ user_datas = [['segawa@bokkun.me', 'Segawa', 'Taku', 'Branch Manager', true],
 
 puts "destroy_all everything..."
 # join tables first then the data table
-TripBudget.destroy_all
 TripUser.destroy_all
 ReceiptItem.destroy_all
-Budget.destroy_all
 Receipt.destroy_all
+Budget.destroy_all
+TripBudget.destroy_all
 Trip.destroy_all
 User.destroy_all
 puts "done with destroy_all!"
@@ -148,6 +148,6 @@ tu5 = TripUser.create(
 puts "trip-user connected!"
 
 puts "generating 2 receipts..."
-sukiya = receipt_gen("Sukiya", "2000", today, 10, 'meal', yamada, fukuoka)
-izakaya = receipt_gen("Izakaya Hopper", "7000", today, 10, 'meal',yamada, fukuoka)
+sukiya = receipt_gen("Sukiya", "2000", today, 10, yamada, fukuoka.trip_budgets.first)
+izakaya = receipt_gen("Izakaya Hopper", "7000", today, 10, yamada, fukuoka.trip_budgets.first)
 puts "done with receipts generation!"

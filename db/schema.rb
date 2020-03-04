@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_03_02_103600) do
+ActiveRecord::Schema.define(version: 2020_03_04_072855) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -40,9 +40,8 @@ ActiveRecord::Schema.define(version: 2020_03_02_103600) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "user_id"
-    t.string "category"
-    t.bigint "trip_id"
-    t.index ["trip_id"], name: "index_receipts_on_trip_id"
+    t.bigint "trip_budget_id"
+    t.index ["trip_budget_id"], name: "index_receipts_on_trip_budget_id"
     t.index ["user_id"], name: "index_receipts_on_user_id"
   end
 
@@ -93,7 +92,7 @@ ActiveRecord::Schema.define(version: 2020_03_02_103600) do
   end
 
   add_foreign_key "receipt_items", "receipts"
-  add_foreign_key "receipts", "trips"
+  add_foreign_key "receipts", "trip_budgets"
   add_foreign_key "receipts", "users"
   add_foreign_key "trip_budgets", "budgets"
   add_foreign_key "trip_budgets", "trips"
