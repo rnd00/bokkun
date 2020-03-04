@@ -76,6 +76,14 @@ today = Date.today
 
 # end generators
 
+# start sample data
+user_datas = [['segawa@bokkun.me', 'Segawa', 'Taku', 'Branch Manager', true],
+              ['hirai@bokkun.me', 'Hirai', 'Kako', 'Sales Rep', false],
+              ['ueno@bokkun.me', 'Ueno', 'Keisuke', 'Sales Rep', false]]
+
+# end sample data
+
+
 puts "destroy_all everything..."
 # join tables first then the data table
 TripBudget.destroy_all
@@ -94,8 +102,14 @@ User.create!( email: "admin@bokkun.me",
   last_name: "bokkun",
   job_title: "admin",
   manager: true)
-uemura = user_gen("uemura@bokkun.me", "Uemura", "Mitsuo", "Sales Rep", true)
+uemura = user_gen("uemura@bokkun.me", "Uemura", "Mitsuo", "Division Manager", true)
 yamada = user_gen("yamada@bokkun.me", "Yamada", "Taro", "Sales Rep", false)
+
+# add another users for tests
+user_datas.each do |data|
+  user_gen(data[0], data[1], data[2], data[3], data[4])
+end
+
 puts "done with user generation!"
 
 
