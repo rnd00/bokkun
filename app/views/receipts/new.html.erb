@@ -1,2 +1,8 @@
-<h1>Receipts#new</h1>
-<p>Find me in app/views/receipts/new.html.erb</p>
+<%= render 'shared/side-bar' %>
+
+<div class="container">
+  <%= render 'form' %>
+  <div class="card-detail">
+    <%= link_to "Go back", employer_dashboard_path, class: "btn btn-approve w-30" %>
+  </div>
+</div>
