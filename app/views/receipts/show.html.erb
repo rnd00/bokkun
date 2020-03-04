@@ -1,2 +1,3 @@
 <h1>Receipts#show</h1>
 <p>Find me in app/views/receipts/show.html.erb</p>
+<%= cl_image_tag @receipt.photo.key, height: 300, width: 400, crop: :fill %>
