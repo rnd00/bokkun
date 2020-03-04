@@ -59,7 +59,7 @@ class TripsController < ApplicationController
     @trip = Trip.find_by(id: params[:id])
     authorize @trip
     @trip.destroy
-    redirect_to dashboard_path
+    redirect_to employer_dashboard_path
   end
   private
 

@@ -1,7 +1,7 @@
 class Trip < ApplicationRecord
   has_many :receipts
-  has_many :trip_users
-  has_many :trip_budgets
+  has_many :trip_users, dependent: :destroy
+  has_many :trip_budgets, dependent: :destroy
   has_many :users, through: :trip_users
   has_many :budgets, through: :trip_budgets
 
