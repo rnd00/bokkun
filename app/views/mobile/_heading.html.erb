@@ -9,7 +9,9 @@
     <p>Remaining Budget</p>
     <div class="budget-bar">
       <div class="budget-empty">
-        <div class="budget-percentage" style="width: <%= current_trip.budget_percent %>%"></div>
+        <p><%= current_trip.total_remaining %>/<%= current_trip.total_budget %> </p>
+        <div class="budget-percentage" style="width: <%= current_trip.budget_percent %>%">
+        </div>
       </div>
     </div>
   </div>

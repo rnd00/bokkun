@@ -16,33 +16,6 @@
   }
 }
 
-.budget-bar {
-  height: $spacer * 3;
-  background-color: $light-blue;
-  width: 90%;
-  margin: auto;
-  padding: $spacer / 2;
-  border-radius: 4px;
-}
-
-.budget-empty {
-  background-color: $off-white;
-  height: $spacer * 2;
-  border-radius: 4px;
-}
-
-.budget-percentage {
-  background-color: $yellow;
-  height: 100%;
-  border-radius: 4px;
-}
-
-.budget {
-  text-align: center;
-  color: $white;
-  line-height: 0;
-}
-
 .new-button {
   text-align: center;
   font-size: 48px;

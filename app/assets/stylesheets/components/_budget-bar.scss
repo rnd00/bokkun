@@ -1,0 +1,34 @@
+.budget-bar {
+  background-color: $light-blue;
+  width: 90%;
+  margin: auto;
+  padding: $spacer / 2;
+  border-radius: 4px;
+}
+
+.budget-empty {
+  background-color: $off-white;
+  height: $spacer * 3;
+  border-radius: 4px;
+  position: relative;
+
+  p {
+    position: absolute;
+    line-height: 0;
+    top: 12px;
+    color: black;
+    left: 0;
+  }
+}
+
+.budget-percentage {
+  background-color: $yellow;
+  height: 100%;
+  border-radius: 4px;
+}
+
+.budget {
+  text-align: center;
+  color: $white;
+  line-height: 0;
+}
