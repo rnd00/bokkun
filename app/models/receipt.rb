@@ -4,6 +4,7 @@ class Receipt < ApplicationRecord
   has_one :trip, through: :trip_budget
   belongs_to :trip_budget
   has_one :budget, through: :trip_budget
+  has_one_attached :photo
 
   validates :company, :tax_amount, :total_amount, :date, presence: true
   validates :tax_amount, :total_amount, numericality: { only_integer: true }
