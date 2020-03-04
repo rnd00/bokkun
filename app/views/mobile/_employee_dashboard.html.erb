@@ -1,14 +1,5 @@
 <%= render 'mobile/heading', current_trip: @trips.first %>
 <div class="mobile-cards">
-  <div class="mobile-card text-center">
-    <%= text_field_tag :query,
-                params[:query],
-                class: "form-control",
-                placeholder: "Search trips"
-              %>
-  </div>
-</div>
-<div class="mobile-cards">
   <% @trips.each do |trip| %>
     <div class="mobile-card">
       <h3><%= trip.destination %></h3>
