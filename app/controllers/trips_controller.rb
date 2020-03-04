@@ -19,7 +19,21 @@ class TripsController < ApplicationController
   def create
     @trip = Trip.new(trip_params)
     authorize @trip
+    @employees = []
+    @budgets = []
+    params[:trip][:user_ids].each do |user_id|
+      @employees << User.find_by(id: user_id)
+    end
+    params[:trip][:budget_ids].each do |budget_id|
+      @budgets << Budget.find_by(id: budget_id)
+    end
     if @trip.save
+      @employees.each do |employee|
+        TripUser.create!(user: employee, trip: @trip)
+      end
+      @budgets.each do |budget|
+        TripBudget.create!(trip: @trip, budget: budget, remaining_amount: budget.amount)
+      end
       redirect_to trip_path(@trip)
     else
       render :new
