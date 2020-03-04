@@ -40,7 +40,11 @@ class ReceiptsController < ApplicationController
   def destroy
     @receipt = Receipt.find_by(id: params[:id])
     @receipt.destroy
-    redirect_to dashboard_path
+    if current_user.manager
+      redirect_to employer_dashboard_path
+    else
+      redirect_to employee_dashboard_path
+    end
   end
 
   private
