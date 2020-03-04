@@ -15,9 +15,11 @@
   p {
     position: absolute;
     line-height: 0;
-    top: 12px;
+    top: 50%;
     color: black;
-    left: 0;
+    left: 50%;
+    margin: 0 auto;
+    transform: translate(-50%, -50%);
   }
 }
 
