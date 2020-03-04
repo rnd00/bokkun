@@ -1,5 +1,5 @@
 .mobile-cards {
-  display: flex;
+  display: column;
   flex-direction: vertical;
   margin: $spacer;
 }
@@ -11,6 +11,8 @@
   // padding: $spacer;
   border-radius: 30px;
   text-align: center;
+  padding: $spacer / 2;
+  margin-top: $spacer;
 
   p {
     line-height: 0.25;
