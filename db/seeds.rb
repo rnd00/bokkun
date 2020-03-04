@@ -51,7 +51,7 @@ end
 
 def template_trip_budget_gen(trip)
   # add more type as you need
-  types = [['meal', 15000], ['travel', 20000], ['accomodations', 20000]]
+  types = [['meal', 15000], ['travel', 20000], ['accomodations', 25000]]
   types.each do |type|
     trip_budget_gen(type[0], type[1], trip)
   end
