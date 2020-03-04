@@ -9,8 +9,9 @@
     <%= stylesheet_link_tag 'application', media: 'all' %>
     <%#= stylesheet_pack_tag 'application', media: 'all' %> <!-- Uncomment if you import CSS in app/javascript/packs/application.js -->
   </head>
-
-    <%= render 'shared/navbar' %>
+  <body class="fix-static-top">
+    <%#= render 'shared/flashes' %>
+    <%#= render 'shared/navbar' %>
     <div class="content">
       <%= yield %>
     </div>

@@ -3,6 +3,7 @@ module Employee
 
     def dashboard
       @user = current_user
+      @trips = @user.trips.order(start_date: :desc)
       authorize @user
     end
 
