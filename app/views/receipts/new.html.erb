@@ -5,7 +5,7 @@
   <%= f.input :total_amount %>
   <%= f.input :date %>
   <%= f.input :tax_amount %>
-  <%= f.input :category, collection: ["Food", "Accommodation", "Travel", "Misc."], include_blank: false %>
+  <%= f.association :trip_budget, collection: @trip.budgets, include_blank: false %>
   <%= f.input :photo, as: :file  %>
   <%= f.submit "Add Receipt" %>
 <% end %>

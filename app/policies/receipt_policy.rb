@@ -14,7 +14,7 @@ class ReceiptPolicy < ApplicationPolicy
   end
 
   def create?
-    record.user == user || user.manager
+    record.trip.users.include?(user) || user.manager
   end
 
   def update?
