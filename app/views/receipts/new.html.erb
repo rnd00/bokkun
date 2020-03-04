@@ -1,7 +1,18 @@
-<%= render 'shared/side-bar' %>
 
+
+<%= render 'shared/side-bar' %>
 <div class="container">
-  <%= render 'form' %>
+  <h1>Receipts#new</h1>
+  <p>Find me in app/views/receipts/new.html.erb</p>
+  <%= simple_form_for [@trip, @receipt] do |f| %>
+    <%= f.input :company %>
+    <%= f.input :total_amount %>
+    <%= f.input :date %>
+    <%= f.input :tax_amount %>
+    <%= f.input :category, collection: ["Food", "Accommodation", "Travel", "Misc."], include_blank: false %>
+    <%= f.input :photo, as: :file  %>
+    <%= f.submit "Add Receipt" %>
+  <% end %>
   <div class="card-detail">
     <%= link_to "Go back", employer_dashboard_path, class: "btn btn-approve w-30" %>
   </div>
