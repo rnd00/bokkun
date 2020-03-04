@@ -1,0 +1,33 @@
+.wrapper {
+  width: 100%;
+}
+
+.landing-arguments-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: stretch;
+  padding: $spacer;
+}
+
+.argument {
+  display: flex;
+  align-self: stretch;
+  background-color: $off-white;
+  margin: auto $spacer * 1.5;
+  border: 1px solid $black;
+  border-radius: 8px;
+  width: 600px;
+  max-height: 40%;
+}
+
+.argument-info {
+  padding: $spacer;
+  margin: auto 0;
+  & h2 {
+    font-size: 2vw;
+  }
+  & p {
+    margin: 0;
+  }
+}

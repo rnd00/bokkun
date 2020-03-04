@@ -1,0 +1,10 @@
+<%= simple_form_for @trip do |f| %>
+  <%= f.input :name, class: "form-control" %>
+  <%= f.input :destination, class: "form-control"  %>
+  <%= f.input :purpose, class: "form-control" %>
+
+  <%= f.input :customer, class: "form-control" %>
+  <%= f.input :start_date, class: "form-control" %>
+  <%= f.input :end_date, class: "form-control" %>
+  <%= f.button :submit, class: "btn btn-approve w-30" %>
+<% end %>

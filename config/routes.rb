@@ -1,5 +1,18 @@
 Rails.application.routes.draw do
   devise_for :users
-  root to: 'pages#home'
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+  root to: 'pages#landing'
+  #temporary testing route -- delete later
+  get '/mobile', to: 'pages#mobile'
+  get '/desktop', to: 'pages#desktop'
+
+  get '/dashboard', to: 'users#dashboard', as: :dashboard
+  resources :receipts, only: :show do
+    resources :receipt_items, only: [:new, :create]
+  end
+  resources :trips do
+    get '/export', to: 'trips#export', as: :export
+    resources :receipts, only: [:new, :create]
+  end
+  resources :receipts, except: [:new, :create, :index, :show]
+  get '/users/:id', to: 'users#show', as: :user_show
 end
