@@ -1,5 +1,7 @@
 <div class="mobile-wrapper">
-  <%= render 'shared/employee_heading', current_trip: @trips.first %>
+  <%= link_to trip_path(@trips.first) do %>
+    <%= render 'shared/employee_heading', current_trip: @trips.first %>
+  <% end %>
   <%= render 'shared/employee_search' %>
   <%= render 'trips/employee_trip_cards', trips: @trips %>
 </div>

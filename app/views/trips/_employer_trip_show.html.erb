@@ -1,0 +1,26 @@
+<%= render 'shared/side-bar' %>
+<div class="container">
+  <div class="card-detail">
+    <h1> <%= @trip.name.titleize %> </h1>
+    <div class="card-detail-body">
+      <div class="card-detail-info">
+        <ul>
+          <p>Destination : <%= @trip.destination %></p>
+          <p>Start Date : <%= @trip.start_date %></p>
+          <p>End Date : <%= @trip.end_date %></p>
+          <p>Purpose : <%= @trip.purpose  %></p>
+          <p>Customer : <%= @trip.customer %></p>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <%= link_to "Edit this trip", edit_trip_path, class: "btn btn-approve w-30" %>
+  <% if current_user.manager %>
+    <%= link_to "Delete this trip", trip_path(@trip), method: :delete, class: "btn btn-approve w-30" %>
+  <% end %>
+  <% if current_user.manager %>
+    <%= link_to "Go Back", employer_dashboard_path, class: "btn btn-approve w-30" %>
+  <% else %>
+    <%= link_to "Go Back", employer_dashboard_path, class: "btn btn-approve w-30" %>
+  <% end %>
+</div>

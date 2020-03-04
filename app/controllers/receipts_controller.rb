@@ -2,14 +2,16 @@ class ReceiptsController < ApplicationController
   def new
     @receipt = Receipt.new
     @trip = Trip.find_by(id: params[:trip_id])
+    @receipt.trip = @trip
+    @receipt.user = current_user
     authorize @receipt
   end
 
   def create
     @receipt = Receipt.new(receipt_params)
-    authorize @receipt
     @receipt.user = current_user
     @receipt.trip = Trip.find_by(id: params[:trip_id])
+    authorize @receipt
     if @receipt.save
       redirect_to receipt_path(@receipt)
     else

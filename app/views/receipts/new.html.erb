@@ -1,5 +1,3 @@
-
-
 <%= render 'shared/side-bar' %>
 <div class="container">
   <h1>NEW FORM</h1>
@@ -9,11 +7,15 @@
     <%= f.input :date %>
     <%= f.input :total_amount %>
     <%= f.input :tax_amount %>
-    <%= f.input :category, collection: ["Food", "Accommodation", "Travel", "Misc."], include_blank: false %>
+    <%= f.association :trip_budget, collection: @trip.budgets, include_blank: false %>
     <%= f.input :photo, as: :file  %>
     <%= f.submit "Add Receipt" %>
   <% end %>
   <div class="card-detail">
-    <%= link_to "Go back", employer_dashboard_path, class: "btn btn-approve w-30" %>
+    <% if current_user.manager %>
+      <%= link_to "Go back", employer_dashboard_path, class: "btn btn-approve w-30" %>
+    <% else %>
+      <%= link_to "Go back", employee_dashboard_path, class: "btn btn-approve w-30" %>
+    <% end %>
   </div>
 </div>
