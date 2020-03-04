@@ -1,0 +1,18 @@
+Welcome
+EMPLOYER
+<p><%= @user.first_name %></p>
+<p><%= @user.last_name %></p>
+<h1>Your list of trips</h1>
+<div class="landing-arguments-container">
+  <div class="argument">
+    <div class="argument-info">
+      <% @user.trips.each do |trip| %>
+        <p><strong><%= link_to trip.name, trip_path(trip)%></strong></p>
+        <p><%=  trip.destination %></p>
+        <p><%=  trip.purpose %></p>
+        <p> Budget = 55000 yens </p>
+      <% end %>
+    </div>
+  </div>
+</div>
+<%= link_to "Create a new trip", new_trip_path, class: "btn btn-gradient"  %>

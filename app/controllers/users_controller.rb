@@ -1,6 +1,4 @@
 class UsersController < ApplicationController
-  def landing
-  end
 
   def dashboard
     @user = current_user
