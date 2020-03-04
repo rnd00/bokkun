@@ -5,7 +5,16 @@ Rails.application.routes.draw do
   get '/mobile', to: 'pages#mobile'
   get '/desktop', to: 'pages#desktop'
 
-  get '/dashboard', to: 'users#dashboard', as: :dashboard
+  # dashboard for employer
+  namespace :employer do
+    get '/dashboard', to: 'users#dashboard', as: :dashboard
+  end
+
+  # dashboard for employee
+  namespace :employee do
+    get '/dashboard', to: 'users#dashboard', as: :dashboard
+  end
+
   resources :receipts, only: :show do
     resources :receipt_items, only: [:new, :create]
   end
