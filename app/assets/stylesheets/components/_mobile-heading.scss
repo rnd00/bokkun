@@ -1,9 +1,7 @@
 .mobile-heading {
   background-color: $blue;
-  height: 320px;
+  height: auto;
   border-radius: 30px;
-  position: relative;
-  bottom: $spacer * 3;
   padding-top: $spacer *3;
   box-shadow: 1px 1px 2px black;
 }
@@ -16,34 +14,6 @@
   p {
     margin-top: $spacer * 2;
   }
-}
-
-.budget-bar {
-  height: $spacer * 3;
-  background-color: $light-blue;
-  width: 90%;
-  margin: auto;
-  padding: $spacer / 2;
-  border-radius: 4px;
-}
-
-.budget-empty {
-  background-color: $off-white;
-  height: $spacer * 2;
-  border-radius: 4px;
-}
-
-.budget-percentage {
-  background-color: $yellow;
-  height: 100%;
-  width: 25%;
-  border-radius: 4px;
-}
-
-.budget {
-  text-align: center;
-  color: $white;
-  line-height: 0;
 }
 
 .new-button {

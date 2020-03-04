@@ -18,12 +18,12 @@ body{
 .head-nav {
   li{
     &:hover{
-        background-color: $color-1;
+        background-color: $light-blue;
         &:before{
-            background-color: $color-1;
+            background-color: $blue;
         }
         svg{
-            background: $color-1;
+            background: $light-blue;
             fill: #ED1C5B;
         }
         a{
@@ -61,7 +61,7 @@ body{
   a{
       align-items: center;
       width: 100%;
-      color: $color-2;
+      color: $off-white;
       text-decoration: none;
       transition: color 400ms;
       span{
@@ -79,7 +79,7 @@ body{
       max-width: 80px;
       max-height: 30px;
       z-index: 1;
-      fill: $color-2;
+      fill: $yellow;
       background: #ED1C5B;
       transition: 400ms;
   }
@@ -101,12 +101,8 @@ body{
   background: #ED1C5B;
   transition: width 400ms;
   &:hover{
-      width: 436px;
-      & + .wrap-all-the-things{
-          transform: translateX(336px);
-          max-width: 100%;
-          opacity: 0.4;
-      }
+      width: 200px;
+      & +
       .head-nav{
           li{
               @for $i from 1 through 4 {
@@ -135,18 +131,5 @@ body{
               }
           }
       }
-  }
-}
-.wrap-all-the-things{
-  min-height: 100%;
-  height: 100%;
-  padding: {left:140px;}
-  margin: {top: 0;}
-  background-image: url(https://download.unsplash.com/photo-1428976365951-b70e0fa5c551);
-  background-size: cover;
-  background-position: center center;
-  transition: transform 400ms, opacity 400ms;
-  @media screen and (max: 480px){
-      padding: {left:70px;}
   }
 }

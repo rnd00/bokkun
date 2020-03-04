@@ -1,0 +1,5 @@
+<div class="mobile-wrapper">
+  <%= render 'shared/employee_heading', current_trip: @trips.first %>
+  <%= render 'shared/employee_search' %>
+  <%= render 'trips/employee_trip_cards', trips: @trips %>
+</div>
