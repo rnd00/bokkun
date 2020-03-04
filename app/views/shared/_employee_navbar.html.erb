@@ -1,5 +1,5 @@
 <div class="topnav">
-  <a href="#home" class="active">Logo</a>
+  <a href="#home" class="active">Hello, <%= current_user.first_name %>!</a>
   <!-- Navigation links (hidden by default) -->
   <div id="myLinks">
     <% if user_signed_in? %>
