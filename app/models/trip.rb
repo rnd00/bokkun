@@ -14,4 +14,8 @@ class Trip < ApplicationRecord
   def total_remaining
     self.trip_budgets.reduce(0) { |total, trip_budget| total + trip_budget.remaining_amount }
   end
+
+  def budget_percent
+    ((self.total_remaining.to_f / self.total_budget.to_f).round(2) * 100).to_i
+  end
 end

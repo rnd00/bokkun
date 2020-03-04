@@ -9,8 +9,7 @@
     <p>Remaining Budget</p>
     <div class="budget-bar">
       <div class="budget-empty">
-        <div class="budget-percentage"></div>
-        <!-- Remember to use embedded Ruby to set the width of budget-percentage -->
+        <div class="budget-percentage" style="width: <%= current_trip.budget_percent %>%"></div>
       </div>
     </div>
   </div>
