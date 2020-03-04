@@ -105,13 +105,13 @@ tu1 = TripUser.create!(
 tu2 = TripUser.create(
   user: yamada,
   trip: fukuoka)
-tu2 = TripUser.create(
+tu3 = TripUser.create(
   user: yamada,
   trip: hokkaido)
-tu2 = TripUser.create(
+tu4 = TripUser.create(
   user: uemura,
   trip: izu)
-tu2 = TripUser.create(
+tu5 = TripUser.create(
   user: uemura,
   trip: izumo)
 puts "trip-user connected!"
