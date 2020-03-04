@@ -1,2 +1,22 @@
-<h1>Trips#show</h1>
-<p>Find me in app/views/trips/show.html.erb</p>
+
+<div class="container">
+  <div class="card-detail">
+    <h1> <%= @trip.name.titleize %> </h1>
+    <div class="card-detail-body">
+      <div class="card-detail-info">
+            <ul>
+              <p>Destination : <%= @trip.destination %></p>
+              <p>Start Date : <%= @trip.start_date %></p>
+              <p>End Date : <%= @trip.end_date %></p>
+              <p>Purpose : <%= @trip.purpose  %></p>
+              <p>Customer : <%= @trip.customer %></p>
+            </ul>
+      </div>
+    </div>
+  </div>
+  <%= link_to "Edit this trip", edit_trip_path, class: "btn btn-gradient" %>
+  <% if current_user.manager %>
+  <%= link_to "Delete this trip", trip_path(@trip), method: :delete, class: "btn btn-gradient" %>
+  <% end %>
+  <%= link_to "Go back", dashboard_path, class: "btn btn-gradient" %>
+</div>
