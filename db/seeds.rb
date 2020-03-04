@@ -48,8 +48,7 @@ end
 def trip_budget_gen(budget, trip)
   TripBudget.create!(
     trip: trip,
-    budget: budget,
-    remaining_amount: budget.amount )
+    budget: budget)
 end
 
 # template generator
