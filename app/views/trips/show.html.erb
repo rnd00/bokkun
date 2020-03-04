@@ -14,9 +14,9 @@
       </div>
     </div>
   </div>
-  <%= link_to "Edit this trip", edit_trip_path, class: "btn btn-gradient" %>
+  <%= link_to "Edit this trip", edit_trip_path, class: "btn btn-approve w-30" %>
   <% if current_user.manager %>
-  <%= link_to "Delete this trip", trip_path(@trip), method: :delete, class: "btn btn-gradient" %>
+  <%= link_to "Delete this trip", trip_path(@trip), method: :delete, class: "btn btn-approve w-30" %>
   <% end %>
-  <%= link_to "Go back", dashboard_path, class: "btn btn-gradient" %>
+    <%= link_to "Go back", dashboard_path, class: "btn btn-approve w-30" %>
 </div>
