@@ -1,21 +1,20 @@
 <%= render 'shared/side-bar' %>
-
+<div class="container">
   Welcome
   EMPLOYER
   <p><%= @user.first_name %></p>
   <p><%= @user.last_name %></p>
-  <div class="container">
   <h1>Your list of trips</h1>
-    <div class="argument">
-      <div class="argument-info">
-        <% @user.trips.each do |trip| %>
+    <% @user.trips.each do |trip| %>
+      <div class="argument">
+        <div class="argument-info">
           <p><strong><%= link_to trip.name, trip_path(trip)%></strong></p>
           <p><%=  trip.destination %></p>
           <p><%=  trip.purpose %></p>
           <p> Budget = 55000 yens </p>
-        <% end %>
+        </div>
       </div>
-    </div>
+    <% end %>
   <%= link_to "Create a new trip", new_trip_path, class: "btn btn-approve w-30"  %>
-  </div>
+</div>
 
