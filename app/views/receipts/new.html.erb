@@ -6,8 +6,8 @@
   <p>Enter all the informations</p>
   <%= simple_form_for [@trip, @receipt] do |f| %>
     <%= f.input :company %>
-    <%= f.input :total_amount %>
     <%= f.input :date %>
+    <%= f.input :total_amount %>
     <%= f.input :tax_amount %>
     <%= f.input :category, collection: ["Food", "Accommodation", "Travel", "Misc."], include_blank: false %>
     <%= f.input :photo, as: :file  %>
