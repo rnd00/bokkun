@@ -1,5 +1,5 @@
 class Receipt < ApplicationRecord
-  has_many :receipt_items
+  has_many :receipt_items, dependent: :destroy
   belongs_to :user
   belongs_to :trip_budget
   has_one :trip, through: :trip_budget
