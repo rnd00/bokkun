@@ -18,7 +18,11 @@
 
 .new-button {
   text-align: center;
-  font-size: 48px;
-  color: $yellow;
-  text-shadow: 4px, 4px, 20px, black;
+  padding: $spacer;
+
+  i {
+    color: $yellow;
+    font-size: 48px;
+    text-shadow: 4px, 4px, 20px, black;
+  }
 }

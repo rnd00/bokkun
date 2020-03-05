@@ -1,0 +1,15 @@
+<div class="topnav">
+  <a href="#home" class="active">Hello, <%= current_user.first_name %>!</a>
+  <!-- Navigation links (hidden by default) -->
+  <div id="myLinks">
+    <% if user_signed_in? %>
+      <%= link_to "Sign Out", destroy_user_session_path, method: :delete %>
+    <% else %>
+     <%= link_to "Sign In", new_user_session_path %>
+    <% end %>
+  </div>
+  <!-- "Hamburger menu" / "Bar icon" to toggle the navigation links -->
+  <a href="javascript:void(0);" class="icon" id="employeeNavbarToggle">
+    <i class="fa fa-bars"></i>
+  </a>
+</div>
