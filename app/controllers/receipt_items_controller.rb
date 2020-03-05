@@ -2,11 +2,14 @@ class ReceiptItemsController < ApplicationController
   def new
     @receipt = Receipt.find_by(id: params[:receipt_id])
     @receipt_item = ReceiptItem.new
+    @receipt_item.receipt = @receipt
     authorize @receipt_item
   end
 
   def create
     @receipt_item = ReceiptItem.new(receipt_item_params)
+    @receipt = Receipt.find_by(id: params[:receipt_id])
+    @receipt_item.receipt = @receipt
     authorize @receipt_item
     if @receipt_item.save
       redirect_to receipt_path(@receipt_item.receipt)
@@ -17,6 +20,7 @@ class ReceiptItemsController < ApplicationController
 
   def edit
     @receipt_item = ReceiptItem.find_by(id: params[:id])
+    @receipt = @receipt_item.receipt
     authorize @receipt_item
   end
 

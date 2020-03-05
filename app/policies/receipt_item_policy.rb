@@ -10,7 +10,7 @@ class ReceiptItemPolicy < ApplicationPolicy
   end
 
   def create?
-    record.user == user || user.manager
+    record.receipt.user == user || user.manager
   end
 
   def edit?
@@ -18,10 +18,10 @@ class ReceiptItemPolicy < ApplicationPolicy
   end
 
   def update?
-    record.user == user || user.manager
+    record.receipt.user == user || user.manager
   end
 
   def destroy?
-    record.user == user || user.manager
+    record.receipt.user == user || user.manager
   end
 end

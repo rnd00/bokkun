@@ -1,2 +1,8 @@
-<h1>ReceiptItems#new</h1>
-<p>Find me in app/views/receipt_items/new.html.erb</p>
+<div class="container">
+  <%= simple_form_for [@receipt, @receipt_item] do |f| %>
+    <%= f.input :name %>
+    <%= f.input :amount %>
+    <%= f.input :tax %>
+    <%= f.submit %>
+  <% end %>
+</div>
