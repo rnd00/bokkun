@@ -10,6 +10,11 @@
           <p>End Date : <%= @trip.end_date %></p>
           <p>Purpose : <%= @trip.purpose  %></p>
           <p>Customer : <%= @trip.customer %></p>
+          <ul>Employees :
+            <% @trip.users.each do |user| %>
+              <p><%= link_to user.first_name, trip_path(trip)%><%= user.first_name %> <%= user.last_name %>, <%= user.job_title %></p>
+            <% end %>
+          </ul>
         </ul>
       </div>
     </div>

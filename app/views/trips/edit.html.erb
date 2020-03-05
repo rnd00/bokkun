@@ -2,5 +2,9 @@
 
 <div class="container">
   <%= render 'form' %>
-  <%= link_to "Go back", dashboard_path, class: "btn btn-approve w-30" %>
+  <% if current_user.manager %>
+    <%= link_to "Go back", trip_path(@trip), class: "btn btn-approve w-30" %>
+  <% else %>
+    <%= link_to "Go back", trip_path(@trip), class: "btn btn-approve w-30" %>
+  <% end %>
 </div>
