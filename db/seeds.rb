@@ -32,13 +32,21 @@ def trip_gen(name, dest, purpose, customer, sdate, edate)
 end
 
 def receipt_gen(company, total, date, tax, user, trip_budget)
-  receipt = Receipt.create!(
+  Receipt.create!(
     company: company,
     total_amount: total,
     date: date,
     tax_amount: tax,
     user: user,
     trip_budget: trip_budget )
+end
+
+def items_gen(name, amt, tax, receipt)
+  ReceiptItem.create!(
+    name: name,
+    amount: amt,
+    tax: tax,
+    receipt: receipt )
 end
 
 def budget_gen(name, amount)
@@ -78,7 +86,7 @@ end
 
 def temp_trip_gen(city, purpose, customer, length_of_trip)
   name = "#{city} trip"
-  dest = "#{city}, Earth"
+  dest = "#{city}, Japan"
   rand_num = rand(length_of_trip)
   sdate = TODAY - rand_num
   edate = TODAY + (length_of_trip - rand_num)
@@ -123,7 +131,7 @@ end
 ##
 # Array inside another array;
 # user = [login-email, first-name, last-name, job-title, manager-boolean]
-# trip = []
+# trip = [city (has to be inside japan), purpose, customer, length-of-trip]
 
 USERDATA = [['segawa@bokkun.me', 'Segawa', 'Taku', 'Branch Manager', true],
               ['hirai@bokkun.me', 'Hirai', 'Kako', 'Sales Rep', false],
@@ -201,9 +209,24 @@ puts "done with connections"
 # ============================================================================
 
 puts "generating 2 receipts for yamada..."
-# sukiya = receipt_gen("Sukiya", "2000", TODAY, 10, yamada, fukuoka.trip_budgets.first)
-# izakaya = receipt_gen("Izakaya Hopper", "7000", TODAY, 10, yamada, fukuoka.trip_budgets.first)
-test_trip_budget = yamada.trips.first.trip_budgets.first
-sukiya = receipt_gen("Sukiya", "2000", TODAY, 10, yamada, test_trip_budget)
-izakaya = receipt_gen("Izakaya Hopper", "7000", TODAY, 10, yamada, test_trip_budget)
+# receipt_gen(company, total, date, tax, user, trip_budget)
+
+yamada_trip_budget = yamada.trips.first.trip_budgets.first
+sukiya = receipt_gen("Sukiya", "2000", TODAY, 10, yamada, yamada_trip_budget)
+izakaya = receipt_gen("Izakaya Hopper", "7000", TODAY, 10, yamada, yamada_trip_budget)
+
+YAMADA_RECEIPTS = [sukiya, izakaya]
+
 puts "done with receipts generation!"
+
+# ============================================================================
+# GENERATE RECEIPT ITEMS
+# ============================================================================
+
+puts "generating receipt items on yamada"
+
+# items_gen(name, amt, tax, receipt)
+gyudon = items_gen('gyudon', 400, 10, YAMADA_RECEIPTS.first)
+cheese = items_gen('cheese', 200, 10, YAMADA_RECEIPTS.first)
+
+puts "done with receipt items generation!"
