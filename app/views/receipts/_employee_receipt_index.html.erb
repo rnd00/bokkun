@@ -1,5 +1,6 @@
 <% current_trip.trip_budgets.each do |trip_budget| %>
   <p><%= trip_budget.budget.name %></p>
+  <%= render 'shared/budget_bar', trip_budget: trip_budget %>
   <% if trip_budget.receipts.empty? %>
     <p>No receipts entered.</p>
   <% else %>

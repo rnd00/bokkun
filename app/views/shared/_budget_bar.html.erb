@@ -1,7 +1,7 @@
 <div class="budget-bar">
   <div class="budget-empty">
-    <p><%= current_trip.total_remaining %>/<%= current_trip.total_budget %> </p>
-    <div class="budget-percentage" style="width: <%= current_trip.budget_percent %>%">
+    <p><%= trip_budget.total_remaining %>/<%= trip_budget.budget.amount %> </p>
+    <div class="budget-percentage" style="width: <%= trip_budget.budget_percent %>%">
     </div>
   </div>
 </div>
