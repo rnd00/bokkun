@@ -106,8 +106,15 @@ user_datas = [['segawa@bokkun.me', 'Segawa', 'Taku', 'Branch Manager', true],
               ['hirai@bokkun.me', 'Hirai', 'Kako', 'Sales Rep', false],
               ['ueno@bokkun.me', 'Ueno', 'Keisuke', 'Sales Rep', false]]
 
-trip_datas = [["Tokyo Trip", "Tokyo, Japan", "First Contact", "Adil Omary", today - 2, today - 1],
-              []]
+trip_datas = [["Tokyo", "First contact", "Adil Omary", 3],
+              ["Fukuoka", "Currying favor", "Mike Warren", 4],
+              ["Susukino", "Meeting with potential customer", "Suzuki Ichiro", 1],
+              ["Izu", "Meeting with another branch manager", "Takagi Jiro", 2],
+              ["Izumo", "Checking out our distributor", "Nakagawa Saburo", 3],
+              ["Oita", "Opening workshops on an Institute", "Kanzaki Shiro", 4],
+              ["Gunma", "Attending a Convention", "Kikuchi Goro", 5]]
+
+
 
 # ============================================================================
 # DESTROY ALL
