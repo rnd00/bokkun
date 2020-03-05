@@ -6,32 +6,36 @@
         <nav class="head-nav">
           <ul class="menu">
             <li>
-              <a href="#">
+              <%= link_to employer_dashboard_path do %>
                 <svg class="person">
                   <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#person"></use>
-                </svg><span>Dashboard</span></a>
+                </svg><span>Dashboard</span>
+              <% end %>
             </li>
             <li>
-              <a href="#">
+              <%= link_to employer_dashboard_path do %>
                 <svg class="video-player">
                   <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#video-player"></use>
-                </svg><span>Trips</span></a>
+                </svg><span>Trips</span>
+                <% end %>
             </li>
             <li>
-              <a href="#">
+              <%= link_to employer_dashboard_path do %>
                 <svg class="speech-bubble">
                   <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#speech-bubble"></use>
-                </svg><span>Teams</span></a>
+                </svg><span>Employees</span></a>
+              <% end %>
             </li>
             <li>
-              <a href="#">
+              <%= link_to employer_dashboard_path do %>
                 <svg class="paper-airplane">
                   <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#paper-airplane"></use>
                 </svg><span>Report</span></a>
+              <% end %>
             </li>
           </ul>
         </nav>
-  </header> <!-- //main-head -->
+  </header>
 
   <div class="wrap-all-the-things"></div>
 
