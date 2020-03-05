@@ -76,12 +76,6 @@ def temp_budget_gen
   end
 end
 
-def temp_users_gen(data)
-  data.map do |user|
-    user_gen(user[0], user[1], user[2], user[3], user[4])
-  end
-end
-
 def temp_trip_gen(city, purpose, customer, length_of_trip)
   name = "#{city} trip"
   dest = "#{city}, Earth"
@@ -91,11 +85,28 @@ def temp_trip_gen(city, purpose, customer, length_of_trip)
   trip_gen(name, dest, purpose, customer, sdate, edate)
 end
 
+# collection generator (output = array)
+
+def temp_users_gen(data)
+  data.map do |user|
+    user_gen(user[0], user[1], user[2], user[3], user[4])
+  end
+end
+
 def temp_col_trip_gen(data)
   data.map do |trip|
     temp_trip_gen(trip[0], trip[1], trip[2], trip[3])
   end
 end
+
+def temp_col_receipt_gen(data, user, trip_budget)
+  data.map do |receipt|
+    # receipt_gen(company, total, date, tax, user, trip_budget)
+    receipt_gen(receipt[0], receipt[1], receipt[2], receipt[3], user, trip_budget)
+  end
+end
+
+# join tables (output = array)
 
 def temp_trip_budget_gen(temp_budget, trip)
   # call this each time you make a trip
@@ -126,6 +137,8 @@ TRIPDATA = [["Tokyo", "First contact", "Adil Omary", 3],
               ["Oita", "Opening workshops on an Institute", "Kanzaki Shiro", 4],
               ["Gunma", "Attending a Convention", "Kikuchi Goro", 5]]
 
+# DO NOT USE IT YET
+# RECEIPTDATA = [["Sukiya", "2000", TODAY, 10, yamada, fukuoka.trip_budgets.first]]
 
 
 # ============================================================================
@@ -162,6 +175,7 @@ yamada = user_gen("yamada@bokkun.me", "Yamada", "Taro", "Sales Rep", false)
 TESTUSERS = [uemura, yamada]
 
 # add another users for tests
+puts "generating dummy users..."
 users = temp_users_gen(USERDATA)
 puts "done with user generation!"
 
@@ -186,7 +200,10 @@ puts "done with connections"
 # GENERATE RECEIPTS
 # ============================================================================
 
-# puts "generating 2 receipts..."
+puts "generating 2 receipts for yamada..."
 # sukiya = receipt_gen("Sukiya", "2000", TODAY, 10, yamada, fukuoka.trip_budgets.first)
 # izakaya = receipt_gen("Izakaya Hopper", "7000", TODAY, 10, yamada, fukuoka.trip_budgets.first)
-# puts "done with receipts generation!"
+test_trip_budget = yamada.trips.first.trip_budgets.first
+sukiya = receipt_gen("Sukiya", "2000", TODAY, 10, yamada, test_trip_budget)
+izakaya = receipt_gen("Izakaya Hopper", "7000", TODAY, 10, yamada, test_trip_budget)
+puts "done with receipts generation!"
