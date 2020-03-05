@@ -1,8 +1,1 @@
-<div class="container">
-  <%= simple_form_for [@receipt, @receipt_item] do |f| %>
-    <%= f.input :name %>
-    <%= f.input :amount %>
-    <%= f.input :tax %>
-    <%= f.submit %>
-  <% end %>
-</div>
+<%= render 'receipt_items/form' %>

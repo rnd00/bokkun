@@ -13,7 +13,7 @@
     <%#= render 'shared/flashes' %>
     <%#= render 'shared/navbar' %>
     <% if user_signed_in? %>
-      <%= render 'shared/employee_navbar' unless current_user.manager %>
+      <%= render 'shared/navbar' unless current_user.manager %>
     <% end %>
     <div class="content">
       <%= yield %>
