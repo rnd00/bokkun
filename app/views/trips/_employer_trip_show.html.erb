@@ -12,7 +12,7 @@
           <p>Customer : <%= @trip.customer %></p>
           <ul>Employees :
             <% @trip.users.each do |user| %>
-              <p><strong><%= link_to [user.first_name, user.last_name].join(" "), employee_show_path%></strong>, <%= user.job_title %></p>
+              <p><strong><%= link_to [user.first_name, user.last_name].join(" "), user_show_path(user)%></strong>, <%= user.job_title %></p>
             <% end %>
           </ul>
         </ul>
