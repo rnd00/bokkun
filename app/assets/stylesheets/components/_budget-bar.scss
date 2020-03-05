@@ -34,3 +34,21 @@
   color: $white;
   line-height: 0;
 }
+
+.in-red {
+  background-color: red;
+  height: $spacer * 3;
+  border-radius: 4px;
+  position: relative;
+
+  p {
+    z-index: 5;
+    position: absolute;
+    line-height: 0;
+    top: 50%;
+    color: black;
+    left: 50%;
+    margin: 0 auto;
+    transform: translate(-50%, -50%);
+  }
+}

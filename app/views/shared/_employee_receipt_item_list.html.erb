@@ -1,0 +1,26 @@
+<div class="container center">
+  <table class="table table-bordered table-hover">
+    <thead>
+      <tr>
+        <th>Item</th>
+        <th>Price</th>
+        <th>Tax</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% receipt.receipt_items.each do |item| %>
+        <tr>
+          <td><%= item.name %></td>
+          <td><%= item.amount %></td>
+          <td><%= item.tax %></td>
+          <td>
+            <%= link_to receipt_item_path(item), method: :delete do %>
+              <i class="fas fa-trash"></i>
+            <% end %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

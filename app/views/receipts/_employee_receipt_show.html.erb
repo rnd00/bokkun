@@ -1,1 +1,10 @@
-<%= render 'shared/employee_receipt_heading', receipt: @receipt %>
+<div class="mobile-wrapper">
+  <%= render 'shared/employee_receipt_heading', receipt: @receipt %>
+  <%= render 'shared/employee_receipt_item_list', receipt: @receipt %>
+  <%= link_to trip_path(@receipt.trip) do %>
+    <div class="new-button">
+      <i class="far fa-check-circle"></i>
+    </div>
+  <% end %>
+  <%= render 'receipt_items/form' %>
+</div>
