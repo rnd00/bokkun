@@ -1,6 +1,14 @@
 .navbar-lewagon {
   justify-content: space-between;
   background: $blue;
+  z-index: 10;
+  & h3{
+  color: $yellow;
+  }
+}
+
+.dropdown-menu-right{
+  width: auto;
 }
 
 .navbar-lewagon .navbar-collapse {
@@ -12,11 +20,12 @@
 }
 
 .nav-item{
-  color: $off-white
+  color: $blue
 }
 
 
 .nav-link {
-  color: $off-white !important;
+  color: $yellow !important;
   text-shadow: 1px 1px 1px rgba(0,0,0,0.4) !important;
+  font-size: 24px;
 }
