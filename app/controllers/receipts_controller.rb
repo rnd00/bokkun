@@ -13,7 +13,7 @@ class ReceiptsController < ApplicationController
     @receipt.trip = Trip.find_by(id: params[:trip_id])
     authorize @receipt
     if @receipt.save
-      redirect_to receipt_path(@receipt)
+      redirect_to new_receipt_receipt_item_path(@receipt)
     else
       render :new
     end
@@ -26,6 +26,7 @@ class ReceiptsController < ApplicationController
 
   def edit
     @receipt = Receipt.find_by(id: params[:id])
+    @trip = @receipt.trip
     authorize @receipt
   end
 
@@ -42,6 +43,7 @@ class ReceiptsController < ApplicationController
   def destroy
     @receipt = Receipt.find_by(id: params[:id])
     @receipt.destroy
+    authorize @receipt
     if current_user.manager
       redirect_to employer_dashboard_path
     else
@@ -60,6 +62,6 @@ class ReceiptsController < ApplicationController
   end
 
   def receipt_params
-    params.require(:receipt).permit(:company, :total_amount, :date, :tax_amount, :user_id, :category, :trip_id, :photo)
+    params.require(:receipt).permit(:company, :total_amount, :date, :tax_amount, :user_id, :category, :trip_budget_id, :photo)
   end
 end

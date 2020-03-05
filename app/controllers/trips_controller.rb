@@ -32,7 +32,7 @@ class TripsController < ApplicationController
         TripUser.create!(user: employee, trip: @trip)
       end
       @budgets.each do |budget|
-        TripBudget.create!(trip: @trip, budget: budget, remaining_amount: budget.amount)
+        TripBudget.create!(trip: @trip, budget: budget)
       end
       redirect_to trip_path(@trip)
     else
