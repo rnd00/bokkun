@@ -13,7 +13,7 @@ class ReceiptsController < ApplicationController
     @receipt.trip = Trip.find_by(id: params[:trip_id])
     authorize @receipt
     if @receipt.save
-      redirect_to receipt_path(@receipt)
+      redirect_to new_receipt_receipt_item_path(@receipt)
     else
       render :new
     end
