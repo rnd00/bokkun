@@ -5,7 +5,7 @@
 ##
 # some of the functions below dependent on this (these) shorthand(s)
 
-today = Date.today
+TODAY = Date.today
 
 # ============================================================================
 # SKELETON GENERATOR FUNCTIONS
@@ -53,6 +53,12 @@ def trip_budget_gen(budget, trip)
     budget: budget )
 end
 
+def trip_user_gen(user, trip)
+  TripUser.create!(
+    user: user,
+    trip: trip)
+end
+
 # ============================================================================
 # TEMPLATE GENERATOR FUNCTIONS
 # ============================================================================
@@ -66,7 +72,13 @@ def temp_budget_gen
     ['miscellaneous', 20000],
     ['accomodation', 25000]]
   types.map do |type|
-    budget << budget_gen(type[0], type[1])
+    budget_gen(type[0], type[1])
+  end
+end
+
+def temp_users_gen(data)
+  data.map do |user|
+    user_gen(user[0], user[1], user[2], user[3], user[4])
   end
 end
 
@@ -74,13 +86,13 @@ def temp_trip_gen(city, purpose, customer, length_of_trip)
   name = "#{city} trip"
   dest = "#{city}, Earth"
   rand_num = rand(length_of_trip)
-  sdate = today - rand_num
-  edate = today + (length_of_trip - rand_num)
+  sdate = TODAY - rand_num
+  edate = TODAY + (length_of_trip - rand_num)
   trip_gen(name, dest, purpose, customer, sdate, edate)
 end
 
-def temp_col_trip_gen(trip_datas)
-  trip_datas.map do |trip|
+def temp_col_trip_gen(data)
+  data.map do |trip|
     temp_trip_gen(trip[0], trip[1], trip[2], trip[3])
   end
 end
@@ -102,11 +114,11 @@ end
 # user = [login-email, first-name, last-name, job-title, manager-boolean]
 # trip = []
 
-user_datas = [['segawa@bokkun.me', 'Segawa', 'Taku', 'Branch Manager', true],
+user_data = [['segawa@bokkun.me', 'Segawa', 'Taku', 'Branch Manager', true],
               ['hirai@bokkun.me', 'Hirai', 'Kako', 'Sales Rep', false],
               ['ueno@bokkun.me', 'Ueno', 'Keisuke', 'Sales Rep', false]]
 
-trip_datas = [["Tokyo", "First contact", "Adil Omary", 3],
+trip_data = [["Tokyo", "First contact", "Adil Omary", 3],
               ["Fukuoka", "Currying favor", "Mike Warren", 4],
               ["Susukino", "Meeting with potential customer", "Suzuki Ichiro", 1],
               ["Izu", "Meeting with another branch manager", "Takagi Jiro", 2],
@@ -136,64 +148,45 @@ puts "done with destroy_all!"
 # ============================================================================
 
 puts "generating default users..."
-User.create!( email: "admin@bokkun.me",
+# the default users for all
+User.create!( email: "mike@bokkun.me",
   password: "123456",
-  first_name: "admin",
-  last_name: "bokkun",
-  job_title: "admin",
+  first_name: "Mike",
+  last_name: "Warren",
+  job_title: "Bokkun Admin",
   manager: true)
+# two users we want to use for presentations
 uemura = user_gen("uemura@bokkun.me", "Uemura", "Mitsuo", "Division Manager", true)
 yamada = user_gen("yamada@bokkun.me", "Yamada", "Taro", "Sales Rep", false)
 
+test_users = [uemura, yamada]
+
 # add another users for tests
-user_datas.each do |data|
-  user_gen(data[0], data[1], data[2], data[3], data[4])
-end
+users = temp_users_gen(user_data)
 puts "done with user generation!"
 
 # ============================================================================
-# GENERATE TRIP, BUDGETS, AND THEIR JOIN TABLES
+# GENERATE TRIP, BUDGETS, AND JOIN TABLES
 # ============================================================================
 
-puts "generating 2 trips and budgets..."
+puts "generating trips and budgets..."
 temp_budget = temp_budget_gen()
+trips = temp_col_trip_gen(trip_data)
+puts "trips and budgets are ready"
 
-tokyo = trip_gen("Tokyo Trip", "Tokyo, Japan", "First Contact", "Adil Omary", today - 2, today - 1)
-fukuoka = trip_gen("Fukuoka Trip", "Fukuoka, Japan", "Currying Favor", "Mike Warren", today, today + 2)
-hokkaido = trip_gen("Hokkaido Trip", "Hokkaido, Japan", "Meeting with potential customer", "Suzuki Ichiro", today, today + 3)
-izu = trip_gen("Izu Trip", "Izu, Japan", "Meeting with another branch manager", "Takagi Jiro", today + 3, today + 4)
-izumo = trip_gen("Izumo Trip", "Izumo, Japan", "Checking out our distributor", "Nakagawa Saburo", today + 5, today + 7)
-
-temp_trip_budget_gen(temp_budget, tokyo)
-temp_trip_budget_gen(temp_budget, fukuoka)
-temp_trip_budget_gen(temp_budget, hokkaido)
-temp_trip_budget_gen(temp_budget, izu)
-temp_trip_budget_gen(temp_budget, izumo)
-puts "done with trip & budget generation!"
-
-puts "connecting trip-user..."
-tu1 = TripUser.create!(
-  user: uemura,
-  trip: tokyo)
-tu2 = TripUser.create(
-  user: yamada,
-  trip: fukuoka)
-tu3 = TripUser.create(
-  user: yamada,
-  trip: hokkaido)
-tu4 = TripUser.create(
-  user: uemura,
-  trip: izu)
-tu5 = TripUser.create(
-  user: uemura,
-  trip: izumo)
-puts "trip-user connected!"
+puts "connecting trips-budgets-(test-users)"
+# iteration for join table
+trips.each do |trip|
+  temp_trip_budget_gen(temp_budget, trip)
+  trip_user_gen(test_users.sample, trip)
+end
+puts "done with connections"
 
 # ============================================================================
 # GENERATE RECEIPTS
 # ============================================================================
 
-puts "generating 2 receipts..."
-sukiya = receipt_gen("Sukiya", "2000", today, 10, yamada, fukuoka.trip_budgets.first)
-izakaya = receipt_gen("Izakaya Hopper", "7000", today, 10, yamada, fukuoka.trip_budgets.first)
-puts "done with receipts generation!"
+# puts "generating 2 receipts..."
+# sukiya = receipt_gen("Sukiya", "2000", TODAY, 10, yamada, fukuoka.trip_budgets.first)
+# izakaya = receipt_gen("Izakaya Hopper", "7000", TODAY, 10, yamada, fukuoka.trip_budgets.first)
+# puts "done with receipts generation!"
