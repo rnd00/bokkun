@@ -1,0 +1,24 @@
+<div class='mobile-heading'>
+  <div class="heading-text">
+    <h3><%= current_trip.start_date.strftime("%m/%d/%y") %> &#8212;
+ <%= current_trip.end_date.strftime("%m/%d/%y") %> </h3>
+    <h1><%= current_trip.name %></h1>
+    <h2><%= current_trip.customer %></h2>
+  </div>
+  <div class="budget">
+    <p>Remaining Budget</p>
+    <div class="budget-bar">
+      <div class="budget-empty">
+        <p><%= current_trip.total_remaining %>/<%= current_trip.total_budget %> </p>
+        <div class="budget-percentage" style="width: <%= current_trip.budget_percent %>%">
+        </div>
+      </div>
+    </div>
+  </div>
+    <div class='new-button'>
+      <%= link_to new_trip_receipt_path(current_trip) do %>
+        <i class="fas fa-plus-circle"></i>
+      <% end %>
+    </div>
+</div>
+

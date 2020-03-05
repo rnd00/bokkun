@@ -1,0 +1,8 @@
+<%= simple_form_for @receipt do |f| %>
+  <%= f.input :date, class: "form-control" %>
+  <%= f.input :company, class: "form-control" %>
+  <%= f.input :category, class: "form-control" %>
+  <%= f.input :total_amount, "Total Amount", class: "form-control"  %>
+  <%= f.input :tax_amount, "Tax Amount", class: "form-control" %>
+  <%= f.button :submit, class: "btn btn-approve w-30" %>
+<% end %>

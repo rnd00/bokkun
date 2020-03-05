@@ -1,9 +1,8 @@
 class UsersController < ApplicationController
-  def landing
-  end
 
   def dashboard
     @user = current_user
+    @trips = @user.trips.order(start_date: :desc)
     authorize @user
   end
 
