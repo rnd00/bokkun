@@ -224,7 +224,7 @@ puts "done with receipts generation!"
 # GENERATE RECEIPT ITEMS
 # ============================================================================
 
-puts "generating items on Yamada's konbini receipt..."
+puts "generating items on Yamada's receipts..."
 
 # template = items_gen(name, amt, tax, receipt)
 gyudon = items_gen('Gyudon', 450, 10, konbini)
