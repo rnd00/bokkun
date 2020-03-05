@@ -209,13 +209,14 @@ puts "done with connections"
 # ============================================================================
 
 puts "generating 2 receipts for yamada..."
-# receipt_gen(company, total, date, tax, user, trip_budget)
-
 yamada_trip_budget = yamada.trips.first.trip_budgets.first
-sukiya = receipt_gen("Sukiya", "2000", TODAY, 10, yamada, yamada_trip_budget)
-izakaya = receipt_gen("Izakaya Hopper", "7000", TODAY, 10, yamada, yamada_trip_budget)
 
-YAMADA_RECEIPTS = [sukiya, izakaya]
+# template = receipt_gen(company, total, date, tax, user, trip_budget)
+konbini = receipt_gen("Convenience Store", "1230", TODAY, 10, yamada, yamada_trip_budget)
+distillery = receipt_gen("Omary's Umeshu Distillery", "3300", TODAY, 10, yamada, yamada_trip_budget)
+bar = receipt_gen("Craft Beer Bar Heise & Warren", "3700", TODAY, 10, yamada, yamada_trip_budget)
+
+# YAMADA_RECEIPTS = [konbini, distillery, bar]
 
 puts "done with receipts generation!"
 
@@ -223,10 +224,20 @@ puts "done with receipts generation!"
 # GENERATE RECEIPT ITEMS
 # ============================================================================
 
-puts "generating receipt items on yamada"
+puts "generating items on Yamada's konbini receipt..."
 
-# items_gen(name, amt, tax, receipt)
-gyudon = items_gen('gyudon', 400, 10, YAMADA_RECEIPTS.first)
-cheese = items_gen('cheese', 200, 10, YAMADA_RECEIPTS.first)
+# template = items_gen(name, amt, tax, receipt)
+gyudon = items_gen('Gyudon', 450, 10, konbini)
+peanut = items_gen('Peanut Butter Jam', 280, 10, konbini)
+tissue = items_gen('Kleenex Ultra Soft', 400, 10, konbini)
+
+permit = items_gen('Entry Ticket + 10 Free Drinks', 2500, 10, distillery)
+umeshu = items_gen('Yamagata Masamune Aged Umeshu', 800, 10, distillery)
+
+hotdog = items_gen("Warren's Famous Skinless Beef Franks", 1200, 10, bar)
+kimchi = items_gen("Heise's Medium Spicy Kimchi", 550, 10, bar)
+kiuchi = items_gen('Kiuchi Craft Beer', 800, 10, bar)
+shochu = items_gen('Iichiko Shochu', 600, 10, bar)
+cheese = items_gen('Cheesecake', 550, 10, bar)
 
 puts "done with receipt items generation!"
