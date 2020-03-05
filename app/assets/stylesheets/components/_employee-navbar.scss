@@ -1,9 +1,29 @@
 /* Style the navigation menu */
 .topnav {
   overflow: hidden;
-  background-color: #333;
+  background-color: $off-white;
   position: relative;
   z-index: 5;
+}
+
+.navbox {
+  display: flex;
+
+  img {
+    width: 48px;
+    background-color: $blue;
+    padding: $spacer;
+  }
+
+  a {
+    padding: none !important;
+  }
+
+  p {
+    color: $blue;
+    padding: 14px 17px;
+    font-size: 17px;
+  }
 }
 
 /* Hide the links inside the navigation menu (except for logo/home) */
@@ -12,9 +32,9 @@
 }
 
 /* Style navigation menu links */
-.topnav a {
-  color: white;
-  padding: 14px 16px;
+.topnav a.icon {
+  color: $blue;
+  padding: 14px 17px;
   text-decoration: none;
   font-size: 17px;
   display: block;
@@ -37,6 +57,6 @@
 
 /* Style the active link (or home/logo) */
 .active {
-  background-color: #4CAF50;
+  background-color: $off-white;
   color: white;
 }
