@@ -11,7 +11,7 @@
   // padding: $spacer;
   border-radius: 30px;
   text-align: center;
-  padding: $spacer / 2;
+  padding: $spacer;
   margin-top: $spacer;
 
   p {
@@ -22,4 +22,8 @@
     margin: ($spacer * 2) auto;
     width: 90%;
   }
+}
+
+.mobile-card-content {
+  padding: $spacer 0;
 }
