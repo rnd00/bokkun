@@ -202,6 +202,10 @@ TEMPTRIPS.each do |trip|
   temp_trip_budget_gen(TEMPBUDGET, trip)
   trip_user_gen(TESTUSERS.sample, trip)
 end
+# safety net
+chiba = temp_trip_gen("Chiba", "Inspecting the next company trip", "Shinagawa Kouki", 3)
+trip_user_gen(yamada, chiba)
+temp_trip_budget_gen(TEMPBUDGET, chiba)
 puts "done with connections"
 
 # ============================================================================
@@ -209,7 +213,7 @@ puts "done with connections"
 # ============================================================================
 
 puts "generating 2 receipts for yamada..."
-yamada_trip_budget = yamada.trips.first.trip_budgets.first
+yamada_trip_budget = yamada.trips.first.trip_budgets.last
 
 # template = receipt_gen(company, total, date, tax, user, trip_budget)
 konbini = receipt_gen("Convenience Store", "1230", TODAY, 10, yamada, yamada_trip_budget)
