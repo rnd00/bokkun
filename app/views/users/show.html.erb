@@ -7,13 +7,18 @@
       <div class="card-detail-info">
         <ul>
           <% @user.trips.each do |trip| %>
-            <p>Destination : <%= trip.destination %></p>
-            <p>Purpose : <%= trip.purpose  %></p>
-            <p>Customer : <%= trip.customer %></p>
-            <% end %>
+            <div class="argument">
+            <div class="argument-info">
+              <p>Destination : <%= trip.destination %></p>
+              <p>Purpose : <%= trip.purpose  %></p>
+              <p>Customer : <%= trip.customer %></p>
+            </div>
+            </div>
+          <% end %>
         </ul>
       </div>
     </div>
   </div>
   <%= link_to "Go Back", :back, class: "btn btn-approve w-30" %>
 </div>
+

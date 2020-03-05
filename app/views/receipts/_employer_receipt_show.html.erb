@@ -20,9 +20,5 @@
   <% if current_user.manager %>
     <%= link_to "Delete this receipt", receipt_path(@receipt), method: :delete, class: "btn btn-approve w-30" %>
   <% end %>
-  <% if current_user.manager %>
-    <%= link_to "Go Back", employer_dashboard_path, class: "btn btn-approve w-30" %>
-  <% else %>
-    <%= link_to "Go Back", employee_dashboard_path, class: "btn btn-approve w-30" %>
-  <% end %>
+    <%= link_to "Go Back", trip_path(@receipt.trip), class: "btn btn-approve w-30" %>
 </div>
