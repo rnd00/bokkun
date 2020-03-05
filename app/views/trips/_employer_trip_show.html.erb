@@ -12,14 +12,21 @@
           <p>Customer : <%= @trip.customer %></p>
           <ul>Employees :
             <% @trip.users.each do |user| %>
-              <p><strong><%= link_to [user.first_name, user.last_name].join(" "), employee_show_path%></strong>, <%= user.job_title %></p>
+              <p><strong><%= link_to [user.first_name, user.last_name].join(" "), user_show_path(user)%></strong>, <%= user.job_title %></p>
             <% end %>
           </ul>
         </ul>
       </div>
+        <ul>
+          <h3>Receipts of this trip</h3>
+          <% @trip.receipts.each do |trip| %>
+            <p>Destination :</p>
+            <p>Start Date :</p>
+          <% end %>
+        </ul>
     </div>
   </div>
-  <%#= link_to "Add a receipt", new_trip_receipt_path, class: "btn btn-approve w-30" %>
+  <%= link_to "Add a receipt", new_trip_receipt_path(@trip), class: "btn btn-approve w-30" %>
   <%= link_to "Edit this trip", edit_trip_path, class: "btn btn-approve w-30" %>
   <% if current_user.manager %>
     <%= link_to "Delete this trip", trip_path(@trip), method: :delete, class: "btn btn-approve w-30" %>

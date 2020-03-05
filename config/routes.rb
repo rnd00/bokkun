@@ -30,7 +30,8 @@ Rails.application.routes.draw do
     resources :receipts, only: [:new, :create]
   end
   resources :receipts, except: [:new, :create, :index, :show] do
-    resources :receipt_items, except: [:index, :show]
+    resources :receipt_items, except: [:index, :show, :destroy]
   end
+  resources :receipt_items, only: [:destroy]
   get '/users/:id', to: 'users#show', as: :user_show
 end
