@@ -1,4 +1,9 @@
 Rails.application.routes.draw do
+  get 'receipt_items/new'
+  get 'receipt_items/create'
+  get 'receipt_items/edit'
+  get 'receipt_items/update'
+  get 'receipt_items/destroy'
   devise_for :users
   root to: 'pages#landing'
   #temporary testing route -- delete later
