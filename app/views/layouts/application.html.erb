@@ -12,11 +12,10 @@
   <body>
     <%#= render 'shared/flashes' %>
     <%#= render 'shared/navbar' %>
-    <% if user_signed_in? %>
-      <%= render current_user.manager ? 'shared/side-bar' : 'shared/employee_navbar' %>
-    <% end %>
-    <div class="content">
-      <%= yield %>
+    <div class="all-content">
+      <div class="content">
+        <%= yield %>
+      </div>
     </div>
     <%= render 'shared/footer' %>
     <%= javascript_include_tag 'application' %>

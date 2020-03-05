@@ -23,11 +23,18 @@
                   <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#speech-bubble"></use>
                 </svg><span>Teams</span></a>
             </li>
-            <li>
+            <!-- <li>
               <a href="#">
                 <svg class="paper-airplane">
                   <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#paper-airplane"></use>
                 </svg><span>Report</span></a>
+            </li> -->
+            <li>
+              <%= link_to destroy_user_session_path, method: :delete do %>
+                <svg class="paper-airplane">
+                  <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#paper-airplane"></use>
+                </svg><span>Sign Out</span>
+              <% end %>
             </li>
           </ul>
         </nav>

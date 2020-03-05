@@ -1,4 +1,18 @@
-.content {
+.all-content {
+  display: flex;
   min-height: 100vh;
+}
+
+.the-bar {
+  list-style-type: none;
+  padding: 0;
+  width: 0;
+  overflow: hidden;
+  white-space: nowrap;
+  background: white;
+  margin: 0;
+}
+
+.content {
   flex: 1 0 auto;
 }
