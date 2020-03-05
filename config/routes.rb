@@ -13,11 +13,13 @@ Rails.application.routes.draw do
   # dashboard for employer
   namespace :employer do
     get '/dashboard', to: 'users#dashboard', as: :dashboard
+    get '/show', to: 'users#show', as: :show
   end
 
   # dashboard for employee
   namespace :employee do
     get '/dashboard', to: 'users#dashboard', as: :dashboard
+    get '/show', to: 'users#show', as: :show
   end
 
   resources :receipts, only: :show do

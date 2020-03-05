@@ -1,0 +1,24 @@
+<%= render 'shared/side-bar' %>
+<div class="container">
+  <div class="card-detail">
+    <h1> <%= @user.first_name.titleize %> <%= @user.last_name.titleize %></h1>
+    <h2> <%= @user.job_title %></h2>
+    <div class="card-detail-body">
+      <div class="card-detail-info">
+        <ul>
+          <% @user.trips.each do |trip| %>
+            <p>Destination : <%= @trip.destination %></p>
+            <p>Purpose : <%= @trip.purpose  %></p>
+            <p>Customer : <%= @trip.customer %></p>
+            <% end %>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <% if current_user.manager %>
+    <%= link_to "Go Back", employer_dashboard_path, class: "btn btn-approve w-30" %>
+  <% else %>
+    <%= link_to "Go Back", employer_dashboard_path, class: "btn btn-approve w-30" %>
+  <% end %>
+</div>
+
