@@ -1,5 +1,10 @@
 <div class="topnav">
-  <a href="#home" class="active">Hello, <%= current_user.first_name %>!</a>
+  <div class="navbox">
+    <%= link_to employee_dashboard_path do %>
+      <%= image_tag "https://i.ibb.co/2nnQ11v/Logo-Makr-5-Vi-Zo-Y.png" %>
+    <% end %>
+    <p>Hello, <%= current_user.first_name %>!</p>
+  </div>
   <!-- Navigation links (hidden by default) -->
   <div id="myLinks">
     <% if user_signed_in? %>

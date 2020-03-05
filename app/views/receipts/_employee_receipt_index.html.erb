@@ -1,3 +1,17 @@
-<% receipts.each do |receipt| %>
-  <%= receipt.company %>
+<% current_trip.trip_budgets.each do |trip_budget| %>
+  <div class="mobile-cards">
+    <div class="mobile-card">
+      <h3><%= trip_budget.budget.name %></h3>
+      <%= render 'shared/budget_bar', trip_budget: trip_budget %>
+    </div>
+    <div class="receipt-list">
+      <% if trip_budget.receipts.empty? %>
+        <p>No receipts entered.</p>
+      <% else %>
+        <% trip_budget.receipts.each do |receipt| %>
+          <p><%= link_to receipt.company, receipt_path(receipt) %></p>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
 <% end %>
