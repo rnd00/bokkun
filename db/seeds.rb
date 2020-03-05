@@ -114,11 +114,11 @@ end
 # user = [login-email, first-name, last-name, job-title, manager-boolean]
 # trip = []
 
-user_data = [['segawa@bokkun.me', 'Segawa', 'Taku', 'Branch Manager', true],
+USERDATA = [['segawa@bokkun.me', 'Segawa', 'Taku', 'Branch Manager', true],
               ['hirai@bokkun.me', 'Hirai', 'Kako', 'Sales Rep', false],
               ['ueno@bokkun.me', 'Ueno', 'Keisuke', 'Sales Rep', false]]
 
-trip_data = [["Tokyo", "First contact", "Adil Omary", 3],
+TRIPDATA = [["Tokyo", "First contact", "Adil Omary", 3],
               ["Fukuoka", "Currying favor", "Mike Warren", 4],
               ["Susukino", "Meeting with potential customer", "Suzuki Ichiro", 1],
               ["Izu", "Meeting with another branch manager", "Takagi Jiro", 2],
@@ -159,10 +159,10 @@ User.create!( email: "mike@bokkun.me",
 uemura = user_gen("uemura@bokkun.me", "Uemura", "Mitsuo", "Division Manager", true)
 yamada = user_gen("yamada@bokkun.me", "Yamada", "Taro", "Sales Rep", false)
 
-test_users = [uemura, yamada]
+TESTUSERS = [uemura, yamada]
 
 # add another users for tests
-users = temp_users_gen(user_data)
+users = temp_users_gen(USERDATA)
 puts "done with user generation!"
 
 # ============================================================================
@@ -170,15 +170,15 @@ puts "done with user generation!"
 # ============================================================================
 
 puts "generating trips and budgets..."
-temp_budget = temp_budget_gen()
-trips = temp_col_trip_gen(trip_data)
+TEMPBUDGET = temp_budget_gen()
+TEMPTRIPS = temp_col_trip_gen(TRIPDATA)
 puts "trips and budgets are ready"
 
-puts "connecting trips-budgets-(test-users)"
+puts "connecting trips-budgets-(TESTUSERS)"
 # iteration for join table
-trips.each do |trip|
-  temp_trip_budget_gen(temp_budget, trip)
-  trip_user_gen(test_users.sample, trip)
+TEMPTRIPS.each do |trip|
+  temp_trip_budget_gen(TEMPBUDGET, trip)
+  trip_user_gen(TESTUSERS.sample, trip)
 end
 puts "done with connections"
 
