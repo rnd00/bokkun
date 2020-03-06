@@ -1,4 +1,9 @@
 class TripsController < ApplicationController
+
+  def index
+    @trips = policy_scope(Trip)
+  end
+
   def show
     @trip = Trip.find_by(id: params[:id])
     authorize @trip
