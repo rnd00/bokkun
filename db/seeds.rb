@@ -20,7 +20,7 @@ TODAY = Date.today
 ##
 # getting some avatar; http://le-wagon-tokyo.herokuapp.com/batches/363/student
 
-def get_placeholder_avatar
+def fetch_avatar
   url =  'http://le-wagon-tokyo.herokuapp.com/batches/363/student'
   open(url, 'Accept-Language' => 'en').read
 end
@@ -116,7 +116,7 @@ end
 
 def temp_users_gen(data)
   data.map do |user|
-    avatar = get_placeholder_avatar
+    avatar = fetch_avatar
     user_gen(user[0], user[1], user[2], user[3], user[4], avatar)
   end
 end
@@ -201,8 +201,8 @@ User.create!( email: "mike@bokkun.me",
   manager: true,
   avatar: 'https://avatars0.githubusercontent.com/u/28691463?s=460&v=4')
 # two users we want to use for presentations
-uemura = user_gen("uemura@bokkun.me", "Mitsuo", "Uemura", "Division Manager", true, get_placeholder_avatar)
-yamada = user_gen("yamada@bokkun.me", "Taro", "Yamada", "Sales Rep", false, get_placeholder_avatar)
+uemura = user_gen("uemura@bokkun.me", "Mitsuo", "Uemura", "Division Manager", true, fetch_avatar)
+yamada = user_gen("yamada@bokkun.me", "Taro", "Yamada", "Sales Rep", false, fetch_avatar)
 
 TESTUSERS = [uemura, yamada]
 
