@@ -18,16 +18,16 @@ def user_gen(email, fname, lname, job, manager_status)
     first_name: fname,
     last_name: lname,
     job_title: job,
-    manager: manager_status )
+  manager: manager_status )
 end
 
 def trip_gen(name, dest, purpose, customer, sdate, edate)
   Trip.create!(
-  name: name,
-  destination: dest,
-  purpose: purpose,
-  customer: customer,
-  start_date: sdate,
+    name: name,
+    destination: dest,
+    purpose: purpose,
+    customer: customer,
+    start_date: sdate,
   end_date: edate )
 end
 
@@ -38,7 +38,7 @@ def receipt_gen(company, total, date, tax, user, trip_budget)
     date: date,
     tax_amount: tax,
     user: user,
-    trip_budget: trip_budget )
+  trip_budget: trip_budget )
 end
 
 def items_gen(name, amt, tax, receipt)
@@ -46,25 +46,25 @@ def items_gen(name, amt, tax, receipt)
     name: name,
     amount: amt,
     tax: tax,
-    receipt: receipt )
+  receipt: receipt )
 end
 
 def budget_gen(name, amount)
   Budget.create!(
     name: name,
-    amount: amount )
+  amount: amount )
 end
 
 def trip_budget_gen(budget, trip)
   TripBudget.create!(
     trip: trip,
-    budget: budget )
+  budget: budget )
 end
 
 def trip_user_gen(user, trip)
   TripUser.create!(
     user: user,
-    trip: trip)
+  trip: trip)
 end
 
 # ============================================================================
@@ -78,7 +78,7 @@ def temp_budget_gen
     ['food', 15000],
     ['travel', 20000],
     ['miscellaneous', 20000],
-    ['accomodation', 25000]]
+  ['accomodation', 25000]]
   types.map do |type|
     budget_gen(type[0], type[1])
   end
@@ -134,16 +134,16 @@ end
 # trip = [city (has to be inside japan), purpose, customer, length-of-trip]
 
 USERDATA = [['segawa@bokkun.me', 'Segawa', 'Taku', 'Branch Manager', true],
-              ['hirai@bokkun.me', 'Hirai', 'Kako', 'Sales Rep', false],
-              ['ueno@bokkun.me', 'Ueno', 'Keisuke', 'Sales Rep', false]]
+            ['hirai@bokkun.me', 'Hirai', 'Kako', 'Sales Rep', false],
+            ['ueno@bokkun.me', 'Ueno', 'Keisuke', 'Sales Rep', false]]
 
-TRIPDATA = [["Tokyo", "First contact", "Adil Omary", 3],
-              ["Fukuoka", "Currying favor", "Mike Warren", 4],
-              ["Susukino", "Meeting with potential customer", "Suzuki Ichiro", 1],
-              ["Izu", "Meeting with another branch manager", "Takagi Jiro", 2],
-              ["Izumo", "Checking out our distributor", "Nakagawa Saburo", 3],
-              ["Oita", "Opening workshops on an Institute", "Kanzaki Shiro", 4],
-              ["Gunma", "Attending a Convention", "Kikuchi Goro", 5]]
+TRIPDATA = [["Tokyo", "First contact", "Adil Omary", 3]]
+# ["Fukuoka", "Currying favor", "Mike Warren", 4],
+# ["Susukino", "Meeting with potential customer", "Suzuki Ichiro", 1],
+# ["Izu", "Meeting with another branch manager", "Takagi Jiro", 2],
+# ["Izumo", "Checking out our distributor", "Nakagawa Saburo", 3],
+# ["Oita", "Opening workshops on an Institute", "Kanzaki Shiro", 4],
+# ["Gunma", "Attending a Convention", "Kikuchi Goro", 5]]
 
 # DO NOT USE IT YET
 # RECEIPTDATA = [["Sukiya", "2000", TODAY, 10, yamada, fukuoka.trip_budgets.first]]
@@ -171,11 +171,11 @@ puts "done with destroy_all!"
 puts "generating default users..."
 # the default users for all
 User.create!( email: "mike@bokkun.me",
-  password: "123456",
-  first_name: "Mike",
-  last_name: "Warren",
-  job_title: "Bokkun Admin",
-  manager: true)
+              password: "123456",
+              first_name: "Mike",
+              last_name: "Warren",
+              job_title: "Bokkun Admin",
+              manager: true)
 # two users we want to use for presentations
 uemura = user_gen("uemura@bokkun.me", "Uemura", "Mitsuo", "Division Manager", true)
 yamada = user_gen("yamada@bokkun.me", "Yamada", "Taro", "Sales Rep", false)

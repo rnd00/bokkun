@@ -24,6 +24,17 @@ class Trip < ApplicationRecord
   end
 
   def self.total_spend(days)
-    self.budgets
+    @trips = Trip.where("start_date > ?", (Date.today - days))
+    @spend = {}
+    @trips.each do |trip|
+      trip.trip_budgets.each do |trip_budget|
+        if @spend[trip_budget.budget.name].nil?
+          @spend[trip_budget.budget.name] = (trip_budget.budget.amount - trip_budget.total_remaining)
+        else
+          @spend[trip_budget.budget.name] += (trip_budget.budget.amount - trip_budget.total_remaining)
+        end
+      end
+    end
+    @spend
   end
 end
