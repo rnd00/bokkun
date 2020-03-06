@@ -1,8 +1,24 @@
 .receipt-list {
   margin: 0 $spacer * 4;
-  margin-top: $spacer * 2;
   p, a {
-    line-height: $spacer;
+    line-height: 1em;
     font-size: 24px;
+    margin-top: $spacer !important;
+  }
+  .receipt-name {
+    width: 100%;
+    border: 1px solid $blue;
+    margin-top: $spacer !important;
+    text-align: center;
+    padding: $spacer;
+    box-shadow: 1px 1px 1px $blue;
+
+    p {
+      margin: 0 !important;
+      padding: 4px;
+    }
+  }
+  .receipt-name:active {
+    background-color: $blue;
   }
 }

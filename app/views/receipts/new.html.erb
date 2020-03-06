@@ -1,4 +1,4 @@
-<%= render 'shared/side-bar' %>
+<%= render 'shared/side-bar' if current_user.manager %>
 <div class="container">
   <h1>NEW RECEIPT</h1>
   <p>Enter all the informations</p>
