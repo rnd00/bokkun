@@ -177,7 +177,7 @@ User.create!( email: "mike@bokkun.me",
   password: "123456",
   first_name: "Mike",
   last_name: "Warren",
-  job_title: "Bokkun Admin",
+  job_title: "CEO, Superintentdent General of Bokk* Holdings Corp",
   manager: true)
 # two users we want to use for presentations
 uemura = user_gen("uemura@bokkun.me", "Mitsuo", "Uemura", "Division Manager", true)
@@ -234,7 +234,7 @@ START = yamada.trips.last.start_date
 # template = receipt_gen(company, total, date, tax, user, trip_budget)
 konbini = receipt_gen("Convenience Store", "1230", START + 1, 10, yamada, yamada_food)
 distillery = receipt_gen("Omary's Umeshu Distillery", "3300", START + 1, 10, yamada, yamada_food)
-bar = receipt_gen("Craft Beer Bar Heise & Warren", "3700", START + 2, 10, yamada, yamada_food)
+bar = receipt_gen("Bar Heise & Warren", "3700", START + 2, 10, yamada, yamada_food)
 
 train_one = receipt_gen("Train (Shinjuku - Chiba)", "814", START, 10, yamada, yamada_trav)
 train_two = receipt_gen("Train (Chiba - Shinjuku)", "814", START + 2, 10, yamada, yamada_trav)
