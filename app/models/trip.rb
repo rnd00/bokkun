@@ -12,7 +12,7 @@ class Trip < ApplicationRecord
   end
 
   def total_remaining
-    self.receipts.reduce(0) { |total, receipt| total + receipt.total_amount }
+    self.total_budget - self.receipts.reduce(0) { |total, receipt| total + receipt.total_amount }
   end
 
   def budget_percent

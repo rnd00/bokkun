@@ -1,5 +1,4 @@
 <%= render 'shared/side-bar' %>
-
 <div class="container">
   <div class="card-detail">
     <h1> <%= @receipt.company.titleize %> </h1>
@@ -13,6 +12,7 @@
             <p>Total Amount : <%= @receipt.total_amount %></p>
             <p>Tax Amount : <%= @receipt.tax_amount  %></p>
             <p>Category : <%= @receipt.budget.name %></p>
+            <%= cl_image_tag @receipt.photo.key, height: 300, width: 400, crop: :fill if @receipt.photo.attached? %>
           </div>
           </div>
         </ul>
@@ -25,6 +25,19 @@
               <p>Name : <%= item.name %></p>
               <p>Amount : <%= item.amount %></p>
               <p>Tax : <%= item.tax %></p>
+
+              <%= link_to edit_receipt_item_path(item) do %>
+                <div class="edit-button">
+                  <i class="fas fa-pencil-alt"></i>
+                </div>
+              <% end %>
+
+              <%= link_to receipt_item_path(item), method: :delete do %>
+                <div class="delete-button">
+                  <i class="fas fa-trash"></i>
+                </div>
+              <% end %>
+
             </div>
             </div>
           <% end %>
