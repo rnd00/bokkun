@@ -22,4 +22,8 @@ class Trip < ApplicationRecord
   def categories
     self.budgets.map { |budget| budget.name }
   end
+
+  def self.total_spend(days)
+    self.budgets
+  end
 end
