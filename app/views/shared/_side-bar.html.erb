@@ -7,26 +7,32 @@
           <ul class="menu">
             <li>
               <%= link_to employer_dashboard_path do %>
+                <%= image_tag @current_user.avatar, class: "avatar", alt: "avatar-large" %>
+                  <span class="ml-2"> <%= @current_user.first_name %> <%= @current_user.last_name %> </span>
+              <% end %>
+            </li>
+            <li>
+              <%= link_to employer_dashboard_path do %>
                 <i class="fas fa-home fa-2x"></i>
-                <span> Dashboard</span>
+                <span class="ml-2">Dashboard</span>
               <% end %>
             </li>
             <li>
               <%= link_to trips_path do %>
                 <i class="fas fa-plane fa-2x"></i>
-                <span>Trips</span>
+                <span class="ml-2">Trips</span>
                 <% end %>
             </li>
             <li>
               <%= link_to employer_index_path do %>
                 <i class="fas fa-user-friends fa-2x"></i>
-                <span>Employees</span>
+                <span class="ml-2">Employees</span>
               <% end %>
             </li>
             <li>
               <%= link_to destroy_user_session_path, method: :delete do %>
                 <i class="fas fa-sign-out-alt fa-2x"></i>
-                <span>Sign Out</span>
+                <span class="ml-2">Sign Out</span>
               <% end %>
             </li>
           </ul>

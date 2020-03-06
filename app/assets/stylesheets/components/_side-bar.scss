@@ -1,7 +1,7 @@
 @import url(https://fonts.googleapis.com/css?family=Roboto:300);
 
-$color-1: $off-white;
-$color-2: $yellow;
+$off-white: $off-white;
+$yellow: $yellow;
 $pad:     0;
 
 html,
@@ -11,19 +11,24 @@ body{
   overflow-x: hidden;
   font-family: Roboto;
   height: 100%;
+  background-color : $off-white
 }
 .hide{
   display: none;
 }
 .head-nav {
+  i, img {
+    margin-left: 8px;
+  }
+
   li{
     &:hover{
-        background-color: $color-1;
+        background-color: $off-white;
         &:before{
-            background-color: $color-1;
+            background-color: $off-white;
         }
         svg{
-            background: $color-1;
+            background: $off-white;
             fill: $light-blue;
         }
         a{
@@ -58,7 +63,7 @@ body{
   a{
       align-items: center;
       width: 100%;
-      color: $color-2;
+      color: $yellow;
       text-decoration: none;
       transition: color 400ms;
       span{
@@ -76,7 +81,7 @@ body{
       max-width: 80px;
       max-height: 30px;
       z-index: 1;
-      fill: $color-2;
+      fill: $yellow;
       background: $blue;
       transition: 400ms;
   }
@@ -89,6 +94,9 @@ body{
       }
   }
 }
+
+
+
 .main-head{
   position: fixed;
   bottom: 0;
@@ -107,7 +115,7 @@ body{
       }
       .head-nav{
           li{
-              @for $i from 1 through 4 {
+              @for $i from 1 through 5 {
                   &:nth-of-type(#{$i}){
                       span{
                           transition-delay: 100ms * $i;
