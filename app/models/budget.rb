@@ -4,4 +4,8 @@ class Budget < ApplicationRecord
 
   validates :name, :amount, presence: true
   validates :amount, numericality: { only_integer: true }
+
+  def capitalize_name
+    self.name.capitalize
+  end
 end
