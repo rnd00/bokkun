@@ -47,6 +47,11 @@ class TripsController < ApplicationController
 
   def update
     @trip = Trip.find_by(id: params[:id])
+    @users = params['trip']['user_ids']
+    @trip.trip_users.destroy_all
+    @users.each do |user|
+      @trip.trip_users.build(user_id: user, trip: @trip)
+    end
     authorize @trip
     if @trip.update(trip_params)
       redirect_to trip_path(@trip)
@@ -64,6 +69,6 @@ class TripsController < ApplicationController
   private
 
   def trip_params
-    params.require(:trip).permit(:name, :destination, :purpose, :customer, :start_date, :end_date)
+    params.require(:trip).permit(:name, :destination, :purpose, :customer, :start_date, :end_date, :user)
   end
 end
