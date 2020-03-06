@@ -1,10 +1,23 @@
 <div class="mobile-wrapper">
   <%= render 'shared/employee_receipt_heading', receipt: @receipt %>
+  <div class="flex-center">
+    <%= link_to edit_receipt_path(@receipt) do %>
+      <div class="edit-button">
+        <i class="fas fa-pencil-alt"></i>
+      </div>
+    <% end %>
+    <%= link_to trip_path(@receipt.trip) do %>
+      <div class="new-button">
+        <i class="far fa-check-circle"></i>
+      </div>
+    <% end %>
+    <%= link_to receipt_path(@receipt), method: :delete do %>
+      <div class="delete-button">
+        <i class="fas fa-trash"></i>
+      </div>
+    <% end %>
+  </div>
   <%= render 'shared/employee_receipt_item_list', receipt: @receipt %>
-  <%= link_to trip_path(@receipt.trip) do %>
-    <div class="new-button">
-      <i class="far fa-check-circle"></i>
-    </div>
-  <% end %>
   <%= render 'receipt_items/form' %>
+  <%= cl_image_tag @receipt.photo.key, height: 300, width: 400, crop: :fill if @receipt.photo.attached? %>
 </div>

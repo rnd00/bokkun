@@ -26,3 +26,25 @@
     text-shadow: 4px, 4px, 20px, black;
   }
 }
+
+.delete-button {
+  text-align: center;
+  padding: $spacer;
+
+  i {
+    color: $red;
+    font-size: 48px;
+    text-shadow: 4px, 4px, 20px, black;
+  }
+}
+
+.edit-button {
+  text-align: center;
+  padding: $spacer;
+
+  i {
+    color: $blue;
+    font-size: 48px;
+    text-shadow: 4px, 4px, 20px, black;
+  }
+}

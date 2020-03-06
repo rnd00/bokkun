@@ -1,5 +1,5 @@
 <div class="container center">
-  <table class="table table-bordered table-hover">
+  <table class="table table-hover">
     <thead>
       <tr>
         <th>Item</th>
@@ -14,7 +14,12 @@
           <td><%= item.name %></td>
           <td><%= item.amount %></td>
           <td><%= item.tax %></td>
-          <td>
+        </tr>
+        <tr>
+          <td class="table-actions flex-center">
+            <%= link_to edit_receipt_receipt_item_path(receipt, item) do %>
+              <i class="fas fa-pencil-alt"></i>
+            <% end %>
             <%= link_to receipt_item_path(item), method: :delete do %>
               <i class="fas fa-trash"></i>
             <% end %>
