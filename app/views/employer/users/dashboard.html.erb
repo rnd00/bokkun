@@ -1,17 +1,39 @@
 <%= render 'shared/side-bar' %>
 <div class="container">
-  <h1><%= "Welcome, #{@user.first_name} #{@user.last_name}" %></h1>
-  <h2>Your list of trips</h2>
-    <% @user.trips.each do |trip| %>
-      <div class="argument">
-        <div class="argument-info">
-          <p><strong><%= link_to trip.name, trip_path(trip)%></strong></p>
-          <p><%= trip.destination %></p>
-          <p><%= trip.purpose %></p>
-          <p> Budget = 55000 yens </p>
+  <h1>Your Current Trip</h1>
+  <p><%= @user.first_name %> <%= @user.last_name %></p>
+  <%= link_to "Create a new trip", new_trip_path, class: "btn btn-approve w-30"  %>
+  <div class="argument m-0 w-50 mt-3">
+    <div class="argument-info">
+      <p><strong><%= link_to @user.trips.last.name, trip_path(@user.trips.last)%></strong></p>
+      <p><%=  @user.trips.last.destination %></p>
+      <p><%=  @user.trips.last.purpose %></p>
+      <p>Total Budget: <%= number_to_currency(@user.trips.last.total_budget, unit: "￥", separator: ",", precision: 0) %> </p>
+      <p>Remaining Budget: <%= number_to_currency(@user.trips.last.total_remaining, unit: "￥", separator: ",", precision: 0) %> (<%=@user.trips.last.budget_percent%>%) </p>
+    </div>
+  </div>
+  <div class="dash-container my-3">
+    <div class="dash-stats m-3">
+      <h3>Spend over past month</h3>
+      <% @month = Trip.total_spend(30) %>
+      <% @month.each do |category, amount| %>
+        <div class="dash-stats-item">
+          <p><%= category.capitalize %>:</p>
+          <p><%= number_to_currency(amount, unit: "￥", separator: ",", precision: 0) %></p>
         </div>
-      </div>
-    <% end %>
-  <%= link_to "Create a new trip", new_trip_path, class: "btn btn-approve w-30 my-3"  %>
+      <% end %>
+      <p><strong>Total amount: <%= number_to_currency(@month.values.sum, unit: "￥", separator: ",", precision: 0) %></strong></p>
+    </div>
+    <div class="dash-stats m-3">
+      <h3> Top 5 locations</h3>
+      <% @location_spend = Trip.location_spend %>
+      <% @location_spend.first(5).each do |location, amount| %>
+        <div class="dash-stats-item">
+          <p><%= location %>:</p>
+          <p><%= number_to_currency(amount, unit: "￥", separator: ",", precision: 0) %></p>
+        </div>
+      <% end %>
+      <p><strong>Total amount: <%= number_to_currency(@location_spend.values.sum, unit: "￥", separator: ",", precision: 0) %></strong></p>
+    </div>
+  </div>
 </div>
-

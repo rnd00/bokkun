@@ -22,4 +22,32 @@ class Trip < ApplicationRecord
   def categories
     self.budgets.map { |budget| budget.name }
   end
+
+  def self.total_spend(days)
+    @trips = Trip.where("start_date > ?", (Date.today - days))
+    @spend = {}
+    @trips.each do |trip|
+      trip.trip_budgets.each do |trip_budget|
+        if @spend[trip_budget.budget.name].nil?
+          @spend[trip_budget.budget.name] = (trip_budget.budget.amount - trip_budget.total_remaining)
+        else
+          @spend[trip_budget.budget.name] += (trip_budget.budget.amount - trip_budget.total_remaining)
+        end
+      end
+    end
+    @spend
+  end
+
+  def self.location_spend
+    @trip_budgets = TripBudget.all
+    @spend = {}
+    @trip_budgets.each do |trip_budget|
+      if @spend[trip_budget.budget.name].nil?
+        @spend[trip_budget.trip.destination] = (trip_budget.budget.amount - trip_budget.total_remaining)
+      else
+        @spend[trip_budget.budget.destination] += (trip_budget.budget.amount - trip_budget.total_remaining)
+      end
+    end
+    @spend.sort_by {|location, amount| amount}.reverse.to_h
+  end
 end
