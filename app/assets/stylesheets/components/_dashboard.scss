@@ -2,3 +2,19 @@
   margin-left: 100px;
   padding: 0px 10px;
 }
+
+.dash-container {
+  display: flex;
+  max-height: 150px;
+}
+
+.dash-stats{
+  margin-left: $spacer * 2;
+}
+
+.dash-stats-item {
+  display: flex;
+  & p {
+    margin-bottom: 0;
+  }
+}

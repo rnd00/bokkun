@@ -42,11 +42,11 @@ end
 
 def trip_gen(name, dest, purpose, customer, sdate, edate)
   Trip.create!(
-  name: name,
-  destination: dest,
-  purpose: purpose,
-  customer: customer,
-  start_date: sdate,
+    name: name,
+    destination: dest,
+    purpose: purpose,
+    customer: customer,
+    start_date: sdate,
   end_date: edate )
 end
 
@@ -57,7 +57,7 @@ def receipt_gen(company, total, date, tax, user, trip_budget)
     date: date,
     tax_amount: tax,
     user: user,
-    trip_budget: trip_budget )
+  trip_budget: trip_budget )
 end
 
 def items_gen(name, amt, tax, receipt)
@@ -65,25 +65,25 @@ def items_gen(name, amt, tax, receipt)
     name: name,
     amount: amt,
     tax: tax,
-    receipt: receipt )
+  receipt: receipt )
 end
 
 def budget_gen(name, amount)
   Budget.create!(
     name: name,
-    amount: amount )
+  amount: amount )
 end
 
 def trip_budget_gen(budget, trip)
   TripBudget.create!(
     trip: trip,
-    budget: budget )
+  budget: budget )
 end
 
 def trip_user_gen(user, trip)
   TripUser.create!(
     user: user,
-    trip: trip)
+  trip: trip)
 end
 
 # ============================================================================
@@ -161,12 +161,12 @@ USERDATA = [['segawa@bokkun.me', 'Taku', 'Segawa', 'Branch Manager', true],
               ['ueno@bokkun.me', 'Keisuke', 'Ueno', 'Sales Rep', false]]
 
 TRIPDATA = [["Tokyo", "First contact", "Adil Omary", 3],
-              ["Fukuoka", "Currying favor", "Mike Warren", 4],
-              ["Susukino", "Meeting with potential customer", "Suzuki Ichiro", 1],
-              ["Izu", "Meeting with another branch manager", "Takagi Jiro", 2],
-              ["Izumo", "Checking out our distributor", "Nakagawa Saburo", 3],
-              ["Oita", "Opening workshops on an Institute", "Kanzaki Shiro", 4],
-              ["Gunma", "Attending a Convention", "Kikuchi Goro", 5]]
+            ["Fukuoka", "Currying favor", "Mike Warren", 4],
+            ["Susukino", "Meeting with potential customer", "Suzuki Ichiro", 1],
+            ["Izu", "Meeting with another branch manager", "Takagi Jiro", 2],
+            ["Izumo", "Checking out our distributor", "Nakagawa Saburo", 3],
+            ["Oita", "Opening workshops on an Institute", "Kanzaki Shiro", 4],
+            ["Gunma", "Attending a Convention", "Kikuchi Goro", 5]]
 
 # DO NOT USE IT YET
 # RECEIPTDATA = [["Sukiya", "2000", TODAY, 10, yamada, fukuoka.trip_budgets.first]]
