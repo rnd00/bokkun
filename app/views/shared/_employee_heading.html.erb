@@ -9,7 +9,7 @@
     <p>Remaining Budget</p>
     <div class="budget-bar">
       <div class="budget-empty">
-        <p><%= current_trip.total_remaining %>/<%= current_trip.total_budget %> </p>
+        <p><%= number_to_currency(current_trip.total_remaining, unit: "￥", separator: ",", precision: 0) %>/<%= number_to_currency(current_trip.total_budget, unit: "￥", separator: ",", precision: 0) %> </p>
         <div class="budget-percentage" style="width: <%= current_trip.budget_percent %>%">
         </div>
       </div>
