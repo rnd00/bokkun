@@ -17,9 +17,9 @@
         </tr>
         <tr>
           <td class="table-actions flex-center">
-            <%#= link_to edit_receipt_receipt_item_path do %>
+            <%= link_to edit_receipt_receipt_item_path(receipt, item) do %>
               <i class="fas fa-pencil-alt"></i>
-            <%# end %>
+            <% end %>
             <%= link_to receipt_item_path(item), method: :delete do %>
               <i class="fas fa-trash"></i>
             <% end %>
