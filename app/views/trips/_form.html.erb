@@ -6,6 +6,6 @@
   <%= f.input :start_date, class: "form-control" %>
   <%= f.input :end_date, class: "form-control" %>
   <%= f.association :users,  as: :check_boxes, label: "Employees", label_method: lambda {|employee| "#{employee.first_name} #{employee.last_name} - #{employee.job_title}"}, include_hidden: false %>
-  <%= f.association :budgets,  as: :check_boxes, label: "Budgets", label_method: lambda {|budget| "#{budget.name} - #{budget.amount}"}, include_hidden: false %>
+  <%= f.association :budgets,  as: :check_boxes, label: "Budgets", label_method: lambda {|budget| "#{budget.name} - #{number_to_currency(budget.amount, unit: "￥", separator: ",", precision: 0)}"}, include_hidden: false %>
   <%= f.button :submit, class: "btn btn-approve w-30" %>
 <% end %>

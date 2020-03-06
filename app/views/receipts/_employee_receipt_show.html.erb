@@ -17,7 +17,13 @@
       </div>
     <% end %>
   </div>
-  <%= render 'shared/employee_receipt_item_list', receipt: @receipt %>
+  <% if @receipt.receipt_items.empty? %>
+    <div class="container">
+      <p>Please enter each item from your receipt below.</p>
+    </div>
+  <% else %>
+    <%= render 'shared/employee_receipt_item_list', receipt: @receipt %>
+  <% end %>
   <%= render 'receipt_items/form' %>
   <%= cl_image_tag @receipt.photo.key, height: 300, width: 400, crop: :fill if @receipt.photo.attached? %>
 </div>
