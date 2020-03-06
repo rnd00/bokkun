@@ -3,9 +3,10 @@
   <h1><%= "Welcome, #{current_user.first_name} #{current_user.last_name}" %></h1>
   <h2>List of employees</h2>
   <% @users.each do |user| %>
-    <div class="argument">
+    <div class="argument my-3">
       <div class="argument-info">
-        <h3><%= "#{user.first_name} #{user.last_name}" %></h3>
+        <h3><%= "#{user.first_name} #{user.last_name}, #{user.job_title}" %></h3>
+        <small><%= "#{user.email}" %></small>
       </div>
     </div>
   <% end %>
