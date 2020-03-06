@@ -1,4 +1,10 @@
 # ============================================================================
+# REQUIRE
+# ============================================================================
+
+require 'open-uri'
+
+# ============================================================================
 # SHORTHAND HELPER
 # ============================================================================
 
@@ -8,17 +14,30 @@
 TODAY = Date.today
 
 # ============================================================================
+# FETCH HELPER
+# ============================================================================
+
+##
+# getting some avatar; http://le-wagon-tokyo.herokuapp.com/batches/363/student
+
+def get_placeholder_avatar
+  url =  'http://le-wagon-tokyo.herokuapp.com/batches/363/student'
+  open(url, 'Accept-Language' => 'en').read
+end
+
+# ============================================================================
 # SKELETON GENERATOR FUNCTIONS
 # ============================================================================
 
-def user_gen(email, fname, lname, job, manager_status)
+def user_gen(email, fname, lname, job, manager_status, avatar)
   User.create!(
     email: email,
     password: "123456",
     first_name: fname,
     last_name: lname,
     job_title: job,
-    manager: manager_status )
+    manager: manager_status,
+    avatar: avatar )
 end
 
 def trip_gen(name, dest, purpose, customer, sdate, edate)
@@ -97,7 +116,8 @@ end
 
 def temp_users_gen(data)
   data.map do |user|
-    user_gen(user[0], user[1], user[2], user[3], user[4])
+    avatar = get_placeholder_avatar
+    user_gen(user[0], user[1], user[2], user[3], user[4], avatar)
   end
 end
 
@@ -178,10 +198,11 @@ User.create!( email: "mike@bokkun.me",
   first_name: "Mike",
   last_name: "Warren",
   job_title: "CEO, Superintentdent General of Bokk* Holdings Corp",
-  manager: true)
+  manager: true,
+  avatar: 'https://avatars0.githubusercontent.com/u/28691463?s=460&v=4')
 # two users we want to use for presentations
-uemura = user_gen("uemura@bokkun.me", "Mitsuo", "Uemura", "Division Manager", true)
-yamada = user_gen("yamada@bokkun.me", "Taro", "Yamada", "Sales Rep", false)
+uemura = user_gen("uemura@bokkun.me", "Mitsuo", "Uemura", "Division Manager", true, get_placeholder_avatar)
+yamada = user_gen("yamada@bokkun.me", "Taro", "Yamada", "Sales Rep", false, get_placeholder_avatar)
 
 TESTUSERS = [uemura, yamada]
 
