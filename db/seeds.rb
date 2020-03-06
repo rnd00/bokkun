@@ -76,9 +76,9 @@ def temp_budget_gen
     # add more type as you need
 
     ['food', 15000],
-    ['travel', 20000],
+    ['travel', 4000],
     ['miscellaneous', 20000],
-    ['accomodation', 25000]]
+    ['accomodation', 20000]]
   types.map do |type|
     budget_gen(type[0], type[1])
   end
@@ -133,9 +133,12 @@ end
 # user = [login-email, first-name, last-name, job-title, manager-boolean]
 # trip = [city (has to be inside japan), purpose, customer, length-of-trip]
 
-USERDATA = [['segawa@bokkun.me', 'Segawa', 'Taku', 'Branch Manager', true],
-              ['hirai@bokkun.me', 'Hirai', 'Kako', 'Sales Rep', false],
-              ['ueno@bokkun.me', 'Ueno', 'Keisuke', 'Sales Rep', false]]
+USERDATA = [['segawa@bokkun.me', 'Taku', 'Segawa', 'Branch Manager', true],
+              ['hirai@bokkun.me', 'Kako', 'Hirai', 'Sales Rep', false],
+              ['y.hisoka@bokkun.me', 'Hisoka', 'Yamazaki', 'Sales Rep', false],
+              ['tanimoto@bokkun.me', 'Takao', 'Tanimoto', 'Sales Rep', false],
+              ['seo@bokkun.me', 'Chiyo', 'Seo', 'Sales Rep', false],
+              ['ueno@bokkun.me', 'Keisuke', 'Ueno', 'Sales Rep', false]]
 
 TRIPDATA = [["Tokyo", "First contact", "Adil Omary", 3],
               ["Fukuoka", "Currying favor", "Mike Warren", 4],
@@ -177,8 +180,8 @@ User.create!( email: "mike@bokkun.me",
   job_title: "Bokkun Admin",
   manager: true)
 # two users we want to use for presentations
-uemura = user_gen("uemura@bokkun.me", "Uemura", "Mitsuo", "Division Manager", true)
-yamada = user_gen("yamada@bokkun.me", "Yamada", "Taro", "Sales Rep", false)
+uemura = user_gen("uemura@bokkun.me", "Mitsuo", "Uemura", "Division Manager", true)
+yamada = user_gen("yamada@bokkun.me", "Taro", "Yamada", "Sales Rep", false)
 
 TESTUSERS = [uemura, yamada]
 
@@ -213,12 +216,31 @@ puts "done with connections"
 # ============================================================================
 
 puts "generating 2 receipts for yamada..."
-yamada_trip_budget = yamada.trips.first.trip_budgets.last
+# get all 4 budgets instances
+food = yamada.trips.last.budgets.find_by(name: 'food')
+trav = yamada.trips.last.budgets.find_by(name: 'travel')
+acco = yamada.trips.last.budgets.find_by(name: 'accomodation')
+misc = yamada.trips.last.budgets.find_by(name: 'miscellaneous')
+
+# defining all the trip-budget types
+yamada_food = yamada.trips.last.trip_budgets.find_by(budget: food)
+yamada_trav = yamada.trips.last.trip_budgets.find_by(budget: trav)
+yamada_acco = yamada.trips.last.trip_budgets.find_by(budget: acco)
+yamada_misc = yamada.trips.last.trip_budgets.find_by(budget: misc)
+
+# get the time for the last trip (ends on 3 days)
+START = yamada.trips.last.start_date
 
 # template = receipt_gen(company, total, date, tax, user, trip_budget)
-konbini = receipt_gen("Convenience Store", "1230", TODAY, 10, yamada, yamada_trip_budget)
-distillery = receipt_gen("Omary's Umeshu Distillery", "3300", TODAY, 10, yamada, yamada_trip_budget)
-bar = receipt_gen("Craft Beer Bar Heise & Warren", "3700", TODAY, 10, yamada, yamada_trip_budget)
+konbini = receipt_gen("Convenience Store", "1230", START + 1, 10, yamada, yamada_food)
+distillery = receipt_gen("Omary's Umeshu Distillery", "3300", START + 1, 10, yamada, yamada_food)
+bar = receipt_gen("Craft Beer Bar Heise & Warren", "3700", START + 2, 10, yamada, yamada_food)
+
+train_one = receipt_gen("Train (Shinjuku - Chiba)", "814", START, 10, yamada, yamada_trav)
+train_two = receipt_gen("Train (Chiba - Shinjuku)", "814", START + 2, 10, yamada, yamada_trav)
+
+hotel = receipt_gen("Hotel", "9500", START, 10, yamada, yamada_acco)
+ryokan = receipt_gen("Ryokan", "10500", START + 1, 10, yamada, yamada_acco)
 
 # YAMADA_RECEIPTS = [konbini, distillery, bar]
 
@@ -228,7 +250,7 @@ puts "done with receipts generation!"
 # GENERATE RECEIPT ITEMS
 # ============================================================================
 
-puts "generating items on Yamada's receipts..."
+puts "generating items on Yamada's food receipts..."
 
 # template = items_gen(name, amt, tax, receipt)
 gyudon = items_gen('Gyudon', 450, 10, konbini)
