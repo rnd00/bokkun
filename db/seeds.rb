@@ -1,4 +1,10 @@
 # ============================================================================
+# REQUIRE
+# ============================================================================
+
+require 'open-uri'
+
+# ============================================================================
 # SHORTHAND HELPER
 # ============================================================================
 
@@ -8,17 +14,30 @@
 TODAY = Date.today
 
 # ============================================================================
+# FETCH HELPER
+# ============================================================================
+
+##
+# getting some avatar; http://le-wagon-tokyo.herokuapp.com/batches/363/student
+
+def fetch_avatar
+  url =  'http://le-wagon-tokyo.herokuapp.com/batches/363/student'
+  open(url, 'Accept-Language' => 'en').read
+end
+
+# ============================================================================
 # SKELETON GENERATOR FUNCTIONS
 # ============================================================================
 
-def user_gen(email, fname, lname, job, manager_status)
+def user_gen(email, fname, lname, job, manager_status, avatar)
   User.create!(
     email: email,
     password: "123456",
     first_name: fname,
     last_name: lname,
     job_title: job,
-    manager: manager_status )
+    manager: manager_status,
+    avatar: avatar )
 end
 
 def trip_gen(name, dest, purpose, customer, sdate, edate)
@@ -76,9 +95,9 @@ def temp_budget_gen
     # add more type as you need
 
     ['food', 15000],
-    ['travel', 20000],
+    ['travel', 4000],
     ['miscellaneous', 20000],
-    ['accomodation', 25000]]
+    ['accomodation', 20000]]
   types.map do |type|
     budget_gen(type[0], type[1])
   end
@@ -97,7 +116,8 @@ end
 
 def temp_users_gen(data)
   data.map do |user|
-    user_gen(user[0], user[1], user[2], user[3], user[4])
+    avatar = fetch_avatar
+    user_gen(user[0], user[1], user[2], user[3], user[4], avatar)
   end
 end
 
@@ -133,9 +153,12 @@ end
 # user = [login-email, first-name, last-name, job-title, manager-boolean]
 # trip = [city (has to be inside japan), purpose, customer, length-of-trip]
 
-USERDATA = [['segawa@bokkun.me', 'Segawa', 'Taku', 'Branch Manager', true],
-              ['hirai@bokkun.me', 'Hirai', 'Kako', 'Sales Rep', false],
-              ['ueno@bokkun.me', 'Ueno', 'Keisuke', 'Sales Rep', false]]
+USERDATA = [['segawa@bokkun.me', 'Taku', 'Segawa', 'Branch Manager', true],
+              ['hirai@bokkun.me', 'Kako', 'Hirai', 'Sales Rep', false],
+              ['y.hisoka@bokkun.me', 'Hisoka', 'Yamazaki', 'Sales Rep', false],
+              ['tanimoto@bokkun.me', 'Takao', 'Tanimoto', 'Sales Rep', false],
+              ['seo@bokkun.me', 'Chiyo', 'Seo', 'Sales Rep', false],
+              ['ueno@bokkun.me', 'Keisuke', 'Ueno', 'Sales Rep', false]]
 
 TRIPDATA = [["Tokyo", "First contact", "Adil Omary", 3],
               ["Fukuoka", "Currying favor", "Mike Warren", 4],
@@ -174,11 +197,12 @@ User.create!( email: "mike@bokkun.me",
   password: "123456",
   first_name: "Mike",
   last_name: "Warren",
-  job_title: "Bokkun Admin",
-  manager: true)
+  job_title: "CEO, Superintentdent General of Bokk* Holdings Corp",
+  manager: true,
+  avatar: 'https://avatars0.githubusercontent.com/u/28691463?s=460&v=4')
 # two users we want to use for presentations
-uemura = user_gen("uemura@bokkun.me", "Uemura", "Mitsuo", "Division Manager", true)
-yamada = user_gen("yamada@bokkun.me", "Yamada", "Taro", "Sales Rep", false)
+uemura = user_gen("uemura@bokkun.me", "Mitsuo", "Uemura", "Division Manager", true, fetch_avatar)
+yamada = user_gen("yamada@bokkun.me", "Taro", "Yamada", "Sales Rep", false, fetch_avatar)
 
 TESTUSERS = [uemura, yamada]
 
@@ -213,12 +237,31 @@ puts "done with connections"
 # ============================================================================
 
 puts "generating 2 receipts for yamada..."
-yamada_trip_budget = yamada.trips.first.trip_budgets.last
+# get all 4 budgets instances
+food = yamada.trips.last.budgets.find_by(name: 'food')
+trav = yamada.trips.last.budgets.find_by(name: 'travel')
+acco = yamada.trips.last.budgets.find_by(name: 'accomodation')
+misc = yamada.trips.last.budgets.find_by(name: 'miscellaneous')
+
+# defining all the trip-budget types
+yamada_food = yamada.trips.last.trip_budgets.find_by(budget: food)
+yamada_trav = yamada.trips.last.trip_budgets.find_by(budget: trav)
+yamada_acco = yamada.trips.last.trip_budgets.find_by(budget: acco)
+yamada_misc = yamada.trips.last.trip_budgets.find_by(budget: misc)
+
+# get the time for the last trip (ends on 3 days)
+START = yamada.trips.last.start_date
 
 # template = receipt_gen(company, total, date, tax, user, trip_budget)
-konbini = receipt_gen("Convenience Store", "1230", TODAY, 10, yamada, yamada_trip_budget)
-distillery = receipt_gen("Omary's Umeshu Distillery", "3300", TODAY, 10, yamada, yamada_trip_budget)
-bar = receipt_gen("Craft Beer Bar Heise & Warren", "3700", TODAY, 10, yamada, yamada_trip_budget)
+konbini = receipt_gen("Convenience Store", "1230", START + 1, 10, yamada, yamada_food)
+distillery = receipt_gen("Omary's Umeshu Distillery", "3300", START + 1, 10, yamada, yamada_food)
+bar = receipt_gen("Bar Heise & Warren", "3700", START + 2, 10, yamada, yamada_food)
+
+train_one = receipt_gen("Train (Shinjuku - Chiba)", "814", START, 10, yamada, yamada_trav)
+train_two = receipt_gen("Train (Chiba - Shinjuku)", "814", START + 2, 10, yamada, yamada_trav)
+
+hotel = receipt_gen("Hotel", "9500", START, 10, yamada, yamada_acco)
+ryokan = receipt_gen("Ryokan", "10500", START + 1, 10, yamada, yamada_acco)
 
 # YAMADA_RECEIPTS = [konbini, distillery, bar]
 
@@ -228,7 +271,7 @@ puts "done with receipts generation!"
 # GENERATE RECEIPT ITEMS
 # ============================================================================
 
-puts "generating items on Yamada's receipts..."
+puts "generating items on Yamada's food receipts..."
 
 # template = items_gen(name, amt, tax, receipt)
 gyudon = items_gen('Gyudon', 450, 10, konbini)
