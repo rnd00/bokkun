@@ -1,5 +1,5 @@
 <%= render 'shared/side-bar' if current_user.manager %>
 <div class="container">
   <%= render 'form', receipt: @receipt, trip: @trip%>
-    <%= link_to "Go back", trip_path(@trip), class: "btn btn-approve w-30" %>
+  <%= link_to "Go back", trip_path(@trip), class: "btn btn-approve w-30" %>
 </div>
