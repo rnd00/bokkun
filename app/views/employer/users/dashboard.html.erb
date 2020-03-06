@@ -14,8 +14,17 @@
       </div>
     </div>
     <div class="dash-stats">
+      <h3>Spend over past month</h3>
+      <% @month = Trip.total_spend(30) %>
+      <% @month.each do |category, amount| %>
+        <div class="dash-stats-item">
+          <p><%= category.capitalize %>:</p>
+          <p><%= number_to_currency(amount, unit: "￥", separator: ",", precision: 0) %></p>
+        </div>
+      <% end %>
+      <p><strong>Total amount: <%= number_to_currency(@month.values.sum, unit: "￥", separator: ",", precision: 0) %></strong></p>
     </div>
-    <div class="dash-stats">
-    </div>
+  </div>
+  <div class="dash-stats">
   </div>
 </div>
