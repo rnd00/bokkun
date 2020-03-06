@@ -4,35 +4,39 @@
     <h1> <%= @trip.name.titleize %> </h1>
     <div class="card-detail-body">
       <div class="card-detail-info">
-        <ul>
-          <div class="argument">
-          <div class="argument-info">
-          <p>Destination : <%= @trip.destination %></p>
-          <p>Start Date : <%= @trip.start_date %></p>
-          <p>End Date : <%= @trip.end_date %></p>
-          <p>Purpose : <%= @trip.purpose  %></p>
-          <p>Customer : <%= @trip.customer %></p>
-            <ul>Employees :
-              <% @trip.users.each do |user| %>
-                <p><strong><%= link_to [user.first_name, user.last_name].join(" "), user_show_path(user)%></strong>, <%= user.job_title %></p>
-              <% end %>
-            </ul>
+        <div class="m-0">
+          <div class="argument ml-0">
+            <div class="argument-info mt-2">
+              <p>Destination : <%= @trip.destination %></p>
+              <p>Start Date : <%= @trip.start_date %></p>
+              <p>End Date : <%= @trip.end_date %></p>
+              <p>Purpose : <%= @trip.purpose  %></p>
+              <p>Customer : <%= @trip.customer %></p>
+              <ul class="pl-0 mt-1"><strong>Employees :</strong>
+                <% @trip.users.each do |user| %>
+                  <p class="mt-1"><strong><%= link_to [user.first_name, user.last_name].join(" "), user_show_path(user)%></strong>, <%= user.job_title %></p>
+                <% end %>
+              </ul>
+            </div>
           </div>
-          </div>
-        </ul>
+        </div>
       </div>
-        <ul>
-          <h3>Receipts of this trip</h3>
+      <ul class="pl-0">
+        <h3 class="mt-3">Trip Receipts</h3>
+        <% if @trip.receipts.nil? %>
           <% @trip.receipts.each do |receipt| %>
             <div class="argument">
-            <div class="argument-info">
-              <p>Company : <strong><%= link_to receipt.company, receipt_path(receipt)%></strong></p>
-              <p>Total Amount : <%= receipt.total_amount %></p>
-              <p>Date : <%= receipt.date %></p>
-            </div>
+              <div class="argument-info">
+                <p>Company : <strong><%= link_to receipt.company, receipt_path(receipt)%></strong></p>
+                <p>Total Amount : <%= receipt.total_amount %></p>
+                <p>Date : <%= receipt.date %></p>
+              </div>
             </div>
           <% end %>
-        </ul>
+        <% else %>
+          <p> No Receipts Yet...</p>
+        <% end %>
+      </ul>
     </div>
   </div>
   <%= link_to "Add a receipt", new_trip_receipt_path(@trip), class: "btn btn-approve w-30" %>
@@ -46,7 +50,6 @@
     <%= link_to "Go Back", employer_dashboard_path, class: "btn btn-approve w-30" %>
   <% end %>
 </div>
-
 <!--
     t.string "company"
     t.integer "total_amount"
