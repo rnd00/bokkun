@@ -14,14 +14,12 @@
           <td><%= item.name %></td>
           <td><%= item.amount %></td>
           <td><%= item.tax %></td>
-        </tr>
-        <tr>
           <td class="table-actions flex-center">
             <%= link_to edit_receipt_item_path(item) do %>
-              <i class="fas fa-pencil-alt"></i>
+              <i class="fas fa-pencil-alt mr-3 blue"></i>
             <% end %>
             <%= link_to receipt_item_path(item), method: :delete do %>
-              <i class="fas fa-trash"></i>
+              <i class="fas fa-trash ml-3 red"></i>
             <% end %>
           </td>
         </tr>
