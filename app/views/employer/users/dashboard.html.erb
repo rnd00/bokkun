@@ -1,8 +1,8 @@
 <%= render 'shared/side-bar' %>
 <div class="container">
-  <h1>Your Current Trip</h1>
-  <p><%= @user.first_name %> <%= @user.last_name %></p>
-  <%= link_to "Create a new trip", new_trip_path, class: "btn btn-approve w-30"  %>
+  <h1>Dashboard</h1>
+  <div class="container">
+  </div>
   <div class="argument m-0 w-50 mt-3">
     <div class="argument-info">
       <p><strong><%= link_to @user.trips.last.name, trip_path(@user.trips.last)%></strong></p>
@@ -36,4 +36,10 @@
       <p><strong>Total amount: <%= number_to_currency(@location_spend.values.sum, unit: "￥", separator: ",", precision: 0) %></strong></p>
     </div>
   </div>
+</div>
+
+<div class="container">
+  <div class="argument-info padding-59px">
+  <%= link_to "Create a new trip", new_trip_path, class: "btn btn-approve w-30"  %>
+</div>
 </div>

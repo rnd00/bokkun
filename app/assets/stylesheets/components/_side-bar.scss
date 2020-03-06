@@ -17,6 +17,10 @@ body{
   display: none;
 }
 .head-nav {
+  i, img {
+    margin-left: 8px;
+  }
+
   li{
     &:hover{
         background-color: $off-white;
@@ -90,6 +94,9 @@ body{
       }
   }
 }
+
+
+
 .main-head{
   position: fixed;
   bottom: 0;
@@ -108,7 +115,7 @@ body{
       }
       .head-nav{
           li{
-              @for $i from 1 through 4 {
+              @for $i from 1 through 5 {
                   &:nth-of-type(#{$i}){
                       span{
                           transition-delay: 100ms * $i;
