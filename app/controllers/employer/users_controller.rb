@@ -6,6 +6,10 @@ module Employer
       authorize @user
     end
 
+    def index
+      @users = policy_scope(User)
+    end
+
     def show
       @user = User.find_by(id: params[:id])
       authorize @user

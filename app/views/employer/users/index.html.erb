@@ -1,0 +1,13 @@
+<%= render 'shared/side-bar' %>
+<div class="container">
+  <h1><%= "Welcome, #{current_user.first_name} #{current_user.last_name}" %></h1>
+  <h2>List of employees</h2>
+  <% @users.each do |user| %>
+    <div class="argument">
+      <div class="argument-info">
+        <h3><%= "#{user.first_name} #{user.last_name}" %></h3>
+      </div>
+    </div>
+  <% end %>
+</div>
+

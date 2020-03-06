@@ -14,6 +14,7 @@ Rails.application.routes.draw do
   namespace :employer do
     get '/dashboard', to: 'users#dashboard', as: :dashboard
     get '/show', to: 'users#show', as: :show
+    get '/employees', to: 'users#index', as: :index
   end
 
   # dashboard for employee
