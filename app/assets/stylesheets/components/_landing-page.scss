@@ -2,6 +2,38 @@
   width: 100%;
 }
 
+.landing-cards {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: stretch;
+  padding: $spacer;
+
+  & .landing-card {
+    display: flex;
+    align-self: stretch;
+    background-color: $off-white;
+    margin: $spacer * 1.5;
+    border: 1px solid $black;
+    border-radius: 8px;
+    width: 600px;
+    max-height: 40%;
+
+    & .landing-card-info {
+      padding: $spacer;
+      height: 100%;
+      margin: auto 0;
+      & h2 {
+        font-size: 3vw;
+      }
+      & p {
+        font-size: 2vw;
+        margin: 0;
+      }
+    }
+  }
+}
+
 .landing-arguments-container {
   display: flex;
   flex-direction: row;
