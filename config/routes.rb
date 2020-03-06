@@ -1,9 +1,4 @@
 Rails.application.routes.draw do
-  get 'receipt_items/new'
-  get 'receipt_items/create'
-  get 'receipt_items/edit'
-  get 'receipt_items/update'
-  get 'receipt_items/destroy'
   devise_for :users
   root to: 'pages#landing'
   #temporary testing route -- delete later
@@ -30,8 +25,8 @@ Rails.application.routes.draw do
     resources :receipts, only: [:new, :update, :create]
   end
   resources :receipts, only: [:edit, :destroy] do
-    resources :receipt_items, except: [:index, :show, :destroy]
+    resources :receipt_items, except: [:index, :show, :destroy, :edit]
   end
-  resources :receipt_items, only: [:destroy]
+  resources :receipt_items, only: [:destroy, :edit]
   get '/users/:id', to: 'users#show', as: :user_show
 end
