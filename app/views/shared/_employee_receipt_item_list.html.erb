@@ -10,10 +10,10 @@
     </thead>
     <tbody>
       <% receipt.receipt_items.each do |item| %>
-        <tr>
+        <tr class="item-list">
           <td><%= item.name %></td>
-          <td><%= item.amount %></td>
-          <td><%= item.tax %></td>
+          <td><%= number_to_currency(item.amount, unit: "￥", separator: ",", precision: 0) %></td>
+          <td><%= number_to_currency(item.tax, unit: "￥", separator: ",", precision: 0) %></td>
           <td class="table-actions flex-center">
             <%= link_to edit_receipt_item_path(item) do %>
               <i class="fas fa-pencil-alt mr-3 blue"></i>
