@@ -32,4 +32,8 @@ class TripPolicy < ApplicationPolicy
   def destroy?
     user.manager
   end
+
+  def report?
+    true
+  end
 end
