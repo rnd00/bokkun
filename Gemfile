@@ -20,6 +20,12 @@ gem 'webpacker'
 gem 'pundit'
 gem 'cloudinary', '~> 1.12.0'
 
+# rails-generate-pdf/Gemfile
+gem 'jquery-rails'
+gem 'bootstrap', '~> 4.1.3'
+gem 'wicked_pdf'
+gem 'wkhtmltopdf-binary'
+
 group :development do
   gem 'web-console', '>= 3.3.0'
 end
