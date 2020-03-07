@@ -72,7 +72,7 @@ class TripsController < ApplicationController
     redirect_to employer_dashboard_path
   end
 
-  def report
+  def general_report
     @trip = Trip.find(params[:id])
     authorize @trip
     respond_to do |format|

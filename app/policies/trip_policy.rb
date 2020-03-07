@@ -33,7 +33,7 @@ class TripPolicy < ApplicationPolicy
     user.manager
   end
 
-  def report?
-    true
+  def general_report?
+    user.manager
   end
 end
