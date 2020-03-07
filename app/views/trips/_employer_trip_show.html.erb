@@ -40,6 +40,7 @@
     </div>
   </div>
   <%= link_to "Add a receipt", new_trip_receipt_path(@trip), class: "btn btn-approve w-30" %>
+  <%= link_to "Generate report pdf", report_path(format: :pdf), class: "btn btn-approve w-30" %>
   <%= link_to "Edit this trip", edit_trip_path, class: "btn btn-approve w-30" %>
   <% if current_user.manager %>
     <%= link_to "Delete this trip", trip_path(@trip), method: :delete, class: "btn btn-approve w-30" %>

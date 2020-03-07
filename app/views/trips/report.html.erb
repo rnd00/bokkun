@@ -1,0 +1,86 @@
+<div class="container mt-3">
+  <div class="report-box">
+    <table cellpadding="0" cellspacing="0">
+      <tbody>
+        <tr class="top">
+          <td colspan="4">
+            <table>
+              <tbody>
+                <tr>
+                  <td>
+                    <h1>Bokkun</h1>
+                    <h3>Simply Expense</h3>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <table>
+      <tbody>
+        <tr>
+          <td colspan="8">
+            <h3 class="doc-title">Travel Expense Report</h3>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <table>
+      <tbody>
+        <tr class="information">
+          <td colspan="1"></td>
+          <td class="bordered" width="80px"><b>CEO</b></td>
+          <td class="bordered" width="80px"><b>Section</b></td>
+          <td class="bordered" width="80px"><b>Employee</b></td>
+          <td width="200px"></td>
+        </tr>
+        <tr class="information">
+          <td colspan="1"></td>
+          <td class="bordered" height="72px" rowspan="2"></td>
+          <td class="bordered" height="72px" rowspan="2"></td>
+          <td class="bordered" height="72px" rowspan="2"></td>
+          <td width="200px"></td>
+        </tr>
+      </tbody>
+    </table>
+    <table>
+      <tbody>
+        <tr height="40px"></tr>
+        <tr class="information">
+          <td><b>Department:</b> <%= @trip.users.first.job_title %></td>
+          <td><b>Start date:</b> <%= @trip.start_date %></td>
+        </tr>
+        <tr class="information">
+          <td><b>Employee:</b> <%= @trip.users.first.full_name %></td>
+          <td><b>End date:</b> <%= @trip.end_date %></td>
+        </tr>
+      </tbody>
+    </table>
+    <table data-table>
+      <thead>
+        <tr class="heading">
+          <td class="bordered">Date</td>
+          <td class="bordered">Business</td>
+          <td class="bordered">Category</td>
+          <td width="100px" class="bordered">Totals</td>
+        </tr>
+      </thead>
+      <tbody>
+        <% @trip.receipts.each do |receipt| %>
+          <tr>
+            <td class="bordered"><%= receipt.date %></td>
+            <td class="bordered"><%= receipt.company %></td>
+            <td class="bordered"><%= receipt.category %></td>
+            <td class="bordered"><%= number_to_currency(receipt.total_amount, unit: 'JPY ', separator: ",", precision: 0) %></td>
+          </tr>
+        <% end %>
+        <tr>
+          <td class="align-right" colspan="3"><b>Total spent: </b></td>
+          <td><%= number_to_currency(@trip.total_spent, unit: 'JPY ', separator: ",", precision: 0) %> </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
