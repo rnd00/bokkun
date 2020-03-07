@@ -32,5 +32,5 @@ Rails.application.routes.draw do
   get '/users/:id', to: 'users#show', as: :user_show
 
   #pdf generating routes
-  get '/trips/:id/report', to: 'trips#general_report', as: :general_report
+  get '/trips/:id/report', to: 'trips#report', as: :report
 end
