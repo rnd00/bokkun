@@ -71,6 +71,25 @@ class TripsController < ApplicationController
     @trip.destroy
     redirect_to employer_dashboard_path
   end
+
+  def generate_report
+    @trip = Trip.find(params[:id])
+
+    respond_to do |format|
+      format.html
+      format.pdf do
+        render pdf: "Trip ID: #{@trip.id}",
+        page_size: 'A4',
+        template: "trips/report.html.erb",
+        layout: "pdf.html",
+        orientation: "Landscape",
+        lowquality: true,
+        zoom: 1,
+        dpi: 75
+      end
+    end
+  end
+
   private
 
   def trip_params
