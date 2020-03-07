@@ -78,7 +78,7 @@ class TripsController < ApplicationController
     respond_to do |format|
       format.html
       format.pdf do
-        render pdf: "Trip ID: #{@trip.id}",
+        render pdf: "Trip No. #{@trip.id}",
         page_size: 'A4',
         template: "trips/report.html.erb",
         layout: "pdf.html",
