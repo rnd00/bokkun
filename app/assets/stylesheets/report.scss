@@ -17,11 +17,12 @@
     width: 100%;
     line-height: inherit;
     text-align: left;
+    border-collapse: collapse;
 }
 
 .report-box table td {
     padding: 5px;
-    vertical-align: middle;
+    vertical-align: bottom;
 }
 
 // .report-box table tr td:nth-child(2) {
@@ -48,7 +49,7 @@
 
 .report-box table tr.heading td {
     background: #eee;
-    border-bottom: 1px solid #ddd;
+    border-bottom: 1px solid black;
     font-weight: bold;
 }
 
@@ -183,10 +184,20 @@
   font-size: 40px;
 }
 
+.center-heading {
+  text-align: center;
+}
+
 .bordered {
   border: 1px solid black;
 }
 
+.report-box table.data-table {
+  td {
+    vertical-align: bottom !important;
+    border: 1px solid black !important;
+  }
+}
 
 // .invoice-box table tr.total td:nth-child(2) {
 //     border-top: 2px solid #eee;

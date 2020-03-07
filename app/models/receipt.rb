@@ -8,4 +8,8 @@ class Receipt < ApplicationRecord
 
   validates :company, :tax_amount, :total_amount, :date, presence: true
   validates :tax_amount, :total_amount, numericality: { only_integer: true }
+
+  def category
+    self.budget.name
+  end
 end

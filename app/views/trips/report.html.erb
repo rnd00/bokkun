@@ -8,33 +8,74 @@
               <tbody>
                 <tr>
                   <td class="title">
-                    <h1>Bokkun</h1>
-                    <h3>Simply Expense</h3>
+                    <h3>Bokkun</h3>
+                    <h5>Simply Expense</h5>
                   </td>
                 </tr>
               </tbody>
             </table>
           </td>
         </tr>
+      </tbody>
+    </table>
+    <table>
+      <tbody>
         <tr>
           <td colspan="8">
             <h3 class="doc-title">Travel Expense Report</h3>
           </td>
         </tr>
-        <tr>
-          <td colspan="3"></td>
+      </tbody>
+    </table>
+    <table>
+      <tbody>
+        <tr class="information">
+          <td colspan="1"></td>
           <td class="bordered" width="80px"><b>CEO</b></td>
           <td class="bordered" width="80px"><b>Section</b></td>
           <td class="bordered" width="80px"><b>Employee</b></td>
-          <td></td>
+          <td width="200px"></td>
         </tr>
-        <tr>
-          <td colspan="3"></td>
+        <tr class="information">
+          <td colspan="1"></td>
           <td class="bordered" height="72px" rowspan="2"></td>
           <td class="bordered" height="72px" rowspan="2"></td>
           <td class="bordered" height="72px" rowspan="2"></td>
-          <td></td>
+          <td width="200px"></td>
         </tr>
+      </tbody>
+    </table>
+    <table>
+      <tbody>
+        <tr height="40px"></tr>
+        <tr class="information">
+          <td><b>Department:</b> <%= @trip.users.first.job_title %></td>
+          <td><b>Start date:</b> <%= @trip.start_date %></td>
+        </tr>
+        <tr class="information">
+          <td><b>Employee:</b> <%= @trip.users.first.full_name %></td>
+          <td><b>End date:</b> <%= @trip.end_date %></td>
+        </tr>
+      </tbody>
+    </table>
+    <table data-table>
+      <thead>
+        <tr class="heading">
+          <td class="bordered">Date</td>
+          <td class="bordered">Client</td>
+          <td class="bordered">Category</td>
+          <td class="bordered">Totals</td>
+        </tr>
+      </thead>
+      <tbody>
+        <% @trip.receipts.each do |receipt| %>
+          <tr>
+            <td class="bordered"><%= receipt.date %></td>
+            <td class="bordered"><%= receipt.company %></td>
+            <td class="bordered"><%= receipt.category %></td>
+            <td class="bordered"><%= receipt.total_amount %></td>
+          </tr>
+        <% end %>
       </tbody>
     </table>
   </div>
