@@ -3,8 +3,14 @@ module Employee
 
     def dashboard
       @user = current_user
-      @trips = @user.trips.order(start_date: :desc)
+      @current_trip = @user.trips.order(start_date: :desc).first
+      @query = params[:query]
       authorize @user
+      if params[:query].present?
+        @trips = Trip.search_all(params[:query])
+      else
+        @trips = @user.trips.order(start_date: :desc)
+      end
     end
 
     def show
