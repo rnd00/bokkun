@@ -30,4 +30,7 @@ Rails.application.routes.draw do
   end
   resources :receipt_items, only: [:destroy, :edit]
   get '/users/:id', to: 'users#show', as: :user_show
+
+  #pdf generating routes
+  get '/trips/:id/report', to: 'trips#report', as: :report
 end
