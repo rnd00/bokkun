@@ -1,8 +1,12 @@
-<%= simple_form_for [@receipt, @receipt_item], html: {class: "form-style"} do |f| %>
-  <div class="d-flex">
+<%= simple_form_for [@receipt, @receipt_item], html: {class: "form-style m-0 p-0"} do |f| %>
+  <div class="d-flex item-form">
     <%= f.input :name, label: false, placeholder: 'item' %>
     <%= f.input :amount, label: false, placeholder: 'amount' %>
     <%= f.input :tax, label: false, placeholder: 'tax' %>
+    <%= button_tag type: 'submit', class: "btn btn-approve m-0" do %>
+      <i class="fas fa-plus m-0"></i>
+    <% end %>
   </div>
-  <%= f.button :submit, class: "btn btn-approve w-30" %>
 <% end %>
+
+
