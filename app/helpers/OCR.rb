@@ -1,5 +1,5 @@
 module OCR
-  def total(img_path)
+  def self.total(img_path)
     require "google/cloud/vision"
     image_annotator = Google::Cloud::Vision::ImageAnnotator.new
     file_path = img_path

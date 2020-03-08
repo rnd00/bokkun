@@ -12,6 +12,7 @@ class ReceiptsController < ApplicationController
     @receipt.user = current_user
     @receipt.trip = Trip.find_by(id: params[:trip_id])
     authorize @receipt
+    @receipt.total_amount = helpers.OCR.total('https://isp21.co.jp/wp-content/uploads/solution/library/library02.jpg')
     if @receipt.save
       redirect_to receipt_path(@receipt)
     else
