@@ -1,9 +1,9 @@
 <form class="form-style-9">
   <div class="container">
-    <%= simple_form_for([@receipt, @receipt_item]) do |f| %>
-      <%= f.input :name, label: false, placeholder: 'item', class: 'form-inline' %>
-      <%= f.input :amount, label: false, placeholder: 'amount', class: 'form-inline' %>
-      <%= f.input :tax, label: false, placeholder: 'tax', class: 'form-inline' %>
+    <%= simple_form_for [@receipt, @receipt_item] do |f| %>
+      <%= f.input :name, label: false, placeholder: 'item' %>
+      <%= f.input :amount, label: false, placeholder: 'amount' %>
+      <%= f.input :tax, label: false, placeholder: 'tax' %>
       <%= f.submit %>
     <% end %>
   </div>

@@ -11,6 +11,7 @@ class ReceiptItemsController < ApplicationController
     @receipt = Receipt.find_by(id: params[:receipt_id])
     @receipt_item.receipt = @receipt
     authorize @receipt_item
+    raise
     if @receipt_item.save
       redirect_to receipt_path(@receipt_item.receipt)
     else

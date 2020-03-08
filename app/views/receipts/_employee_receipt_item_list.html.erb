@@ -2,25 +2,23 @@
   <table class="table table-hover">
     <thead>
       <tr>
-        <th>Item</th>
-        <th>Price</th>
-        <th>Tax</th>
-        <th></th>
+        <th width="50%">Item</th>
+        <th width="25%">Price</th>
+        <th width="25%">Tax</th>
       </tr>
     </thead>
     <tbody>
       <% receipt.receipt_items.each do |item| %>
-        <tr class="item-list">
-          <td><%= item.name %></td>
-          <td><%= number_to_currency(item.amount, unit: "￥", separator: ",", precision: 0) %></td>
-          <td><%= number_to_currency(item.tax, unit: "￥", separator: ",", precision: 0) %></td>
-          <td class="table-actions flex-center">
-            <%= link_to edit_receipt_item_path(item) do %>
-              <i class="fas fa-pencil-alt mr-3 blue"></i>
-            <% end %>
-            <%= link_to receipt_item_path(item), method: :delete do %>
-              <i class="fas fa-trash ml-3 red"></i>
-            <% end %>
+        <tr data-toggle="collapse" data-target="#a-<%= item.id %>" aria-expanded="false" aria-controls="<%= item.id %>">
+          <td width="50%"><%= item.name %></td>
+          <td width="25%"><%= number_to_currency(item.amount, unit: "￥", separator: ",", precision: 0) %></td>
+          <td width="25%"><%= number_to_currency(item.tax, unit: "￥", separator: ",", precision: 0) %></td>
+        </tr>
+        <tr class="collapse" id="a-<%= item.id %>">
+          <td width="50%" class="table-actions">
+            <%= link_to "Edit item", edit_receipt_item_path(item) %>
+          <td colspan="2" width="50%" class="table-actions">
+            <%= link_to "Delete item", receipt_item_path(item), method: :delete %>
           </td>
         </tr>
       <% end %>
