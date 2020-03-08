@@ -16,7 +16,13 @@
   }
 }
 
-.form-style{
+.form-inline {
+  display: inline-block;
+}
+
+@media only screen and (min-width: 768px) {
+  /* For tablets: */
+  .form-style{
   max-width: 450px;
   background: #FAFAFA;
   padding: 30px;
@@ -25,7 +31,4 @@
   border-radius: 10px;
   border: 6px solid $blue;
 }
-
-.form-inline {
-  display: inline-block;
 }
