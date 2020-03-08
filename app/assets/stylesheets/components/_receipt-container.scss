@@ -1,4 +1,7 @@
 .receipt-container {
   height: 200px;
   overflow: scroll;
+  img {
+    width: 100% !important;
+  }
 }
