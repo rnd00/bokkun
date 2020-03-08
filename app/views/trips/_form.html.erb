@@ -1,13 +1,11 @@
-<form class="form-style">
-  <%= simple_form_for @trip do |f| %>
-    <%= f.input :name, class: "form-control" %>
-    <%= f.input :destination, class: "form-control"  %>
-    <%= f.input :purpose, class: "form-control" %>
-    <%= f.input :customer, class: "form-control" %>
-    <%= f.input :start_date, class: "form-control" %>
-    <%= f.input :end_date, class: "form-control" %>
-    <%= f.association :users,  as: :check_boxes, label: "Employees", label_method: lambda {|employee| "#{employee.first_name} #{employee.last_name} - #{employee.job_title}"}, include_hidden: false %>
-    <%= f.association :budgets,  as: :check_boxes, label: "Budgets", label_method: lambda {|budget| "#{budget.name} - #{number_to_currency(budget.amount, unit: "￥", separator: ",", precision: 0)}"}, include_hidden: false %>
-    <%= f.button :submit, class: "btn btn-approve w-30" %>
-  <% end %>
-</form>
+<%= simple_form_for @trip, html: {class: "form-style"} do |f| %>
+  <%= f.input :name, class: "form-control" %>
+  <%= f.input :destination, class: "form-control"  %>
+  <%= f.input :purpose, class: "form-control" %>
+  <%= f.input :customer, class: "form-control" %>
+  <%= f.input :start_date, class: "form-control" %>
+  <%= f.input :end_date, class: "form-control" %>
+  <%= f.association :users,  as: :check_boxes, label: "Employees", label_method: lambda {|employee| "#{employee.first_name} #{employee.last_name} - #{employee.job_title}"}, include_hidden: false %>
+  <%= f.association :budgets,  as: :check_boxes, label: "Budgets", label_method: lambda {|budget| "#{budget.name} - #{number_to_currency(budget.amount, unit: "￥", separator: ",", precision: 0)}"}, include_hidden: false %>
+  <%= f.button :submit, class: "btn btn-approve w-30" %>
+<% end %>
