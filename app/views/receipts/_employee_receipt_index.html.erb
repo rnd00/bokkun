@@ -11,9 +11,11 @@
             <p>No receipts entered.</p>
           <% else %>
             <% trip_budget.receipts.each do |receipt| %>
-              <div class="receipt-name">
-                <p><%= link_to receipt.company, receipt_path(receipt) %></p>
-              </div>
+              <%= link_to receipt_path(receipt) do %>
+                <div class="receipt-name">
+                  <p><%= receipt.company %></p>
+                </div>
+              <% end %>
             <% end %>
           <% end %>
         </div>
