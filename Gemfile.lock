@@ -117,6 +117,9 @@ GEM
       mini_portile2 (~> 2.4.0)
     orm_adapter (0.5.0)
     pg (0.21.0)
+    pg_search (2.3.2)
+      activerecord (>= 5.2)
+      activesupport (>= 5.2)
     popper_js (1.16.0)
     pry (0.12.2)
       coderay (~> 1.1.0)
@@ -237,6 +240,7 @@ DEPENDENCIES
   jquery-rails
   listen (~> 3.0.5)
   pg (~> 0.21)
+  pg_search (~> 2.3.0)
   pry-byebug
   pry-rails
   puma
