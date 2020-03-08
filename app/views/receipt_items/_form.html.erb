@@ -1,8 +1,8 @@
-<div class="container">
-  <%= simple_form_for [@receipt, @receipt_item], html: {class: "form-style-9"} do |f| %>
-    <%= f.input :name %>
-    <%= f.input :amount %>
-    <%= f.input :tax %>
-    <%= f.submit %>
-  <% end %>
-</div>
+<%= simple_form_for [@receipt, @receipt_item], html: {class: "form-style"} do |f| %>
+  <div class="d-flex">
+    <%= f.input :name, label: false, placeholder: 'item' %>
+    <%= f.input :amount, label: false, placeholder: 'amount' %>
+    <%= f.input :tax, label: false, placeholder: 'tax' %>
+  </div>
+  <%= f.button :submit, class: "btn btn-approve w-30" %>
+<% end %>
