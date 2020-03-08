@@ -25,7 +25,7 @@ Rails.application.routes.draw do
     get '/export', to: 'trips#export', as: :export
     resources :receipts, only: [:new, :update, :create]
   end
-  resources :receipts, only: [:edit, :destroy] do
+  resources :receipts, only: [:show, :edit, :destroy] do
     resources :receipt_items, except: [:index, :show, :destroy, :edit]
   end
   resources :receipt_items, only: [:destroy, :edit]
