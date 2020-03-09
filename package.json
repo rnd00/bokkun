@@ -5,8 +5,13 @@
     "@rails/webpacker": "4.2.2",
     "admin-lte": "^3.0",
     "bootstrap": "^4.4.1",
+    "chart.js": "^2.9.3",
+    "chartkick": "^3.2.0",
     "jquery": "^3.4.1",
-    "popper.js": "^1.16.1"
+    "moment-timezone": "^0.5.28",
+    "popper.js": "^1.16.1",
+    "tempusdominus-core": "^5.0.3",
+    "webpack": "^4.42.0"
   },
   "devDependencies": {
     "webpack-dev-server": "^3.10.3"

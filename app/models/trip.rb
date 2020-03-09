@@ -5,7 +5,15 @@ class Trip < ApplicationRecord
   has_many :budgets, through: :trip_budgets
   has_many :receipts, through: :trip_budgets
 
-  validates :name, :destination, :purpose, :customer, :start_date, :end_date, presence: true
+  validates :destination, :purpose, :customer, :start_date, :end_date, presence: true
+
+  def active?
+    Date.today <= self.end_date && Date.today >= self.start_date
+  end
+
+  def receipts_sort_date
+    self.receipts.order(:date)
+  end
 
   def total_budget
     self.budgets.reduce(0) { |total, budget| total + budget.amount }
@@ -16,7 +24,7 @@ class Trip < ApplicationRecord
   end
 
   def total_spent
-    self.receipts.reduce(0) { |total, receipt| total + receipt.total_amount }
+    self.receipts.reduce(0) { |total, receipt| total + receipt.total }
   end
 
   def budget_percent

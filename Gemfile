@@ -15,12 +15,14 @@ gem 'sassc-rails'
 gem 'simple_form'
 gem 'uglifier'
 gem 'webpacker'
+gem 'faker', :git => 'https://github.com/faker-ruby/faker.git', :branch => 'master'
 
 ## Added
 gem 'pundit'
 gem 'cloudinary', '~> 1.12.0'
 gem 'google-cloud-vision'
 gem 'pg_search', '~> 2.3.0'
+gem "chartkick"
 
 # rails-generate-pdf/Gemfile
 gem 'jquery-rails'

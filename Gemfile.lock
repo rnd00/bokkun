@@ -1,3 +1,11 @@
+GIT
+  remote: https://github.com/faker-ruby/faker.git
+  revision: be482005f7abaad473eb9047cab0122ed4081265
+  branch: master
+  specs:
+    faker (2.10.2)
+      i18n (>= 1.6, < 2)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -58,6 +66,7 @@ GEM
       sassc-rails (>= 2.0.0)
     builder (3.2.4)
     byebug (11.1.1)
+    chartkick (3.3.1)
     cloudinary (1.12.0)
       aws_cf_signer
       rest-client
@@ -275,9 +284,11 @@ DEPENDENCIES
   autoprefixer-rails
   bootsnap
   bootstrap (~> 4.3.1)
+  chartkick
   cloudinary (~> 1.12.0)
   devise
   dotenv-rails
+  faker!
   font-awesome-sass (~> 5.12.0)
   google-cloud-vision
   jbuilder (~> 2.0)
