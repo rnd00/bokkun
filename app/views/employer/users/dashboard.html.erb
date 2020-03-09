@@ -8,7 +8,17 @@
       <%= link_to "Create a new trip", new_trip_path, class: "btn btn-approve w-30 my-3"  %>
     </div>
   </div>
-
+  <div class="dash-container my-3">
+    <div class="dash-stats m-3">
+      <h3>Spending over past month</h3>
+      <%= pie_chart(Trip.total_spend(30), colors: ['#AD5A5D', '#2A3347', '#EFC125', '#96B4C2']) %>
+    </div>
+    <div class="dash-stats m-3">
+      <h3> Top 5 locations</h3>
+      <% @location_spend = Trip.location_spend %>
+      <%= column_chart(@location_spend.first(5), colors: ['#2A3347', '#EFC125', '#96B4C2']) %>
+    </div>
+  </div>
   <div class="trip">
     <div class="trip-img" style='background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url("https://source.unsplash.com/featured/?<%= @user.trips.last.destination %>}")'>
       <%= @user.trips.last.destination %>
@@ -20,31 +30,6 @@
         <p>Remaining Budget: <%= number_to_currency(@user.trips.last.total_remaining, unit: "￥", separator: ",", precision: 0) %> (<%=@user.trips.last.budget_percent%>%)</p>
       </div>
       <a id="collapse-link" href="/trips/<%= @user.trips.last.id %>" ></a>
-    </div>
-  </div>
-
-  <div class="dash-container my-3">
-    <div class="dash-stats m-3">
-      <h3>Spend over past month</h3>
-      <% @month = Trip.total_spend(30) %>
-      <% @month.each do |category, amount| %>
-        <div class="dash-stats-item">
-          <p><%= category.capitalize %>:</p>
-          <p><%= number_to_currency(amount, unit: "￥", separator: ",", precision: 0) %></p>
-        </div>
-      <% end %>
-      <p><strong>Total amount: <%= number_to_currency(@month.values.sum, unit: "￥", separator: ",", precision: 0) %></strong></p>
-    </div>
-    <div class="dash-stats m-3">
-      <h3> Top 5 locations</h3>
-      <% @location_spend = Trip.location_spend %>
-      <% @location_spend.first(5).each do |location, amount| %>
-        <div class="dash-stats-item">
-          <p><%= location %>:</p>
-          <p><%= number_to_currency(amount, unit: "￥", separator: ",", precision: 0) %></p>
-        </div>
-      <% end %>
-      <p><strong>Total amount: <%= number_to_currency(@location_spend.values.sum, unit: "￥", separator: ",", precision: 0) %></strong></p>
     </div>
   </div>
 </div>
