@@ -1,6 +1,6 @@
 <div class="budget-bar">
   <div class="budget-empty">
-    <p><%= number_to_currency(trip_budget.total_remaining, unit: "￥", separator: ",", precision: 0) %>/<%= number_to_currency(trip_budget.budget.amount, unit: "￥", separator: ",", precision: 0) %> </p>
+    <p><%= number_to_currency(trip_budget.total_remaining, unit: "￥", separator: ",", precision: 0) %>/<%= number_to_currency(trip_budget.total_amount, unit: "￥", separator: ",", precision: 0) %> </p>
     <% if trip_budget.total_remaining.positive? %>
       <div class="budget-percentage" style="width: <%= trip_budget.budget_percent %>%"></div>
     <% else %>
