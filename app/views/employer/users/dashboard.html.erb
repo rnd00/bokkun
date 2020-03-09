@@ -3,15 +3,22 @@
   <div class="container">
     <h1> Dashboard</h1>
 
-    <div class="card">
-      <h5 class="card-header"><%= @user.trips.last.destination %></h5>
-      <div class="card-body">
-        <h5 class="card-title"> <%= link_to @user.trips.last.name, trip_path(@user.trips.last)%></h5>
-        <p class="card-text"><%= @user.trips.last.purpose %></p>
-        <p class="card-text">Total Budget: <%= number_to_currency(@user.trips.last.total_budget, unit: "￥", separator: ",", precision: 0) %> </p>
-        <p class="card-text"><p>Remaining Budget: <%= number_to_currency(@user.trips.last.total_remaining, unit: "￥", separator: ",", precision: 0) %> (<%=@user.trips.last.budget_percent%>%)</p>
+    <div class="trip">
+      <div class="trip-img" style='background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url("https://source.unsplash.com/featured/?<%= @user.trips.last.destination %>}")'>
+      <%= @user.trips.last.destination %>
+      <div class="trip-dates">
+        <%= @user.trips.last.start_date.strftime("%a, %d %b") %> - <%= @user.trips.last.end_date.strftime("%a, %d %b") %>
       </div>
+      <div class="trip-total">
+        Total Budget: <%= number_to_currency(@user.trips.last.total_budget, unit: "￥", separator: ",", precision: 0) %>
+        <p>Remaining Budget: <%= number_to_currency(@user.trips.last.total_remaining, unit: "￥", separator: ",", precision: 0) %> (<%=@user.trips.last.budget_percent%>%)</p>
+      </div>
+      <a id="collapse-link" href="/trips/<%= @user.trips.last.id %>" >
+      </a>
     </div>
+    </div>
+
+
 
     <div class="dash-container my-3">
       <div class="dash-stats m-3">
