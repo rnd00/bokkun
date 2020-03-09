@@ -19,6 +19,7 @@ gem 'webpacker'
 ## Added
 gem 'pundit'
 gem 'cloudinary', '~> 1.12.0'
+gem 'google-cloud-vision'
 gem 'pg_search', '~> 2.3.0'
 
 # rails-generate-pdf/Gemfile
