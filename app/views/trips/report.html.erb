@@ -64,6 +64,7 @@
           <td class="bordered">Date</td>
           <td class="bordered">Business</td>
           <td class="bordered">Category</td>
+          <td width="100px" class="bordered">Tax</td>
           <td width="100px" class="bordered">Totals</td>
         </tr>
       </thead>
@@ -73,11 +74,16 @@
             <td class="bordered"><%= receipt.date %></td>
             <td class="bordered"><%= receipt.company %></td>
             <td class="bordered"><%= receipt.category %></td>
+            <td class="bordered"><%= number_to_currency(receipt.total_tax, unit: 'JPY ', separator: ",", precision: 0) %></td>
             <td class="bordered"><%= number_to_currency(receipt.total, unit: 'JPY ', separator: ",", precision: 0) %></td>
           </tr>
         <% end %>
         <tr>
-          <td class="align-right" colspan="3"><b>Total spent: </b></td>
+          <td class="align-right" colspan="4"><b>Total tax: </b></td>
+          <td><%= number_to_currency(@trip.total_tax, unit: 'JPY ', separator: ",", precision: 0) %> </td>
+        </tr>
+        <tr>
+          <td class="align-right" colspan="4"><b>Total: </b></td>
           <td><%= number_to_currency(@trip.total_spent, unit: 'JPY ', separator: ",", precision: 0) %> </td>
         </tr>
       </tbody>
