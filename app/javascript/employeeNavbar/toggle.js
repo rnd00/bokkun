@@ -9,8 +9,4 @@ const employeeNavbarToggle = () => {
       x.style.display = "block";
     }
   });
-}
-
-employeeNavbarToggle();
-
-export { employeeNavbarToggle };
+};

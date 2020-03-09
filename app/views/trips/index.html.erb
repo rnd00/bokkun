@@ -1,16 +1,26 @@
 <%= render 'shared/side-bar' %>
 <div class="container employer-content">
-  <h1><%= "Welcome, #{current_user.first_name} #{current_user.last_name}" %></h1>
-  <h2>Your list of trips</h2>
-    <% @trips.each do |trip| %>
-      <div class="argument">
-        <div class="argument-info">
-          <p><strong><%= link_to trip.name, trip_path(trip)%></strong></p>
-          <p><%= trip.destination %></p>
-          <p><%= trip.purpose %></p>
-          <p> Budget = 55000 yens </p>
-        </div>
+ <div class="title d-flex">
+   <div class="title-text">
+    <h1>Trips</h1>
+   </div>
+   <div class="nav-btns">
+    <%= link_to "Create a new trip", new_trip_path, class: "btn btn-approve w-30 my-3"  %>
+   </div>
+ </div>
+  <% @trips.each do |trip| %>
+    <div class="trip">
+      <div class="trip-img" style='background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url("https://source.unsplash.com/featured/?<%= trip.destination %>}")'>
+      <%= trip.name.titleize %>
+      <div class="trip-dates">
+        <%= trip.start_date.strftime("%a, %d %b") %> ~ <%= trip.end_date.strftime("%a, %d %b") %>
       </div>
-    <% end %>
-  <%= link_to "Create a new trip", new_trip_path, class: "btn btn-approve w-30 my-3"  %>
+      <div class="trip-total">
+        Total spent: <%= number_to_currency(trip.total_spent, unit: "￥", separator: ",", precision: 0)%>
+      </div>
+      <a id="collapse-link" href="/trips/<%= trip.id %>" >
+      </a>
+    </div>
+    </div>
+  <% end %>
 </div>
