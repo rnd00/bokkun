@@ -1,10 +1,7 @@
 <%= simple_form_for @receipt, html: {class: "form-style-9"} do |f| %>
   <%= f.input :company %>
   <%= f.input :date %>
-  <div class="d-flex">
-    <%= f.input :total_amount, input_html: { class: 'mr-1' } %>
-    <%= f.input :tax_amount, input_html: { class: 'ml-1' } %>
-  </div>
+  <%= f.input :total_amount %>
   <%= f.association :trip_budget, collection: trip.trip_budgets, label_method: lambda {|trip_budget| "#{trip_budget.budget.name}"}, include_blank: false %>
   <%= f.input :photo, as: :file  %>
   <%= f.button :submit, class: "btn btn-approve w-30" %>

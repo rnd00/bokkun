@@ -63,6 +63,6 @@ class ReceiptsController < ApplicationController
   end
 
   def receipt_params
-    params.require(:receipt).permit(:company, :total_amount, :date, :tax_amount, :user_id, :category, :trip_budget_id, :photo)
+    params.require(:receipt).permit(:company, :total_amount, :date, :user_id, :category, :trip_budget_id, :photo)
   end
 end
