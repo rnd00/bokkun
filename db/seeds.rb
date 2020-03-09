@@ -105,7 +105,7 @@ end
 
 def temp_trip_gen(city, purpose, customer, length_of_trip)
   name = "#{city} trip"
-  dest = "#{city}, Japan"
+  dest = "#{city}"
   rand_num = rand(length_of_trip)
   sdate = TODAY - rand_num
   edate = TODAY + (length_of_trip - rand_num)
@@ -299,52 +299,12 @@ puts "...finished with receipt items generation!"
 # GENERATE DUMMIES FOR GRAPH TESTING
 # ============================================================================
 
-PREFECTURES = [ "Hokkaidō",
-                "Aomori",
-                "Iwate",
-                "Miyagi",
-                "Akita",
-                "Yamagata",
-                "Fukushima",
-                "Ibaraki",
-                "Tochigi",
-                "Gunma",
+PREFECTURES = [ "Fukushima",
                 "Saitama",
                 "Chiba",
                 "Tokyo",
                 "Kanagawa",
-                "Niigata",
-                "Toyama",
-                "Ishikawa",
-                "Fukui",
-                "Yamanashi",
-                "Nagano",
-                "Gifu",
-                "Shizuoka",
-                "Aichi",
-                "Mie",
-                "Shiga",
-                "Kyoto",
                 "Osaka",
-                "Hyōgo",
-                "Nara",
-                "Wakayama",
-                "Tottori",
-                "Shimane",
-                "Okayama",
-                "Hiroshima",
-                "Yamaguchi",
-                "Tokushima",
-                "Kagawa",
-                "Ehime",
-                "Kōchi",
-                "Fukuoka",
-                "Saga",
-                "Nagasaki",
-                "Kumamoto",
-                "Ōita",
-                "Miyazaki",
-                "Kagoshima",
                 "Okinawa"]
 
 
@@ -377,14 +337,32 @@ puts "...finished!"
 puts "\nGenerating receipts..."
 Trip.all.each do |trip|
   trip.trip_budgets.each do |trip_budget|
-    5.times do
-      Receipt.create!(
-        company: Faker::Restaurant.name,
-        date: trip.start_date + rand(0..(trip.end_date - trip.start_date).to_i),
-        user: trip.users.take,
-        total_amount: 1000,
-        trip_budget: trip_budget
-        )
+    (trip.length).times do
+      if trip_budget.budget.name == "accomodation"
+        Receipt.create!(
+          company: ['Comfort Inn', 'Tokyo Hotel'].sample,
+          date: trip.start_date + rand(0..(trip.end_date - trip.start_date).to_i),
+          user: trip.users.take,
+          total_amount: 1000,
+          trip_budget: trip_budget
+          )
+      elsif trip_budget.budget.name == "travel"
+        Receipt.create!(
+          company: ['JR', 'Kanto Bus', 'Keisei Electric Railway'].sample,
+          date: trip.start_date + rand(0..(trip.end_date - trip.start_date).to_i),
+          user: trip.users.take,
+          total_amount: 1000,
+          trip_budget: trip_budget
+          )
+      else
+        Receipt.create!(
+          company: Faker::Restaurant.name,
+          date: trip.start_date + rand(0..(trip.end_date - trip.start_date).to_i),
+          user: trip.users.take,
+          total_amount: 1000,
+          trip_budget: trip_budget
+          )
+      end
     end
   end
 end
@@ -392,12 +370,29 @@ puts "...finished!"
 
 puts "\nGenerating receipt items..."
 Receipt.all.each do |receipt|
-  5.times do
-    ReceiptItem.create!(
-      name: Faker::Food.dish,
-      amount: rand(100..5000),
-      tax: [8, 10].sample,
-      receipt: receipt
-    )
+  if receipt.budget.name == 'accomodation'
+    item = ReceiptItem.create!(
+        name: ['Single room', 'Double'].sample,
+        tax: [8, 10].sample,
+        receipt: receipt,
+        amount: rand(1..5) * 3000
+      )
+  elsif receipt.budget.name == 'travel'
+    item = ReceiptItem.create!(
+        name: ['Train', 'Shinkansen', 'Express Buss'].sample,
+        tax: [8, 10].sample,
+        receipt: receipt,
+        amount: rand(1..5) * 1000
+      )
+  else
+    rand(1..10).times do
+      break if receipt.trip_budget.total_remaining < 10000
+      item = ReceiptItem.create!(
+        name: Faker::Food.dish,
+        tax: [8, 10].sample,
+        receipt: receipt,
+        amount: rand(1..10) * rand(1..10) * 10
+      )
+    end
   end
 end

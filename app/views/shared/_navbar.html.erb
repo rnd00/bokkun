@@ -1,6 +1,6 @@
 <div class="navbar navbar-expand-sm navbar-light navbar-lewagon">
   <%= link_to employee_dashboard_path, class: "navbar-brand" do %>
-    <h3>簿くん</h3>
+    <h3>Bokkun</h3>
   <% end %>
   <%= link_to "#", id: "navbarDropdown", data: { toggle: "dropdown", target: '#navbarSupportedContent' }, 'aria-haspopup': true, 'aria-expanded': false, 'aria-label': 'navbarSupportedContent' do %>
     <% avatar = @current_user.avatar.nil? ? 'https://res.cloudinary.com/kinzame-herokuapp-com/image/upload/v1583746668/placeholder/Missing_avatar_u1azml.svg' : @current_user.avatar %>
