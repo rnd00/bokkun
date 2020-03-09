@@ -5,7 +5,7 @@ class Trip < ApplicationRecord
   has_many :budgets, through: :trip_budgets
   has_many :receipts, through: :trip_budgets
 
-  validates :name, :destination, :purpose, :customer, :start_date, :end_date, presence: true
+  validates :destination, :purpose, :customer, :start_date, :end_date, presence: true
 
   include PgSearch::Model
   pg_search_scope :search_all,

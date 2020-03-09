@@ -6,8 +6,8 @@ class Receipt < ApplicationRecord
   has_one :budget, through: :trip_budget
   has_one_attached :photo
 
-  validates :company, :tax_amount, :total_amount, :date, presence: true
-  validates :tax_amount, :total_amount, numericality: { only_integer: true }
+  validates :company, :total_amount, :date, presence: true
+  validates :total_amount, numericality: { only_integer: true }
 
   def category
     self.budget.name

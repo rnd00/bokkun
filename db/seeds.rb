@@ -3,6 +3,7 @@
 # ============================================================================
 
 require 'open-uri'
+require 'faker'
 
 # ============================================================================
 # SHORTHAND HELPER
@@ -288,3 +289,105 @@ shochu = items_gen('Iichiko Shochu', 600, 10, bar)
 cheese = items_gen('Cheesecake', 550, 10, bar)
 
 puts "done with receipt items generation!"
+
+PREFECTURES = [ "Hokkaidō",
+                "Aomori",
+                "Iwate",
+                "Miyagi",
+                "Akita",
+                "Yamagata",
+                "Fukushima",
+                "Ibaraki",
+                "Tochigi",
+                "Gunma",
+                "Saitama",
+                "Chiba",
+                "Tokyo",
+                "Kanagawa",
+                "Niigata",
+                "Toyama",
+                "Ishikawa",
+                "Fukui",
+                "Yamanashi",
+                "Nagano",
+                "Gifu",
+                "Shizuoka",
+                "Aichi",
+                "Mie",
+                "Shiga",
+                "Kyoto",
+                "Osaka",
+                "Hyōgo",
+                "Nara",
+                "Wakayama",
+                "Tottori",
+                "Shimane",
+                "Okayama",
+                "Hiroshima",
+                "Yamaguchi",
+                "Tokushima",
+                "Kagawa",
+                "Ehime",
+                "Kōchi",
+                "Fukuoka",
+                "Saga",
+                "Nagasaki",
+                "Kumamoto",
+                "Ōita",
+                "Miyazaki",
+                "Kagoshima",
+                "Okinawa"]
+
+
+puts "Generating random past trips"
+user = User.find_by(last_name: "Uemura")
+20.times do
+  random = rand(10..100)
+  trip = Trip.create!(
+    destination: PREFECTURES.sample,
+    purpose: "making sales",
+    customer: Faker::Company.name,
+    start_date: Date.today - random,
+    end_date: Date.today - random + rand(0..10)
+    )
+  TripUser.create!(
+    user: user,
+    trip: trip
+    )
+  Budget.all.each do |budget|
+    TripBudget.create!(
+      trip: trip,
+      budget: budget
+      )
+  end
+end
+puts "...finished"
+
+puts "generating receipts"
+Trip.all.each do |trip|
+  trip.trip_budgets.each do |trip_budget|
+    5.times do
+      Receipt.create!(
+        company: Faker::Restaurant.name,
+        date: trip.start_date + rand(0..(trip.end_date - trip.start_date).to_i),
+        user: trip.users.take,
+        total_amount: 1000,
+        tax_amount: 8,
+        trip_budget: trip_budget
+        )
+    end
+  end
+end
+puts "...finished"
+
+puts "generating receipt items"
+Receipt.all.each do |receipt|
+  5.times do
+    ReceiptItem.create!(
+      name: Faker::Food.dish,
+      amount: rand(100..5000),
+      tax: [8, 10].sample,
+      receipt: receipt
+    )
+  end
+end
