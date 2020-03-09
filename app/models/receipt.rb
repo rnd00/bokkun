@@ -14,7 +14,7 @@ class Receipt < ApplicationRecord
   end
 
   def total_tax
-    self.receipt_items.reduce(0) { |total, item| total + (item.amount * (item.tax / 100 )) }
+    self.receipt_items.reduce(0) { |total, item| total + (item.amount * (item.tax / 100.0 )) }
   end
 
   def sub_total
