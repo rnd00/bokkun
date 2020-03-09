@@ -18,6 +18,7 @@
 
 .trip {
   position: relative;
+  margin-bottom: 24px;
 }
 #collapse-link {
   color: $off-white !important;
@@ -26,3 +27,27 @@
   height: 100%;
   z-index: 1;
 }
+
+.trip-page-title {
+  margin: 0 auto;
+}
+
+.title {
+  height: 80px;
+  max-width: 75vw;
+  justify-content: space-between;
+  vertical-align: middle;
+}
+
+.title-text {
+  margin: auto 0;
+}
+
+.nav-btns {
+  margin: auto 0;
+  & a {
+    padding: 8px 16px !important;
+  }
+}
+
+
