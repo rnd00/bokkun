@@ -3,6 +3,7 @@
 # ============================================================================
 
 require 'open-uri'
+require 'faker'
 
 # ============================================================================
 # SHORTHAND HELPER
@@ -55,7 +56,6 @@ def receipt_gen(company, total, date, tax, user, trip_budget)
     company: company,
     total_amount: total,
     date: date,
-    tax_amount: tax,
     user: user,
   trip_budget: trip_budget )
 end
@@ -185,14 +185,18 @@ Budget.destroy_all
 TripBudget.destroy_all
 Trip.destroy_all
 User.destroy_all
-puts "done with destroy_all!"
+puts "...finished with destroy_all!"
 
 # ============================================================================
 # GENERATE USERS
 # ============================================================================
 
-puts "generating default users..."
+puts "\nGenerating default users..."
 # the default users for all
+
+# ----------------------------------------------------------------------------
+# THIS IS MIKE
+# ----------------------------------------------------------------------------
 User.create!( email: "mike@bokkun.me",
   password: "123456",
   first_name: "Mike",
@@ -200,6 +204,8 @@ User.create!( email: "mike@bokkun.me",
   job_title: "CEO, Superintentdent General of Bokk* Holdings Corp",
   manager: true,
   avatar: 'https://avatars0.githubusercontent.com/u/28691463?s=460&v=4')
+# ----------------------------------------------------------------------------
+
 # two users we want to use for presentations
 uemura = user_gen("uemura@bokkun.me", "Mitsuo", "Uemura", "Division Manager", true, fetch_avatar)
 yamada = user_gen("yamada@bokkun.me", "Taro", "Yamada", "Sales Rep", false, fetch_avatar)
@@ -207,15 +213,15 @@ yamada = user_gen("yamada@bokkun.me", "Taro", "Yamada", "Sales Rep", false, fetc
 TESTUSERS = [uemura, yamada]
 
 # add another users for tests
-puts "generating dummy users..."
+puts "\nGenerating dummy users..."
 users = temp_users_gen(USERDATA)
-puts "done with user generation!"
+puts "...finished with user generation!"
 
 # ============================================================================
 # GENERATE TRIP, BUDGETS, AND JOIN TABLES
 # ============================================================================
 
-puts "generating trips and budgets..."
+puts "\nGenerating trips and budgets..."
 TEMPBUDGET = temp_budget_gen()
 TEMPTRIPS = temp_col_trip_gen(TRIPDATA)
 puts "trips and budgets are ready"
@@ -230,13 +236,13 @@ end
 chiba = temp_trip_gen("Chiba", "Inspecting the next company trip", "Shinagawa Kouki", 3)
 trip_user_gen(yamada, chiba)
 temp_trip_budget_gen(TEMPBUDGET, chiba)
-puts "done with connections"
+puts "...finished with connections"
 
 # ============================================================================
 # GENERATE RECEIPTS
 # ============================================================================
 
-puts "generating 2 receipts for yamada..."
+puts "\nGenerating 2 receipts for yamada..."
 # get all 4 budgets instances
 food = yamada.trips.last.budgets.find_by(name: 'food')
 trav = yamada.trips.last.budgets.find_by(name: 'travel')
@@ -265,13 +271,13 @@ ryokan = receipt_gen("Ryokan", "10500", START + 1, 10, yamada, yamada_acco)
 
 # YAMADA_RECEIPTS = [konbini, distillery, bar]
 
-puts "done with receipts generation!"
+puts "...finished with receipts generation!"
 
 # ============================================================================
 # GENERATE RECEIPT ITEMS
 # ============================================================================
 
-puts "generating items on Yamada's food receipts..."
+puts "\nGenerating items on Yamada's food receipts..."
 
 # template = items_gen(name, amt, tax, receipt)
 gyudon = items_gen('Gyudon', 450, 10, konbini)
@@ -287,4 +293,111 @@ kiuchi = items_gen('Kiuchi Craft Beer', 800, 10, bar)
 shochu = items_gen('Iichiko Shochu', 600, 10, bar)
 cheese = items_gen('Cheesecake', 550, 10, bar)
 
-puts "done with receipt items generation!"
+puts "...finished with receipt items generation!"
+
+# ============================================================================
+# GENERATE DUMMIES FOR GRAPH TESTING
+# ============================================================================
+
+PREFECTURES = [ "Hokkaidō",
+                "Aomori",
+                "Iwate",
+                "Miyagi",
+                "Akita",
+                "Yamagata",
+                "Fukushima",
+                "Ibaraki",
+                "Tochigi",
+                "Gunma",
+                "Saitama",
+                "Chiba",
+                "Tokyo",
+                "Kanagawa",
+                "Niigata",
+                "Toyama",
+                "Ishikawa",
+                "Fukui",
+                "Yamanashi",
+                "Nagano",
+                "Gifu",
+                "Shizuoka",
+                "Aichi",
+                "Mie",
+                "Shiga",
+                "Kyoto",
+                "Osaka",
+                "Hyōgo",
+                "Nara",
+                "Wakayama",
+                "Tottori",
+                "Shimane",
+                "Okayama",
+                "Hiroshima",
+                "Yamaguchi",
+                "Tokushima",
+                "Kagawa",
+                "Ehime",
+                "Kōchi",
+                "Fukuoka",
+                "Saga",
+                "Nagasaki",
+                "Kumamoto",
+                "Ōita",
+                "Miyazaki",
+                "Kagoshima",
+                "Okinawa"]
+
+
+puts "\nGenerating random past trips"
+user = User.find_by(last_name: "Uemura")
+20.times do
+  random = rand(10..100)
+  trip = Trip.create!(
+    destination: PREFECTURES.sample,
+    purpose: "making sales",
+    customer: Faker::Company.name,
+    start_date: Date.today - random,
+    end_date: Date.today - random + rand(0..10)
+    )
+  trip.name = "Trip to #{trip.destination} to visit #{trip.customer}"
+  trip.save
+  TripUser.create!(
+    user: user,
+    trip: trip
+    )
+  Budget.all.each do |budget|
+    TripBudget.create!(
+      trip: trip,
+      budget: budget
+      )
+  end
+end
+puts "...finished!"
+
+puts "\nGenerating receipts..."
+Trip.all.each do |trip|
+  trip.trip_budgets.each do |trip_budget|
+    5.times do
+      Receipt.create!(
+        company: Faker::Restaurant.name,
+        date: trip.start_date + rand(0..(trip.end_date - trip.start_date).to_i),
+        user: trip.users.take,
+        total_amount: 1000,
+        trip_budget: trip_budget
+        )
+    end
+  end
+end
+puts "...finished!"
+
+puts "\nGenerating receipt items..."
+Receipt.all.each do |receipt|
+  5.times do
+    ReceiptItem.create!(
+      name: Faker::Food.dish,
+      amount: rand(100..5000),
+      tax: [8, 10].sample,
+      receipt: receipt
+    )
+  end
+end
