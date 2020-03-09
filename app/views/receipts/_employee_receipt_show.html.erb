@@ -1,5 +1,5 @@
 <div class="mobile-wrapper">
-  <%= render 'shared/employee_receipt_heading', receipt: @receipt %>
+  <%= render 'receipts/employee_receipt_heading', receipt: @receipt %>
   <div class="flex-center">
     <%= link_to edit_receipt_path(@receipt) do %>
       <div class="edit-button">
@@ -22,8 +22,12 @@
       <p>Please enter each item from your receipt below.</p>
     </div>
   <% else %>
-    <%= render 'shared/employee_receipt_item_list', receipt: @receipt %>
+    <%= render 'receipts/employee_receipt_item_list', receipt: @receipt %>
   <% end %>
+    <div class="container">
   <%= render 'receipt_items/form' %>
-  <%= cl_image_tag @receipt.photo.key, height: 300, width: 400, crop: :fill if @receipt.photo.attached? %>
+    </div>
+    <div class="container receipt-container">
+  <%= cl_image_tag @receipt.photo.key, effect: "trim:80" if @receipt.photo.attached? %>
+  </div>
 </div>

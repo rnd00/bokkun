@@ -1,1 +1,8 @@
-<%= render 'employee/users/employee_dashboard', user: @user, trips: @trips %>
+<div class="mobile-wrapper">
+  <%= render 'shared/floating_button', current_trip: @current_trip %>
+  <%= link_to trip_path(@current_trip) do %>
+    <%= render 'shared/employee_heading', current_trip: @current_trip %>
+  <% end %>
+  <%= render 'shared/employee_search' %>
+  <%= render 'trips/employee_trip_cards', trips: @trips, query: @query %>
+</div>

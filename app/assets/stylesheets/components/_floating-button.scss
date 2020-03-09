@@ -1,0 +1,21 @@
+.float{
+  position:fixed;
+  width:60px;
+  height:60px;
+  bottom:40px;
+  right:40px;
+  color: $yellow;
+  text-align:center;
+  font-size: 50px;
+  z-index: 10;
+  text-shadow: 1px 1px 2px black;
+}
+
+.my-float{
+  margin-top:22px;
+  z-index: 10;
+
+  i {
+    font-size: 36px;
+  }
+}
