@@ -12,4 +12,8 @@ class Receipt < ApplicationRecord
   def category
     self.budget.name
   end
+
+  def total
+    self.receipt_items.reduce(0) { |total, item| total + item.amount}
+  end
 end
