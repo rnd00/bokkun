@@ -7,13 +7,6 @@ class Trip < ApplicationRecord
 
   validates :destination, :purpose, :customer, :start_date, :end_date, presence: true
 
-  include PgSearch::Model
-  pg_search_scope :search_all,
-    against: [ :name, :destination, :purpose, :customer, :start_date, :end_date ],
-    using: {
-      tsearch: { prefix: true } # <-- now `superman batm` will return something!
-    }
-
   def total_budget
     self.budgets.reduce(0) { |total, budget| total + budget.amount }
   end
@@ -61,4 +54,11 @@ class Trip < ApplicationRecord
     end
     @spend.sort_by {|location, amount| amount}.reverse.to_h
   end
+
+  include PgSearch::Model
+  pg_search_scope :search_all,
+    against: [ :name, :destination, :purpose, :customer, :start_date, :end_date ],
+    using: {
+      tsearch: { prefix: true } # <-- now `superman batm` will return something!
+    }
 end

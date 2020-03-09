@@ -14,4 +14,8 @@ class User < ApplicationRecord
   def full_name
     "#{self.first_name} #{self.last_name}"
   end
+
+  def current_trip
+    self.trips.order(start_date: :desc).first
+  end
 end

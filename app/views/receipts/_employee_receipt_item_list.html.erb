@@ -1,0 +1,31 @@
+<div class="container center">
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th width="50%">Item</th>
+        <th width="25%">Price</th>
+        <th width="25%">Tax</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% receipt.receipt_items.each do |item| %>
+        <tr data-toggle="collapse" data-target="#a-<%= item.id %>" aria-expanded="false" aria-controls="<%= item.id %>">
+          <td width="50%"><%= item.name %></td>
+          <td width="25%"><%= number_to_currency(item.amount, unit: "￥", separator: ",", precision: 0) %></td>
+          <td width="25%"><%= number_to_currency(item.tax, unit: "￥", separator: ",", precision: 0) %></td>
+        </tr>
+        <tr class="collapse" id="a-<%= item.id %>">
+          <td class="btn-td" width="50%">
+            <%= link_to "Edit", edit_receipt_item_path(item), class: "btn btn-table-edit" %>
+          <td class="btn-td" colspan="2" width="50%">
+            <%= link_to "Delete", receipt_item_path(item), method: :delete, class: "btn btn-table-delete" %>
+          </td>
+        </tr>
+      <% end %>
+      <tr>
+        <td style="text-align: right;" colspan="2"><b>Total: </b></td>
+        <td><%= receipt.total %></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
