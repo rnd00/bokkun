@@ -9,6 +9,40 @@
   }
 }
 
+.btn-table-edit {
+  border: 1px solid $off-white;
+  color: $blue;
+  background-color: $yellow !important;
+  border-radius: 30px;
+  transition: 0.5s;
+  justify-content: center;
+  margin: 0 12.5% !important;
+  width: 75%;
+  &:active {
+    box-shadow: 2px 2px 2px 1px rgba(0,0,0,0.3) !important;
+  }
+}
+
+.btn-table-delete {
+  border: 1px solid $off-white;
+  color: $blue;
+  background-color: $red !important;
+  border-radius: 30px;
+  transition: 0.5s;
+  justify-content: center;
+  margin: 0 12.5% !important;
+  width: 75%;
+  &:active {
+    box-shadow: 2px 2px 2px 1px rgba(0,0,0,0.3) !important;
+  }
+}
+
+.btn-td {
+  margin: 0 auto !important;
+  justify-content: center;
+  padding: 0 !important;
+}
+
 .btn-flat {
   color: white;
   padding: 8px 24px;
