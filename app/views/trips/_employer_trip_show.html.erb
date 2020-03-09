@@ -26,7 +26,7 @@
         <% if @trip.receipts.nil? %>
           <p> No Receipts Yet...</p>
         <% else %>
-        <% @trip.receipts.each do |receipt| %>
+          <% @trip.receipts.each do |receipt| %>
             <div class="argument">
               <div class="argument-info">
                 <p>Company : <strong><%= link_to receipt.company, receipt_path(receipt)%></strong></p>
