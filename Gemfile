@@ -27,6 +27,9 @@ gem 'bootstrap', '~> 4.3.1'
 gem 'wicked_pdf'
 gem 'wkhtmltopdf-binary'
 
+#putting photo for card trip
+gem 'unsplash'
+
 group :development do
   gem 'web-console', '>= 3.3.0'
 end
