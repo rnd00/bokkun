@@ -99,18 +99,18 @@ body{
   position: fixed;
   bottom: 0;
   left: 0;
-  width: 83px;
+  width: 200px;
   height: 100%;
   z-index: 1;
   background: $blue;
   transition: width 400ms;
-  &:hover{
-      width: 200px;
-      & + .wrap-all-the-things{
-          transform: translateX(336px);
-          max-width: 100%;
-          opacity: 0.4;
-      }
+  // &:hover{
+  //     width: 200px;
+  //     & + .wrap-all-the-things{
+  //         transform: translateX(336px);
+  //         max-width: 100%;
+  //         opacity: 0.4;
+  //     }
       .head-nav{
           li{
               @for $i from 1 through 5 {
@@ -132,12 +132,12 @@ body{
       .head-nav{
           padding: {left:7px;}
       }
-      &:hover{
-          .head-nav{
-              span{
-                  text-indent: 1em;
-              }
-          }
-      }
+      // &:hover{
+      //     .head-nav{
+      //         span{
+      //             text-indent: 1em;
+      //         }
+      //     }
+      // }
   }
-}
+// }
