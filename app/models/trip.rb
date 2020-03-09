@@ -64,7 +64,7 @@ class Trip < ApplicationRecord
   end
 
   def length
-    (self.end_date - self.start_date).to_i
+    (self.end_date - self.start_date).to_i + 1
   end
 
   include PgSearch::Model
