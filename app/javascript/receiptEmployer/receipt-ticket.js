@@ -1,14 +1,16 @@
-const receipt = document.querySelector('.receipt');
-const button = document.querySelector('button');
+const receipts = document.querySelectorAll('.receipt');
 
-const toggleReceipt= () => {
-  receipt.classList.toggle('active');
+receipts.forEach(receipt => {
+  const button = receipt.querySelector('button');
+  button.addEventListener('click', () =>{
+    receipt.classList.toggle('active');
 
-  if(receipt.classList.contains('active')) {
-    button.innerHTML = 'Less info';
-  } else {
-    button.innerHTML = 'More info';
-  }
-};
+    if(receipt.classList.contains('active')) {
+      button.innerHTML = 'Less info';
+    } else {
+      button.innerHTML = 'More info';
+    }
+  });
+})
 
-button.addEventListener('click', toggleReceipt);
+

@@ -30,24 +30,6 @@
     </div>
       <ul class="pl-0">
 
-
-
-        <h3 class="mt-3">Trip Receipts</h3>
-        <% if @trip.receipts.nil? %>
-          <p> No Receipts Yet...</p>
-        <% else %>
-          <% @trip.receipts.each do |receipt| %>
-            <div class="argument">
-              <div class="argument-info">
-                <p>Company : <strong><%= link_to receipt.company, receipt_path(receipt)%></strong></p>
-                <p>Total Amount : <%= receipt.total_amount %></p>
-                <p>Date : <%= receipt.date %></p>
-              </div>
-            </div>
-          <% end %>
-        <% end %>
-      </ul>
-    </div>
     <%= link_to "Add a receipt", new_trip_receipt_path(@trip), class: "btn btn-approve w-30" %>
     <%= link_to "Generate report pdf", report_path(format: :pdf), class: "btn btn-approve w-30" %>
     <%= link_to "Edit this trip", edit_trip_path, class: "btn btn-approve w-30" %>
@@ -59,40 +41,36 @@
     <% else %>
       <%= link_to "Go Back", employer_dashboard_path, class: "btn btn-approve w-30" %>
     <% end %>
+
+    <h3 class="mt-3">Trip Receipts</h3>
+    <div class="row">
+      <% @trip.receipts.each do |receipt| %>
+        <article class="receipt" style="margin-bottom:150px;">
+          <section class="receipt__half upper">
+            <p><%= receipt.company %> - <%= receipt.date.strftime("%a, %d %b") %></p>
+            <h1><%= number_to_currency(receipt.total, unit: "￥", separator: ",", precision: 0) %></h1>
+
+            <div class="receipt__content">
+              <table>
+                <tbody>
+                  <% receipt.receipt_items.each do |item| %>
+                    <tr>
+                      <td><%= item.name  %></td>
+                      <td><%= number_to_currency(item.amount, unit: "￥", separator: ",", precision: 0) %></td>
+                    </tr>
+                  <% end %>
+                </tbody>
+              </table>
+            </div>
+          </section>
+
+          <section class="receipt__half lower">
+            <button>More info</button>
+          </section>
+        </article>
+      <% end %>
+    </div>
+
   </div>
 </div>
-<!--
 
-  <h3 class="mt-3">Trip Receipts</h3>
-
-  <%# @trip.receipts.each do |receipt| %>
-    <article class="receipt">
-      <section class="receipt__half upper">
-        <p><%#= receipt.company %></p>
-        <h1><%#= receipt.total_amount %></h1>
-        <p class="sm"><%#= receipt.date %></p>
-
-        <div class="receipt__content">
-          <table>
-            <tbody>
-              <tr>
-                <td>Faded jeans</td>
-                <td>$39.99</td>
-              </tr>
-              <tr>
-                <td>Sleeveless shirt</td>
-                <td>$19.99</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </section>
-
-      <section class="receipt__half lower">
-        <button>More info</button>
-      </section>
-    </article>
-  <%# end %>
-
-</div>
- -->
