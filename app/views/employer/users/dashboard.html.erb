@@ -4,9 +4,9 @@
   <h1> Dashboard</h1>
 
    <div class="card">
-    <h5 class="card-header"><%= link_to @user.trips.last.name, trip_path(@user.trips.last)%></h5>
+    <h5 class="card-header"><%= @user.trips.last.destination %></h5>
     <div class="card-body">
-      <h5 class="card-title"><%= @user.trips.last.destination %></h5>
+      <h5 class="card-title"> <%= link_to @user.trips.last.name, trip_path(@user.trips.last)%></h5>
       <p class="card-text"><%= @user.trips.last.purpose %></p>
       <p class="card-text">Total Budget: <%= number_to_currency(@user.trips.last.total_budget, unit: "￥", separator: ",", precision: 0) %> </p>
       <p class="card-text"><p>Remaining Budget: <%= number_to_currency(@user.trips.last.total_remaining, unit: "￥", separator: ",", precision: 0) %> (<%=@user.trips.last.budget_percent%>%)</p>
