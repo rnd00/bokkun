@@ -16,12 +16,12 @@
     <div class="dash-container my-3">
       <div class="dash-stats m-3">
         <h3>Spending over past month</h3>
-        <%= pie_chart(Trip.total_spend(30)) %>
+        <%= pie_chart(Trip.total_spend(30), colors: ['#AD5A5D', '#2A3347', '#EFC125', '#96B4C2']) %>
       </div>
       <div class="dash-stats m-3">
         <h3> Top 5 locations</h3>
         <% @location_spend = Trip.location_spend %>
-        <%= column_chart(@location_spend.first(5)) %>
+        <%= column_chart(@location_spend.first(5), colors: ['#2A3347', '#EFC125', '#96B4C2']) %>
       </div>
     </div>
   </div>
