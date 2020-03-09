@@ -9,8 +9,7 @@
           <p><%= trip.destination %></p>
           <p><%= trip.purpose %></p>
           <p class="card-text">Total Budget: <%= number_to_currency(trip.total_budget, unit: "￥", separator: ",", precision: 0) %> </p>
-          <p class="card-text"><p>Remaining Budget: <%= number_to_currency(trip.total_remaining, unit: "￥", separator: ",", precision: 0) %> (<%=@user.trips.last.budget_percent%>%)</p>
-      </div>
+          <p class="card-text"><p>Remaining Budget: <%= number_to_currency(trip.total_remaining, unit: "￥", separator: ",", precision: 0) %> (<%=trip.budget_percent%>%)</p>
         </div>
       </div>
     <% end %>
