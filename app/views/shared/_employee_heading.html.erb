@@ -3,8 +3,8 @@
     <% if current_user.current_trip.end_date > Date.today %>
       <h4>Ongoing trip to</h4>
     <% else %>
-      <h4><%= current_trip.start_date.strftime("%m/%d/%y") %> &#8212;
- <%= current_trip.end_date.strftime("%m/%d/%y") %> </h4>
+      <h4><%= current_user.current_trip.start_date.strftime("%m/%d/%y") %> &#8212;
+ <%= current_user.current_trip.end_date.strftime("%m/%d/%y") %> </h4>
     <% end %>
     <h1><%= current_trip.destination %></h1>
     <h4>visiting <%= current_trip.customer %></h4>
@@ -13,8 +13,12 @@
     <p>Remaining Budget</p>
     <div class="budget-bar">
       <div class="budget-empty">
-        <p><%= number_to_currency(current_trip.total_remaining, unit: "￥", separator: ",", precision: 0) %>/<%= number_to_currency(current_trip.total_budget, unit: "￥", separator: ",", precision: 0) %> </p>
-        <div class="budget-percentage" style="width: <%= current_trip.budget_percent %>%">
+        <p><%= number_to_currency(current_user.current_trip.total_remaining, unit: "￥", separator: ",", precision: 0) %>/<%= number_to_currency(current_user.current_trip.total_budget, unit: "￥", separator: ",", precision: 0) %> </p>
+        <% if current_user.current_trip.total_remaining.positive? %>
+          <div class="budget-percentage" style="width: <%= current_user.current_trip.budget_percent %>%"></div>
+        <% else %>
+          <div class="in-red"></div>
+        <% end %>
         </div>
       </div>
     </div>

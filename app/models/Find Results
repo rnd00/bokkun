@@ -1,0 +1,42 @@
+Searching 249 files for "total_budget"
+
+/home/toadslop/code/rnd00/bokkun/app/models/trip.rb:
+   16    end
+   17
+   18:   def total_budget
+   19      self.trip_budgets.reduce(0) { |total, trip_budget| total + trip_budget.total_amount }
+   20    end
+   21
+   22    def total_remaining
+   23:     self.total_budget - self.total_spent
+   24    end
+   25
+   ..
+   29
+   30    def budget_percent
+   31:     ((self.total_remaining.to_f / self.total_budget.to_f).round(2) * 100).to_i
+   32    end
+   33
+
+/home/toadslop/code/rnd00/bokkun/app/views/employer/users/dashboard.html.erb:
+    9          <h5 class="card-title"> <%= link_to @user.trips.last.name, trip_path(@user.trips.last)%></h5>
+   10          <p class="card-text"><%= @user.trips.last.purpose %></p>
+   11:         <p class="card-text">Total Budget: <%= number_to_currency(@user.trips.last.total_budget, unit: "￥", separator: ",", precision: 0) %> </p>
+   12          <p class="card-text"><p>Remaining Budget: <%= number_to_currency(@user.trips.last.total_remaining, unit: "￥", separator: ",", precision: 0) %> (<%=@user.trips.last.budget_percent%>%)</p>
+   13        </div>
+
+/home/toadslop/code/rnd00/bokkun/app/views/shared/_budget_bar.html.erb:
+    1  <div class="budget-bar">
+    2    <div class="budget-empty">
+    3:     <p><%= number_to_currency(trip_budget.total_remaining, unit: "￥", separator: ",", precision: 0) %>/<%= number_to_currency(trip_budget.total_amount, unit: "￥", separator: ",", precision: 0) %> </p>
+    4      <% if trip_budget.total_remaining.positive? %>
+    5        <div class="budget-percentage" style="width: <%= trip_budget.budget_percent %>%"></div>
+
+/home/toadslop/code/rnd00/bokkun/app/views/shared/_employee_heading.html.erb:
+   14      <div class="budget-bar">
+   15        <div class="budget-empty">
+   16:         <p><%= number_to_currency(current_user.current_trip.total_remaining, unit: "￥", separator: ",", precision: 0) %>/<%= number_to_currency(current_user.current_trip.total_budget, unit: "￥", separator: ",", precision: 0) %> </p>
+   17          <div class="budget-percentage" style="width: <%= current_trip.budget_percent %>%">
+   18          </div>
+
+6 matches across 4 files

@@ -16,7 +16,7 @@ class Trip < ApplicationRecord
   end
 
   def total_budget
-    self.budgets.reduce(0) { |total, budget| total + budget.amount }
+    self.trip_budgets.reduce(0) { |total, trip_budget| total + trip_budget.total_amount }
   end
 
   def total_remaining
@@ -61,6 +61,10 @@ class Trip < ApplicationRecord
       end
     end
     @spend.sort_by {|location, amount| amount}.reverse.to_h
+  end
+
+  def length
+    (self.end_date - self.start_date).to_i
   end
 
   include PgSearch::Model
