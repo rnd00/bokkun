@@ -54,4 +54,11 @@ class Trip < ApplicationRecord
     end
     @spend.sort_by {|location, amount| amount}.reverse.to_h
   end
+
+  include PgSearch::Model
+  pg_search_scope :search_all,
+    against: [ :name, :destination, :purpose, :customer, :start_date, :end_date ],
+    using: {
+      tsearch: { prefix: true } # <-- now `superman batm` will return something!
+    }
 end

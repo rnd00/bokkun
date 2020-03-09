@@ -5,7 +5,7 @@ gem 'bootsnap', require: false
 gem 'devise'
 gem 'jbuilder', '~> 2.0'
 gem 'pg', '~> 0.21'
-gem 'puma'
+gem 'puma', ">= 3.12.4"
 gem 'rails', '5.2.4.1'
 gem 'redis'
 
@@ -20,6 +20,7 @@ gem 'webpacker'
 gem 'pundit'
 gem 'cloudinary', '~> 1.12.0'
 gem 'google-cloud-vision'
+gem 'pg_search', '~> 2.3.0'
 
 # rails-generate-pdf/Gemfile
 gem 'jquery-rails'
