@@ -105,7 +105,7 @@ end
 
 def temp_trip_gen(city, purpose, customer, length_of_trip)
   name = "#{city} trip"
-  dest = "#{city}, Japan"
+  dest = "#{city}"
   rand_num = rand(length_of_trip)
   sdate = TODAY - rand_num
   edate = TODAY + (length_of_trip - rand_num)
@@ -186,6 +186,83 @@ TripBudget.destroy_all
 Trip.destroy_all
 User.destroy_all
 puts "...finished with destroy_all!"
+
+
+# ============================================================================
+# GENERATE DUMMIES FOR GRAPH TESTING
+# ============================================================================
+
+PREFECTURES = [ "Fukushima",
+                "Saitama",
+                "Chiba",
+                "Tokyo",
+                "Kanagawa",
+                "Osaka",
+                "Okinawa"]
+
+
+puts "\nGenerating random past trips"
+user = User.find_by(last_name: "Uemura")
+20.times do
+  random = rand(10..100)
+  trip = Trip.create!(
+    destination: PREFECTURES.sample,
+    purpose: "making sales",
+    customer: Faker::Company.name,
+    start_date: Date.today - random,
+    end_date: Date.today - random + rand(0..10)
+    )
+  trip.name = "Trip to #{trip.destination} to visit #{trip.customer}"
+  trip.save
+  TripUser.create!(
+    user: user,
+    trip: trip
+    )
+  Budget.all.each do |budget|
+    TripBudget.create!(
+      trip: trip,
+      budget: budget
+      )
+  end
+end
+puts "...finished!"
+
+puts "\nGenerating receipts..."
+Trip.all.each do |trip|
+  trip.trip_budgets.each do |trip_budget|
+    5.times do
+      Receipt.create!(
+        company: Faker::Restaurant.name,
+        date: trip.start_date + rand(0..(trip.end_date - trip.start_date).to_i),
+        user: trip.users.take,
+        total_amount: 1000,
+        trip_budget: trip_budget
+        )
+    end
+  end
+end
+puts "...finished!"
+
+puts "\nGenerating receipt items..."
+Receipt.all.each do |receipt|
+  5.times do
+    item = ReceiptItem.new(
+      name: Faker::Food.dish,
+      tax: [8, 10].sample,
+      receipt: receipt
+    )
+    if receipt.budget.name == 'accomodation'
+      item.amount = [10000, 20000].sample + rand(0..9999)
+    elsif receipt.budget.name == 'food'
+      item.amount == [1..10] * 100
+    elsif receipt.budget.name = 'travel'
+      item.amount == rand(1.10) * 10000
+    else
+      item.amount == rand(1..10) * rand(1..10) * 100
+    end
+    item.save
+  end
+end
 
 # ============================================================================
 # GENERATE USERS
@@ -294,110 +371,3 @@ shochu = items_gen('Iichiko Shochu', 600, 10, bar)
 cheese = items_gen('Cheesecake', 550, 10, bar)
 
 puts "...finished with receipt items generation!"
-
-# ============================================================================
-# GENERATE DUMMIES FOR GRAPH TESTING
-# ============================================================================
-
-PREFECTURES = [ "Hokkaidō",
-                "Aomori",
-                "Iwate",
-                "Miyagi",
-                "Akita",
-                "Yamagata",
-                "Fukushima",
-                "Ibaraki",
-                "Tochigi",
-                "Gunma",
-                "Saitama",
-                "Chiba",
-                "Tokyo",
-                "Kanagawa",
-                "Niigata",
-                "Toyama",
-                "Ishikawa",
-                "Fukui",
-                "Yamanashi",
-                "Nagano",
-                "Gifu",
-                "Shizuoka",
-                "Aichi",
-                "Mie",
-                "Shiga",
-                "Kyoto",
-                "Osaka",
-                "Hyōgo",
-                "Nara",
-                "Wakayama",
-                "Tottori",
-                "Shimane",
-                "Okayama",
-                "Hiroshima",
-                "Yamaguchi",
-                "Tokushima",
-                "Kagawa",
-                "Ehime",
-                "Kōchi",
-                "Fukuoka",
-                "Saga",
-                "Nagasaki",
-                "Kumamoto",
-                "Ōita",
-                "Miyazaki",
-                "Kagoshima",
-                "Okinawa"]
-
-
-puts "\nGenerating random past trips"
-user = User.find_by(last_name: "Uemura")
-20.times do
-  random = rand(10..100)
-  trip = Trip.create!(
-    destination: PREFECTURES.sample,
-    purpose: "making sales",
-    customer: Faker::Company.name,
-    start_date: Date.today - random,
-    end_date: Date.today - random + rand(0..10)
-    )
-  trip.name = "Trip to #{trip.destination} to visit #{trip.customer}"
-  trip.save
-  TripUser.create!(
-    user: user,
-    trip: trip
-    )
-  Budget.all.each do |budget|
-    TripBudget.create!(
-      trip: trip,
-      budget: budget
-      )
-  end
-end
-puts "...finished!"
-
-puts "\nGenerating receipts..."
-Trip.all.each do |trip|
-  trip.trip_budgets.each do |trip_budget|
-    5.times do
-      Receipt.create!(
-        company: Faker::Restaurant.name,
-        date: trip.start_date + rand(0..(trip.end_date - trip.start_date).to_i),
-        user: trip.users.take,
-        total_amount: 1000,
-        trip_budget: trip_budget
-        )
-    end
-  end
-end
-puts "...finished!"
-
-puts "\nGenerating receipt items..."
-Receipt.all.each do |receipt|
-  5.times do
-    ReceiptItem.create!(
-      name: Faker::Food.dish,
-      amount: rand(100..5000),
-      tax: [8, 10].sample,
-      receipt: receipt
-    )
-  end
-end

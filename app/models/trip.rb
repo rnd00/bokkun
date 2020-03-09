@@ -41,9 +41,9 @@ class Trip < ApplicationRecord
     @trips.each do |trip|
       trip.trip_budgets.each do |trip_budget|
         if @spend[trip_budget.budget.name].nil?
-          @spend[trip_budget.budget.name] = (trip_budget.budget.amount - trip_budget.total_remaining)
+          @spend[trip_budget.budget.name] = (trip_budget.total_spent)
         else
-          @spend[trip_budget.budget.name] += (trip_budget.budget.amount - trip_budget.total_remaining)
+          @spend[trip_budget.budget.name] += (trip_budget.total_spent)
         end
       end
     end
@@ -55,9 +55,9 @@ class Trip < ApplicationRecord
     @spend = {}
     @trip_budgets.each do |trip_budget|
       if @spend[trip_budget.budget.name].nil?
-        @spend[trip_budget.trip.destination] = (trip_budget.budget.amount - trip_budget.total_remaining)
+        @spend[trip_budget.trip.destination] = (trip_budget.total_spent)
       else
-        @spend[trip_budget.budget.destination] += (trip_budget.budget.amount - trip_budget.total_remaining)
+        @spend[trip_budget.budget.destination] += (trip_budget.total_spent)
       end
     end
     @spend.sort_by {|location, amount| amount}.reverse.to_h
