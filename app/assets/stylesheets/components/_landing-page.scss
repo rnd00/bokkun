@@ -63,3 +63,290 @@
     margin: 0;
   }
 }
+
+
+$bp-s: 43.75em; //700px;
+$bp-xs: 34.375em; //550px;
+
+@import url('//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css');
+
+@import url(//fonts.googleapis.com/css?family=Open+Sans:400,700,800,300);
+
+
+*{
+  box-sizing: border-box;
+}
+html{
+  width: 100%;
+  height:100%;
+  margin: 0;
+  padding: 0;
+}
+body{
+  width: 100%;
+  height:100%;
+  font-family: 'Open Sans','Helvetica Neue',Helvetica, sans-serif;
+  font-size: 100%;
+  line-height: 1.45;
+  color: #141414;
+}
+
+a{
+  text-decoration: none;
+
+  &:hover{
+    text-decoration: none;
+  }
+}
+
+img{
+  max-width: 100%;
+}
+
+.btn{
+  display: inline-block;
+  margin: 1rem 0;
+  color: white;
+  font-weight: 500;
+  font-size: 1.3rem;
+  background: $blue;
+  letter-spacing: .02em;
+  border: none;
+  border-radius: 5px;
+  padding: .8rem 1rem .9rem;
+  text-shadow: 0 1px rgba(black,.3);
+  box-shadow: 0 0 2px rgba(black,.2);
+
+  @media (max-width: $bp-s){
+    padding: .5rem .7rem .6rem;
+    font-size: 1rem;
+  }
+
+  &:hover{
+    background: lighten($blue,5%);
+    color: #fff;
+  }
+  &:focus,
+  &:active,
+  &:focus:active{
+    background: darken($blue,5%);
+    border-color: darken($blue,5%);
+    box-shadow: 0 2px 5px 0 rgba(black,.5) inset;
+  }
+}
+
+.container{
+  margin: 0 auto;
+  width: 90%;
+  max-width: 900px;
+}
+
+
+header{
+  color: white;
+  background: $blue;
+  text-align: center;
+  position: relative;
+  z-index: 1;
+  overflow: hidden;
+
+  @media (max-width: $bp-s){
+    padding: 2rem 0;
+  }
+
+  h1{
+    font-size: 3rem;
+    margin: 0 0 1rem;
+
+    @media (max-width: $bp-s){
+      font-size: 2rem;
+    }
+  }
+  h2{
+    font-weight: 300;
+    font-size: 1.5rem;
+    margin: 0 0 1rem;
+
+    @media (max-width: $bp-s){
+      font-size: 1.5rem;
+    }
+  }
+}
+
+section{
+  background: #fff;
+  color: $blue;
+  padding: 3.5rem 0;
+
+  @media (max-width: $bp-s){
+    padding: 2rem 0;
+  }
+
+  &.section--primary{
+    background: $blue;
+    color: #fff;
+  }
+  &.section--primary--alt{
+    background: desaturate(lighten($blue,15%),10%);
+    color: #fff;
+  }
+  &.section--primary--light{
+    background: rgba($blue,.1);//desaturate(lighten(mix($blue,white),10%),10%);
+  }
+
+  h3{
+    text-align: center;
+    font-size: 2rem;
+    font-weight: 300;
+    margin: 0 0 1rem;
+
+    @media (max-width: $bp-s){
+      font-size: 1.5rem;
+    }
+  }
+
+  li{
+    font-size: 1.2rem;
+    font-weight: 300;
+  }
+  p{
+    font-size: 1.2rem;
+    font-weight: 300;
+  }
+}
+.col{
+  margin: 0 1.5%;
+  display: inline-block;
+  vertical-align: top;
+}
+.col-7{
+  @extend .col;
+  width: 64%;
+
+  @media (max-width: $bp-s){
+    width: 100%;
+    margin: 0;
+  }
+}
+.col-3{
+  @extend .col;
+  width: 29%;
+
+  @media (max-width: $bp-s){
+    width: 100%;
+    margin: 0;
+  }
+}
+.col-5{
+  @extend .col;
+  width: 30%;
+
+  @media (max-width: $bp-xs){
+    width: 60%;
+    margin: 0;
+  }
+}
+
+.details{
+  text-align: left;
+
+  h3{
+    font-size: 2rem;
+    text-align: left;
+  }
+}
+.details-img--ball{
+  @media (max-width: $bp-s){
+    height: 200px;
+    width: auto;
+    margin: 0 auto;
+  }
+}
+.features{
+  text-align: center;
+  padding: 1rem;
+
+  &:hover{
+    background: rgba(white,.1);
+  }
+
+  @media (max-width: $bp-s){
+    width: 100%;
+    margin: 0;
+    text-align: left;
+    border-bottom: 1px solid rgba(white,.2);
+
+    &:last-child{
+      border: none;
+    }
+  }
+
+  i{
+    font-size: 4rem;
+    margin: 0 0 2rem 0;
+
+    @media (max-width: $bp-s){
+      font-size: 1.5rem;
+      width: 2rem;
+      text-align: center;
+      margin: 0 0 1rem 0;
+      float: left;
+    }
+  }
+
+  p{
+    margin: 0 0 1rem 0;
+    font-size: 1rem;
+
+    @media (max-width: $bp-s){
+      margin-left: 3rem;
+    }
+  }
+}
+
+blockquote{
+  position: relative;
+  margin: 0;
+  padding: 0;
+  text-align: center;
+
+  &:before{
+    display: inline-block;
+    color: $blue;
+    font-size: 2rem;
+    content: '\201C';
+  }
+
+  p{
+    margin: 0;
+    display: inline;
+    font-size: 1.5rem;
+
+    @media (max-width: $bp-s){
+      font-size: 1.2rem;
+    }
+  }
+
+  cite{
+    font-size: 1rem;
+    display: block;
+    margin: .5rem 0 0 1.2rem;
+    text-style: italic;
+
+    @media (max-width: $bp-s){
+      font-size: .8rem;
+    }
+
+    &:before{
+      content: '–';
+    }
+  }
+}
+
+
+.text--center{
+  text-align: center;
+}
+.text--left{
+  text-align: left;
+}

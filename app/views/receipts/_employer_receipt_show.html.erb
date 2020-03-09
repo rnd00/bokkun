@@ -10,7 +10,6 @@
             <p>Company : <%= @receipt.company %></p>
             <p>Date : <%= @receipt.date %></p>
             <p>Total Amount : <%= @receipt.total_amount %></p>
-            <p>Tax Amount : <%= @receipt.tax_amount  %></p>
             <p>Category : <%= @receipt.budget.name %></p>
             <%= cl_image_tag @receipt.photo.key, height: 300, width: 400, crop: :fill if @receipt.photo.attached? %>
           </div>
@@ -19,28 +18,28 @@
       </div>
       <ul>
         <h3>Items in this ticket</h3>
+        <% if @receipt.receipt_items.nil? %>
+          <p> No Items on this receipt Yet...</p>
+        <% else %>
           <% @receipt.receipt_items.each do |item| %>
             <div class="argument">
-            <div class="argument-info">
-              <p>Name : <%= item.name %></p>
-              <p>Amount : <%= item.amount %></p>
-              <p>Tax : <%= item.tax %></p>
-
-              <%= link_to edit_receipt_item_path(item) do %>
-                <div class="edit-button">
-                  <i class="fas fa-pencil-alt"></i>
-                </div>
-              <% end %>
-
-              <%= link_to receipt_item_path(item), method: :delete do %>
-                <div class="delete-button">
-                  <i class="fas fa-trash"></i>
-                </div>
-              <% end %>
-
-            </div>
+              <div class="argument-info">
+                <p>Name : <%= item.name %></p>
+                <p>Amount : <%= item.amount %></p>
+                <%= link_to edit_receipt_item_path(item) do %>
+                  <div class="edit-button">
+                    <i class="fas fa-pencil-alt"></i>
+                  </div>
+                <% end %>
+                <%= link_to receipt_item_path(item), method: :delete do %>
+                  <div class="delete-button">
+                    <i class="fas fa-trash"></i>
+                  </div>
+                <% end %>
+              </div>
             </div>
           <% end %>
+        <% end %>
       </ul>
     </div>
   </div>

@@ -12,13 +12,12 @@
     text-align: center;
     padding: $spacer;
     box-shadow: 1px 1px 1px $blue;
-
     p {
       margin: 0 !important;
       padding: 4px;
     }
-  }
-  .receipt-name:active {
-    background-color: $blue;
+    &:active {
+      background-color: $blue;
+    }
   }
 }

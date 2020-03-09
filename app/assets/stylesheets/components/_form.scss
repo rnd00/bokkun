@@ -15,3 +15,24 @@
     margin-bottom: 20px
   }
 }
+
+.form-inline {
+  display: inline-block;
+}
+
+.item-form {
+  height: 37px;
+}
+
+@media only screen and (min-width: 768px) {
+  /* For tablets: */
+  .form-style{
+  max-width: 450px;
+  background: #FAFAFA;
+  padding: 30px;
+  margin: 50px auto;
+  box-shadow: 1px 1px 25px rgba(0, 0, 0, 0.35);
+  border-radius: 10px;
+  border: 6px solid $blue;
+}
+}

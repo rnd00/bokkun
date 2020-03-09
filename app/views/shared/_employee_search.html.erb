@@ -1,9 +1,11 @@
 <div class="mobile-cards">
-  <div class="mobile-search text-center">
-    <%= text_field_tag :query,
-                params[:query],
-                class: "form-control",
-                placeholder: "Search trips"
-              %>
-  </div>
+  <%= form_tag employee_dashboard_path, method: :get do %>
+    <div class="mobile-search text-center">
+      <%= text_field_tag :query,
+                  params[:query],
+                  class: "form-control",
+                  placeholder: "Search trips"
+                %>
+    </div>
+  <% end %>
 </div>

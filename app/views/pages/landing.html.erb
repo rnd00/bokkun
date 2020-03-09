@@ -1,33 +1,37 @@
-<div class="wrapper">
-<!-- BANNER -->
-  <div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.7),rgba(0,0,0,0.7)), url(https://i.ibb.co/WvxsYLb/banner.jpg);">
+<div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.7),rgba(0,0,0,0.7)), url(https://i.ibb.co/S7bXvFm/banner.jpg);">
     <div class="container">
       <h1 style="font-size: 56px"><strong>Bokkun</strong></h1>
       <p style="font-size: 24px; font-weight: bolder">Simplified expenses for busy professions.</p>
         <%= link_to "Simplify your expenses...", new_user_session_path, class: "btn btn-flat"  %>
     </div>
   </div>
-  <!-- ARGUMENTS -->
-  <div class="landing-cards">
-    <div class="landing-card">
-      <div class="landing-card-info">
-        <h2>Fast categorization !</h2>
-        <p>Simple list of expense categories for 1-click categorization</p>
-      </div>
-    </div>
 
-    <div class="landing-card">
-      <div class="landing-card-info">
-        <h2>OCR Assisped Input</h2>
-        <p>OCR autofills input for hassle-free data entry.</p>
-      </div>
+<section class="section--primary">
+  <div class="container">
+    <div class="col-3 features">
+      <i class="fa fa-bolt"></i>
+      <p>
+        Simple list of expense categories for 1-click categorization
+      </p>
     </div>
-
-    <div class="landing-card">
-      <div class="landing-card-info">
-        <h2>Auto-compliance</h2>
-        <p>Smart algorithm ensures your submissions comply with company policy !</p>
-      </div>
+    <div class="col-3 features">
+      <i class="fa fa-heart"></i>
+      <p>
+        OCR autofills input for hassle-free data entry.
+      </p>
+    </div>
+    <div class="col-3 features">
+      <i class="fa fa-bank"></i>
+      <p>
+        Smart algorithm ensures your submissions comply with company policy !
+      </p>
     </div>
   </div>
-</div>
+</section>
+
+<section class="text--center">
+  <div class="container">
+    <h3>Make it Easier</h3>
+    <a href="#" class="btn">Simplify your expenses</a>
+  </div>
+</section>

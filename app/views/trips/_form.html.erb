@@ -1,4 +1,4 @@
-<%= simple_form_for @trip do |f| %>
+<%= simple_form_for @trip, html: {class: "form-style"} do |f| %>
   <%= f.input :name, class: "form-control" %>
   <%= f.input :destination, class: "form-control"  %>
   <%= f.input :purpose, class: "form-control" %>

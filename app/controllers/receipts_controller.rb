@@ -12,6 +12,7 @@ class ReceiptsController < ApplicationController
     @receipt.user = current_user
     @receipt.trip = Trip.find_by(id: params[:trip_id])
     authorize @receipt
+    @receipt.total_amount = OCR.total("https://res.cloudinary.com/kinzame-herokuapp-com/image/upload/#{@receipt.photo.key}.jpg")
     if @receipt.save
       redirect_to receipt_path(@receipt)
     else
@@ -63,6 +64,6 @@ class ReceiptsController < ApplicationController
   end
 
   def receipt_params
-    params.require(:receipt).permit(:company, :total_amount, :date, :tax_amount, :user_id, :category, :trip_budget_id, :photo)
+    params.require(:receipt).permit(:company, :total_amount, :date, :user_id, :category, :trip_budget_id, :photo)
   end
 end

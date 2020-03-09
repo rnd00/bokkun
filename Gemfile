@@ -5,7 +5,7 @@ gem 'bootsnap', require: false
 gem 'devise'
 gem 'jbuilder', '~> 2.0'
 gem 'pg', '~> 0.21'
-gem 'puma'
+gem 'puma', ">= 3.12.4"
 gem 'rails', '5.2.4.1'
 gem 'redis'
 
@@ -15,10 +15,20 @@ gem 'sassc-rails'
 gem 'simple_form'
 gem 'uglifier'
 gem 'webpacker'
+gem 'faker', :git => 'https://github.com/faker-ruby/faker.git', :branch => 'master'
 
 ## Added
 gem 'pundit'
 gem 'cloudinary', '~> 1.12.0'
+gem 'google-cloud-vision'
+gem 'pg_search', '~> 2.3.0'
+gem "chartkick"
+
+# rails-generate-pdf/Gemfile
+gem 'jquery-rails'
+gem 'bootstrap', '~> 4.3.1'
+gem 'wicked_pdf'
+gem 'wkhtmltopdf-binary'
 
 group :development do
   gem 'web-console', '>= 3.3.0'
