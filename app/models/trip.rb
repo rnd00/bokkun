@@ -23,6 +23,10 @@ class Trip < ApplicationRecord
     self.total_budget - self.total_spent
   end
 
+  def total_tax
+    self.receipts.reduce(0) { |total, receipt| total + receipt.total_tax }
+  end
+
   def total_spent
     self.receipts.reduce(0) { |total, receipt| total + receipt.total }
   end
