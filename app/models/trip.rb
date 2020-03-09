@@ -8,7 +8,7 @@ class Trip < ApplicationRecord
   validates :destination, :purpose, :customer, :start_date, :end_date, presence: true
 
   def active?
-    Date.today < self.end_date && Date.today > self.start_date
+    Date.today <= self.end_date && Date.today >= self.start_date
   end
 
   def receipts_sort_date
