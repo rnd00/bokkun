@@ -68,12 +68,12 @@
         </tr>
       </thead>
       <tbody>
-        <% @trip.receipts.each do |receipt| %>
+        <% @trip.receipts_sort_date.each do |receipt| %>
           <tr>
             <td class="bordered"><%= receipt.date %></td>
             <td class="bordered"><%= receipt.company %></td>
             <td class="bordered"><%= receipt.category %></td>
-            <td class="bordered"><%= number_to_currency(receipt.total_amount, unit: 'JPY ', separator: ",", precision: 0) %></td>
+            <td class="bordered"><%= number_to_currency(receipt.total, unit: 'JPY ', separator: ",", precision: 0) %></td>
           </tr>
         <% end %>
         <tr>

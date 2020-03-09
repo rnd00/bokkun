@@ -56,7 +56,6 @@ def receipt_gen(company, total, date, tax, user, trip_budget)
     company: company,
     total_amount: total,
     date: date,
-    tax_amount: tax,
     user: user,
   trip_budget: trip_budget )
 end
@@ -350,6 +349,8 @@ user = User.find_by(last_name: "Uemura")
     start_date: Date.today - random,
     end_date: Date.today - random + rand(0..10)
     )
+  trip.name = "Trip to #{trip.destination} to visit #{trip.customer}"
+  trip.save
   TripUser.create!(
     user: user,
     trip: trip
@@ -372,7 +373,6 @@ Trip.all.each do |trip|
         date: trip.start_date + rand(0..(trip.end_date - trip.start_date).to_i),
         user: trip.users.take,
         total_amount: 1000,
-        tax_amount: 8,
         trip_budget: trip_budget
         )
     end
