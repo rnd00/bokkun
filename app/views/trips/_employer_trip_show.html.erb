@@ -42,7 +42,7 @@
       <% @trip.receipts.each do |receipt| %>
         <article class="receipt" style="margin-bottom:150px;">
           <section class="receipt__half upper">
-            <p><%= receipt.company %> - <%= receipt.date.strftime("%a, %d %b") %></p>
+            <h3><%= link_to receipt.company, receipt_path(receipt)%></h3> <%= receipt.date.strftime("%a, %d %b") %></p>
             <h1><%= number_to_currency(receipt.total, unit: "￥", separator: ",", precision: 0) %></h1>
 
             <div class="receipt__content">
