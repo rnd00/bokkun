@@ -24,4 +24,6 @@ $border-radius-sm: 2px;
 
 // Override other variables below!
 $spacer: 8px;
-
+button:focus {
+  outline: none;
+}

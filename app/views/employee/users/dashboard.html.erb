@@ -1,14 +1,5 @@
-<% if @user.trips.empty? %>
-  <div class="d-flex justify-content-center align-content-center text-center">
-    <h1>No trips yet!</h1>
-  </div>
-<% else %>
-  <div class="mobile-wrapper">
-    <%= render 'shared/floating_button', current_trip: @current_trip %>
-    <%= link_to trip_path(@current_trip) do %>
-      <%= render 'shared/employee_heading', current_trip: @current_trip %>
-    <% end %>
-    <%= render 'shared/employee_search' %>
-    <%= render 'trips/employee_trip_cards', trips: @trips, query: @query %>
-  </div>
-<% end %>
+<div class="mobile-wrapper">
+  <%= render 'shared/employee_heading', current_trip: current_user.current_trip %>
+  <%= render 'receipts/employee_receipt_index', current_trip: current_user.current_trip %>
+  <%= render 'shared/floating_button', current_trip: current_user.current_trip %>
+</div>
