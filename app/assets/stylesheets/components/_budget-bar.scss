@@ -1,10 +1,18 @@
 .budget-bar {
-  background-color: $light-blue;
+  background-color: $blue;
   width: 90%;
-  margin: auto;
   padding: $spacer / 2;
   border-radius: 4px;
+
 }
+
+.heading {
+    margin: auto;
+  }
+
+.list {
+    margin: auto 0;
+  }
 
 .budget-empty {
   background-color: $off-white;

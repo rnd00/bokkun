@@ -6,13 +6,15 @@
   right:40px;
   color: $yellow;
   text-align:center;
-  font-size: 50px;
+  font-size: 24px;
   z-index: 10;
-  text-shadow: 1px 1px 2px black;
+  background-color: $blue;
+  border-radius: 50%;
 }
 
 .my-float{
-  margin-top:22px;
+  margin-top: 18px;
+  margin-left: 8px;
   z-index: 10;
 
   i {

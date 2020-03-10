@@ -1,23 +1,27 @@
 <div class="mobile-cards">
   <% current_trip.trip_budgets.each do |trip_budget| %>
     <button class="mobile-card" data-toggle="collapse" data-target="#a-<%= trip_budget.id %>" aria-expanded="false" aria-controls="<%= trip_budget.id %>">
-      <h3><%= trip_budget.budget.capitalize_name %></h3>
+      <h2 class='symbol'><%=raw trip_budget.budget.symbol %></h2>
       <%= render 'shared/budget_bar', trip_budget: trip_budget %>
     </button>
-    <div class="collapse" id="a-<%= trip_budget.id%>">
-      <div class="receipt-list">
-        <% if trip_budget.receipts.empty? %>
-          <p>No receipts entered.</p>
-        <% else %>
-          <% trip_budget.receipts.each do |receipt| %>
-            <%= link_to receipt_path(receipt) do %>
-              <div class="receipt-name">
-                <p><%= receipt.company %></p>
-              </div>
-            <% end %>
-          <% end %>
-        <% end %>
+      <div class="collapse" id="a-<%= trip_budget.id%>">
+        <div class="list-box mobile-card">
+          <div class="push"></div>
+          <div class="receipt-list">
+            <div class="receipt-name">
+              <% if trip_budget.receipts.empty? %>
+                <p>No receipts entered.</p>
+              <% else %>
+                <% trip_budget.receipts.each do |receipt| %>
+                    <%= link_to receipt_path(receipt), class: "receipt-line" do %>
+                      <div><p><%= receipt.company %></p></div>
+                      <div><p><%= receipt.total %></p></div>
+                    <% end %>
+                <% end %>
+              <% end %>
+            </div>
+          </div>
+        </div>
       </div>
-    </div>
   <% end %>
 </div>
