@@ -10,3 +10,5 @@ const employeeNavbarToggle = () => {
     }
   });
 };
+
+export { employeeNavbarToggle }

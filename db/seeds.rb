@@ -48,7 +48,7 @@ def trip_gen(name, dest, purpose, customer, sdate, edate)
     purpose: purpose,
     customer: customer,
     start_date: sdate,
-  end_date: edate )
+    end_date: edate )
 end
 
 def receipt_gen(company, total, date, tax, user, trip_budget)
@@ -57,7 +57,7 @@ def receipt_gen(company, total, date, tax, user, trip_budget)
     total_amount: total,
     date: date,
     user: user,
-  trip_budget: trip_budget )
+    trip_budget: trip_budget )
 end
 
 def items_gen(name, amt, tax, receipt)
@@ -65,26 +65,26 @@ def items_gen(name, amt, tax, receipt)
     name: name,
     amount: amt,
     tax: tax,
-  receipt: receipt )
+    receipt: receipt )
 end
 
 def budget_gen(name, amount, symbol)
   Budget.create!(
     name: name,
-  amount: amount,
-  symbol: symbol )
+    amount: amount,
+    symbol: symbol )
 end
 
 def trip_budget_gen(budget, trip)
   TripBudget.create!(
     trip: trip,
-  budget: budget )
+    budget: budget )
 end
 
 def trip_user_gen(user, trip)
   TripUser.create!(
     user: user,
-  trip: trip)
+    trip: trip )
 end
 
 # ============================================================================
@@ -94,11 +94,10 @@ end
 def temp_budget_gen
   types = [
     # add more type as you need
-
-    ['food', 15000, '<i class="fas fa-utensils"></i>'],
-    ['travel', 4000, '<i class="fas fa-train"></i>'],
-    ['miscellaneous', 20000, '<i class="fas fa-tag"></i>'],
-    ['accomodation', 20000, '<i class="fas fa-hotel"></i>']]
+    ['Food', 15000, '<i class="fas fa-utensils"></i>'],
+    ['Travel', 4000, '<i class="fas fa-train"></i>'],
+    ['Miscellaneous', 20000, '<i class="fas fa-tag"></i>'],
+    ['Accomodation', 20000, '<i class="fas fa-hotel"></i>']]
   types.map do |type|
     budget_gen(type[0], type[1], type[2])
   end
@@ -198,18 +197,20 @@ puts "\nGenerating default users..."
 # ----------------------------------------------------------------------------
 # THIS IS MIKE
 # ----------------------------------------------------------------------------
-User.create!( email: "mike@bokkun.me",
-  password: "123456",
-  first_name: "Mike",
-  last_name: "Warren",
-  job_title: "CEO, Superintentdent General of Bokk* Holdings Corp",
-  manager: true,
-  avatar: 'https://avatars0.githubusercontent.com/u/28691463?s=460&v=4')
+# User.create!( email: "mike@bokkun.me",
+#   password: "123456",
+#   first_name: "Mike",
+#   last_name: "Warren",
+#   job_title: "CEO, Superintentdent General of Bokk* Holdings Corp",
+#   manager: true,
+#   avatar: 'https://avatars0.githubusercontent.com/u/28691463?s=460&v=4')
 # ----------------------------------------------------------------------------
 
 # two users we want to use for presentations
-uemura = user_gen("uemura@bokkun.me", "Mitsuo", "Uemura", "Division Manager", true, fetch_avatar)
-yamada = user_gen("yamada@bokkun.me", "Taro", "Yamada", "Sales Rep", false, fetch_avatar)
+# uemura = user_gen("uemura@bokkun.me", "Mitsuo", "Uemura", "Division Manager", true, fetch_avatar)
+# yamada = user_gen("yamada@bokkun.me", "Taro", "Yamada", "Sales Rep", false, fetch_avatar)
+uemura = user_gen("mike@bokkun.me", "Mike", "Warren", "Division Manager", true, 'https://avatars0.githubusercontent.com/u/28691463?s=460&v=4')
+yamada = user_gen("adil@bokkun.me", "Adil", "Omary", "Sales Rep", false, 'https://avatars0.githubusercontent.com/u/59479470?s=400&v=4')
 
 TESTUSERS = [uemura, yamada]
 
@@ -245,13 +246,13 @@ puts "...finished with connections"
 
 puts "\nGenerating 2 receipts for yamada..."
 # get all 4 budgets instances
-Food = yamada.trips.last.budgets.find_by(name: 'Food')
+food = yamada.trips.last.budgets.find_by(name: 'Food')
 trav = yamada.trips.last.budgets.find_by(name: 'Travel')
 acco = yamada.trips.last.budgets.find_by(name: 'Accomodation')
 misc = yamada.trips.last.budgets.find_by(name: 'Miscellaneous')
 
 # defining all the trip-budget types
-yamada_Food = yamada.trips.last.trip_budgets.find_by(budget: Food)
+yamada_food = yamada.trips.last.trip_budgets.find_by(budget: food)
 yamada_trav = yamada.trips.last.trip_budgets.find_by(budget: trav)
 yamada_acco = yamada.trips.last.trip_budgets.find_by(budget: acco)
 yamada_misc = yamada.trips.last.trip_budgets.find_by(budget: misc)
@@ -260,9 +261,9 @@ yamada_misc = yamada.trips.last.trip_budgets.find_by(budget: misc)
 START = yamada.trips.last.start_date
 
 # template = receipt_gen(company, total, date, tax, user, trip_budget)
-konbini = receipt_gen("Convenience Store", "1230", START + 1, 10, yamada, yamada_Food)
-distillery = receipt_gen("Omary's Umeshu Distillery", "3300", START + 1, 10, yamada, yamada_Food)
-bar = receipt_gen("Bar Heise & Warren", "3700", START + 2, 10, yamada, yamada_Food)
+konbini = receipt_gen("Convenience Store", "1230", START + 1, 10, yamada, yamada_food)
+distillery = receipt_gen("Omary's Umeshu Distillery", "3300", START + 1, 10, yamada, yamada_food)
+bar = receipt_gen("Bar Heise & Warren", "3700", START + 2, 10, yamada, yamada_food)
 
 train_one = receipt_gen("Train (Shinjuku - Chiba)", "814", START, 10, yamada, yamada_trav)
 train_two = receipt_gen("Train (Chiba - Shinjuku)", "814", START + 2, 10, yamada, yamada_trav)
@@ -278,7 +279,7 @@ puts "...finished with receipts generation!"
 # GENERATE RECEIPT ITEMS
 # ============================================================================
 
-puts "\nGenerating items on Yamada's Food receipts..."
+puts "\nGenerating items on Yamada's food receipts..."
 
 # template = items_gen(name, amt, tax, receipt)
 gyudon = items_gen('Gyudon', 450, 10, konbini)
@@ -308,9 +309,8 @@ PREFECTURES = [ "Fukushima",
                 "Osaka",
                 "Okinawa"]
 
-
 puts "\nGenerating random past trips"
-user = User.find_by(last_name: "Uemura")
+user = User.find_by(last_name: "Warren") # was Uemura
 20.times do
   random = rand(10..100)
   trip = Trip.create!(
@@ -380,7 +380,7 @@ Receipt.all.each do |receipt|
       )
   elsif receipt.budget.name == 'Travel'
     item = ReceiptItem.create!(
-        name: ['Train', 'Shinkansen', 'Express Buss'].sample,
+        name: ['Train', 'Shinkansen', 'Express Bus'].sample,
         tax: [8, 10].sample,
         receipt: receipt,
         amount: rand(1..5) * 1000
@@ -397,3 +397,4 @@ Receipt.all.each do |receipt|
     end
   end
 end
+puts "...finished!"
