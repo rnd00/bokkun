@@ -7,7 +7,7 @@
       <% if current_user.manager %>
         <%= link_to "Delete this ticket", receipt_path(@receipt), method: :delete, class: "btn btn-approve w-30" %>
       <% end %>
-      <%= link_to "Go Back", :back, class: "btn btn-approve w-30" %>
+      <%= link_to "Go Back", trip_path(@receipt.trip), class: "btn btn-approve w-30" %>
   </div>
 
   <ul>
