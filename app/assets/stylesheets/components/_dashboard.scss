@@ -10,6 +10,8 @@
 
 .dash-stats{
   margin-left: $spacer * 2;
+  border: 2px solid $blue;
+  border-radius: 3px;
 }
 
 .dash-stats-item {
