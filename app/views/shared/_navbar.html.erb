@@ -3,7 +3,7 @@
     <h3>Bokkun</h3>
   <% end %>
   <%= link_to "#", id: "navbarDropdown", data: { toggle: "dropdown", target: '#navbarSupportedContent' }, 'aria-haspopup': true, 'aria-expanded': false, 'aria-label': 'navbarSupportedContent' do %>
-    <% avatar = @current_user.avatar.nil? ? 'https://res.cloudinary.com/kinzame-herokuapp-com/image/upload/v1583746668/placeholder/Missing_avatar_u1azml.svg' : @current_user.avatar %>
+    <% avatar = current_user.avatar.nil? ? 'https://res.cloudinary.com/kinzame-herokuapp-com/image/upload/v1583746668/placeholder/Missing_avatar_u1azml.svg' : current_user.avatar %>
     <%= image_tag avatar, class: "avatar", alt: "avatar-large", style: "border: 1px solid white; margin-right: 8px;" %>
   <% end %>
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
