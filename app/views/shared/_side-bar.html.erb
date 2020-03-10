@@ -5,34 +5,45 @@
   <header class="main-head">
         <nav class="head-nav">
           <ul class="menu">
-            <li>
+            <li class="justify-content-around">
               <%= link_to employer_dashboard_path do %>
-                <%= image_tag @current_user.avatar, class: "avatar", alt: "avatar-large" %>
-                  <span class="ml-2"> <%= @current_user.first_name %> <%= @current_user.last_name %> </span>
+                <div class="mx-3">
+                  <%= image_tag @current_user.avatar, class: "avatar", alt: "avatar-large" %>
+                </div>
+                <span class=""> <%= @current_user.first_name %> <%= @current_user.last_name %> </span>
               <% end %>
             </li>
-            <li>
+            <li class="justify-content-around">
               <%= link_to employer_dashboard_path do %>
-                <i class="fas fa-home fa-2x"></i>
-                <span class="ml-2">Dashboard</span>
+                <div class="mx-3">
+                  <i class="fas fa-home fa-2x"></i>
+                </div>
+                <span class="">Dashboard</span>
               <% end %>
             </li>
-            <li>
+            <li class="justify-content-around">
               <%= link_to trips_path do %>
-                <i class="fas fa-plane fa-2x"></i>
-                <span class="ml-2">Trips</span>
+                <div class="mx-3">
+
+                  <i class="fas fa-plane fa-2x"></i>
+                </div>
+                <span class="">Trips</span>
                 <% end %>
             </li>
-            <li>
+            <li class="justify-content-around">
               <%= link_to employer_index_path do %>
-                <i class="fas fa-user-friends fa-2x"></i>
-                <span class="ml-2">Employees</span>
+                <div class="mx-3">
+                  <i class="fas fa-user-friends fa-2x"></i>
+                </div>
+                <span class="">Employees</span>
               <% end %>
             </li>
-            <li>
+            <li class="justify-content-around">
               <%= link_to destroy_user_session_path, method: :delete do %>
-                <i class="fas fa-sign-out-alt fa-2x"></i>
-                <span class="ml-2">Sign Out</span>
+                <div class="mx-3">
+                  <i class="fas fa-sign-out-alt fa-2x"></i>
+                </div>
+                <span class="">Sign Out</span>
               <% end %>
             </li>
           </ul>
