@@ -74,38 +74,6 @@ img{
   max-width: 900px;
 }
 
-
-header{
-  color: white;
-  background: $blue;
-  text-align: center;
-  position: relative;
-  z-index: 1;
-  overflow: hidden;
-
-  @media (max-width: $bp-s){
-    padding: 2rem 0;
-  }
-
-  h1{
-    font-size: 3rem;
-    margin: 0 0 1rem;
-
-    @media (max-width: $bp-s){
-      font-size: 2rem;
-    }
-  }
-  h2{
-    font-weight: 300;
-    font-size: 1.5rem;
-    margin: 0 0 1rem;
-
-    @media (max-width: $bp-s){
-      font-size: 1.5rem;
-    }
-  }
-}
-
 section{
   background: #fff;
   color: $blue;
@@ -242,49 +210,6 @@ section{
   }
 }
 
-blockquote{
-  position: relative;
-  margin: 0;
-  padding: 0;
-  text-align: center;
-
-  &:before{
-    display: inline-block;
-    color: $blue;
-    font-size: 2rem;
-    content: '\201C';
-  }
-
-  p{
-    margin: 0;
-    display: inline;
-    font-size: 1.5rem;
-
-    @media (max-width: $bp-s){
-      font-size: 1.2rem;
-    }
-  }
-
-  cite{
-    font-size: 1rem;
-    display: block;
-    margin: .5rem 0 0 1.2rem;
-    text-style: italic;
-
-    @media (max-width: $bp-s){
-      font-size: .8rem;
-    }
-
-    &:before{
-      content: '–';
-    }
-  }
-}
-
-
 .text--center{
   text-align: center;
-}
-.text--left{
-  text-align: left;
 }
