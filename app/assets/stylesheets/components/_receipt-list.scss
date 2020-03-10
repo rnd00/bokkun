@@ -1,28 +1,31 @@
 .list-box {
   display: flex;
+  margin-top: 0;
+  padding-top: 0;
 }
 
 .receipt-list {
   width: 90%;
-  padding: $spacer / 2;
   border-radius: 4px;
-  position: relative;
-  bottom: 56px;
+  margin-top: -16px;
+  padding: 0 4px;
   p, a {
-    line-height: 1em;
+    line-height: 2em;
     font-size: 18px;
+    transition: 0.5s;
+    border-bottom: 1px solid $light-blue;
+    &:active {
+      background-color: $yellow;
+      opacity: 0.4;
+    }
   }
   .receipt-name {
     width: 100%;
     border: 1px solid $blue;
-    margin-top: $spacer !important;
     padding: $spacer;
     p {
       margin: 0 !important;
       padding: 4px;
-    }
-    &:active {
-      background-color: $blue;
     }
   }
 }
