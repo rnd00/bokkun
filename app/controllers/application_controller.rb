@@ -1,5 +1,5 @@
 class ApplicationController < ActionController::Base
-  before_action :configure_permitted_params, only: [:create]
+  before_action :configure_permitted_params, if: :devise_controller?
   before_action :authenticate_user!
   include Pundit
 
@@ -30,9 +30,6 @@ class ApplicationController < ActionController::Base
 
   def configure_permitted_params
     devise_parameter_sanitizer.permit(:sign_up, keys: [
-      :email,
-      :password,
-      :password_confirmation,
       :first_name,
       :last_name,
       :job_title
