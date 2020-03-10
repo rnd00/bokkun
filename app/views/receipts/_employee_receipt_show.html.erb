@@ -13,4 +13,9 @@
   <% else %>
     <%= render 'receipts/employee_receipt_item_list', receipt: @receipt %>
   <% end %>
+  <%= link_to trip_path(@receipt.trip) do %>
+    <div class="new-button">
+      <i class="far fa-check-circle"></i>
+    </div>
+  <% end %>
 </div>
