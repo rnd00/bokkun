@@ -1,11 +1,18 @@
 <%= render 'shared/side-bar' %>
-
 <div class="container employer-content">
+  <div class="title d-flex m-3">
+    <div class="title-text">
+      <h1 class="m-auto">Employee List</h1>
+    </div>
+  </div>
+  <!-- linebreak -->
+  <div class="w-100 border"></div>
+  <!-- linebreak -->
   <% @users.each do |user| %>
-    <div class="card-product">
+    <div class="card-product my-3">
       <img src=<%= user.avatar %> >
       <div class="card-product-infos">
-        <h2><%= link_to [user.first_name, user.last_name].join(" "), user_show_path(user)%></h2>
+        <h2><%= link_to [user.first_name, user.last_name].join(" "), user_show_path(user) %></h2>
         <p><strong><%= "#{user.email}" %></strong></p>
         <p><%= user.job_title %> </p>
       </div>
