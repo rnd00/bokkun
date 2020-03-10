@@ -1,7 +1,7 @@
 <%= simple_form_for [trip, receipt], html: {class: "form-style" } do |f| %>
   <%= f.input :company %>
   <%= f.input :date, as: :string, input_html: {class: "datepicker", value: Date.today} %>
-  <%= f.input :total_amount %>
+  <%= f.input :total_amount, as: :hidden %>
   <%= f.association :trip_budget, collection: trip.trip_budgets, label_method: lambda {|trip_budget| "#{trip_budget.budget.name}"}, include_blank: false %>
   <%= f.input :photo, as: :file  %>
   <%= f.button :submit, class: "btn btn-approve w-30" %>

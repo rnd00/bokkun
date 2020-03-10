@@ -24,4 +24,8 @@ class Receipt < ApplicationRecord
   def total
     sub_total + total_tax
   end
+
+  def all_items?
+    self.total == self.total_amount
+  end
 end

@@ -1,8 +1,14 @@
 <div class="mobile-wrapper">
   <%= render 'receipts/employee_receipt_heading', receipt: @receipt %>
-  <div class="container receipt-container">
-    <%= cl_image_tag @receipt.photo.key, effect: "trim:80" if @receipt.photo.attached? %>
+  <% if @receipt.photo.nil? %>
+    <div class="container receipt-container">
+    <%= cl_image_tag @receipt.photo.key, effect: "trim:20" if @receipt.photo.attached? %>
   </div>
+  <% else %>
+    <div class="container mt-3">
+      <p>No receipt attached.</p>
+    </div>
+  <% end %>
   <div class="container">
     <%= render 'receipt_items/form' %>
   </div>

@@ -23,12 +23,12 @@
         </tr>
       <% end %>
       <tr>
-        <td colspan="2" style="text-align: right;"><b>Total tax: </b></td>
-        <td><%= receipt.total_tax %></td>
+        <td colspan="2" width="50%" style="text-align: right;"><b>Total tax: </b></td>
+        <td><%= number_to_currency(receipt.total_tax, unit: "￥", separator: ",", precision: 0) %></td>
       </tr>
       <tr>
-        <td colspan="2" style="text-align: right;"><b>Total: </b></td>
-        <td><%= receipt.total %></td>
+        <td colspan="2" width="50%" style="text-align: right;"><b>Total: </b></td>
+        <td <%=raw 'style=color: red' if receipt.all_items? %>><%= number_to_currency(receipt.total, unit: "￥", separator: ",", precision: 0) %> / <%= number_to_currency(receipt.total_amount, unit: "￥", separator: ",", precision: 0) %></td>
       </tr>
     </tbody>
   </table>
