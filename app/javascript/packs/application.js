@@ -7,10 +7,12 @@ import '../plugins/flatpickr'
 import {initSelect2} from '../plugins/init_select2'
 import 'select2/dist/css/select2.css';
 
+// Collapse toggle
+import {collapseToggle} from '../plugins/collapse_toggle'
 
 initSelect2();
-
-employeeNavbarToggle();
-
-
+if(document.querySelector("#employeeNavbarToggle")){
+  employeeNavbarToggle();
+}
 toggleReceipt();
+collapseToggle();
