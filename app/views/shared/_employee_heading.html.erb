@@ -1,6 +1,6 @@
 <div class='mobile-heading'>
   <div class="heading-text">
-    <% if current_user.current_trip.end_date > Date.today %>
+    <% if current_user.current_trip.end_date >= Date.today %>
       <h4>Ongoing trip to</h4>
     <% else %>
       <h4><%= current_user.current_trip.start_date.strftime("%m/%d/%y") %> &#8212;
