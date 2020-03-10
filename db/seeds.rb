@@ -96,7 +96,7 @@ def temp_budget_gen
     # add more type as you need
 
     ['food', 15000, '<i class="fas fa-utensils"></i>'],
-    ['travel', 4000, '<i class="fas fa-hotel"></i>'],
+    ['travel', 4000, '<i class="fas fa-train"></i>'],
     ['miscellaneous', 20000, '<i class="fas fa-tag"></i>'],
     ['accomodation', 20000, '<i class="fas fa-hotel"></i>']]
   types.map do |type|

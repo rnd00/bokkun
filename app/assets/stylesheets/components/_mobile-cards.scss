@@ -3,6 +3,8 @@
   flex-direction: column;
   margin: $spacer;
   justify-content: center;
+  position: relative;
+  bottom: 50px;
 }
 
 .mobile-card {
@@ -13,8 +15,6 @@
   padding: $spacer;
   margin-top: $spacer;
   display: flex;
-  position: relative;
-  bottom: 50px;
 
   &:active {
     box-shadow: none;
