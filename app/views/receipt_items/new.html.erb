@@ -6,6 +6,7 @@
     <%= f.input :name %>
     <%= f.input :amount %>
     <%= f.input :tax %>
-    <%= f.submit %>
+    <%= f.button :submit, class: "btn btn-approve w-30" %>
+    <%= link_to "Go Back", :back, class: "btn btn-approve w-30" %>
   <% end %>
 </div>
