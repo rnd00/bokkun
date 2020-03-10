@@ -1,18 +1,22 @@
+.list-box {
+  display: flex;
+}
+
 .receipt-list {
-  margin: 0 $spacer * 4;
-  margin-left: 25%;
+  width: 90%;
+  padding: $spacer / 2;
+  border-radius: 4px;
+  position: relative;
+  bottom: 56px;
   p, a {
     line-height: 1em;
-    font-size: 24px;
-    margin-top: $spacer !important;
+    font-size: 18px;
   }
   .receipt-name {
     width: 100%;
     border: 1px solid $blue;
     margin-top: $spacer !important;
-    text-align: center;
     padding: $spacer;
-    box-shadow: 1px 1px 1px $blue;
     p {
       margin: 0 !important;
       padding: 4px;
@@ -21,4 +25,13 @@
       background-color: $blue;
     }
   }
+}
+
+.receipt-line {
+  display: flex;
+  justify-content: space-between;
+}
+
+.push {
+  width: 56px;
 }
