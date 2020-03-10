@@ -20,6 +20,11 @@
   }
 }
 
+.receipt {
+  margin-bottom: 0;
+  padding-bottom: 0;
+}
+
 .new-button {
   text-align: center;
   padding: $spacer;
@@ -43,8 +48,12 @@
 }
 
 .edit-button {
-  text-align: center;
+  text-align: right;
   padding: $spacer;
+  margin-top: -30px;
+  margin-bottom: 0;
+  padding-bottom: 0;
+  margin-right: 8px;
 
   i {
     color: $blue;

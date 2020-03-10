@@ -1,6 +1,10 @@
 <div class="mobile-wrapper">
   <%= render 'receipts/employee_receipt_heading', receipt: @receipt %>
-  <div class="flex-center">
+  <div class="container receipt-container">
+    <%= cl_image_tag @receipt.photo.key, effect: "trim:80" if @receipt.photo.attached? %>
+  </div>
+  <div class="container">
+    <%= render 'receipt_items/form' %>
   </div>
   <% if @receipt.receipt_items.empty? %>
     <div class="container">
@@ -9,10 +13,4 @@
   <% else %>
     <%= render 'receipts/employee_receipt_item_list', receipt: @receipt %>
   <% end %>
-    <div class="container">
-  <%= render 'receipt_items/form' %>
-    </div>
-    <div class="container receipt-container">
-  <%= cl_image_tag @receipt.photo.key, effect: "trim:80" if @receipt.photo.attached? %>
-  </div>
 </div>
