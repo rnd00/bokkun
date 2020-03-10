@@ -6,15 +6,15 @@
 }
 
 .mobile-card {
-  background-color: $light-blue !important;
+  background-color: none;
   width: 90%;
   margin: ($spacer / 2) auto;
-  border-radius: 4px;
   text-align: center;
   padding: $spacer;
   margin-top: $spacer;
-  box-shadow: 1px 1px 2px $blue;
   display: flex;
+  position: relative;
+  bottom: 50px;
 
   &:active {
     box-shadow: none;
@@ -32,4 +32,14 @@
 
 .mobile-card-content {
   padding: $spacer 0;
+}
+
+.symbol {
+  background-color: $blue;
+  border-radius: 12px;
+  height: 56px;
+  width: 56px;
+  padding: $spacer;
+  color: $off-white;
+  margin-right: -2px;
 }

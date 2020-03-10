@@ -68,10 +68,11 @@ def items_gen(name, amt, tax, receipt)
   receipt: receipt )
 end
 
-def budget_gen(name, amount)
+def budget_gen(name, amount, symbol)
   Budget.create!(
     name: name,
-  amount: amount )
+  amount: amount,
+  symbol: symbol )
 end
 
 def trip_budget_gen(budget, trip)
@@ -94,12 +95,12 @@ def temp_budget_gen
   types = [
     # add more type as you need
 
-    ['food', 15000],
-    ['travel', 4000],
-    ['miscellaneous', 20000],
-    ['accomodation', 20000]]
+    ['food', 15000, '<i class="fas fa-utensils"></i>'],
+    ['travel', 4000, '<i class="fas fa-hotel"></i>'],
+    ['miscellaneous', 20000, '<i class="fas fa-tag"></i>'],
+    ['accomodation', 20000, '<i class="fas fa-hotel"></i>']]
   types.map do |type|
-    budget_gen(type[0], type[1])
+    budget_gen(type[0], type[1], type[2])
   end
 end
 

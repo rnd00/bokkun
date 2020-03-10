@@ -1,7 +1,7 @@
 <div class="mobile-cards">
   <% current_trip.trip_budgets.each do |trip_budget| %>
     <button class="mobile-card" data-toggle="collapse" data-target="#a-<%= trip_budget.id %>" aria-expanded="false" aria-controls="<%= trip_budget.id %>">
-      <h3><%= trip_budget.budget.capitalize_name %></h3>
+      <h2 class='symbol'><%=raw trip_budget.budget.symbol %></h2>
       <%= render 'shared/budget_bar', trip_budget: trip_budget %>
     </button>
     <div class="collapse" id="a-<%= trip_budget.id%>">
