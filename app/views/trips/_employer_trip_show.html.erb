@@ -33,11 +33,6 @@
       <% if current_user.manager %>
         <%= link_to "Delete this trip", trip_path(@trip), method: :delete, class: "btn btn-approve w-30" %>
       <% end %>
-      <% if current_user.manager %>
-        <%= link_to "Go Back", employer_dashboard_path, class: "btn btn-approve w-30" %>
-      <% else %>
-        <%= link_to "Go Back", employer_dashboard_path, class: "btn btn-approve w-30" %>
-      <% end %>
     </div>
     <div class="w-100 border"></div>
     <h3 class="my-3 text-center">Trip Receipts</h3>
