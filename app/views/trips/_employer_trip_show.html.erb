@@ -10,39 +10,34 @@
         <div class="trip-total">
           Total spent: <%= number_to_currency(@trip.total_spent, unit: "￥", separator: ",", precision: 0)%>
         </div>
+        <div class="trip-total">
+          <p>Remaining Budget: <%= number_to_currency(@trip.total_remaining, unit: "￥", separator: ",", precision: 0) %> (<%=@trip.budget_percent%>%)</p>
+        </div>
         <a id="collapse-link" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
         </a>
       </div>
       <div class="collapse" id="collapseExample">
-        <div class="card card-body">
-          <p>Destination : <%= @trip.destination %></p>
-          <p>Start Date : <%= @trip.start_date %></p>
-          <p>End Date : <%= @trip.end_date %></p>
-          <p>Purpose : <%= @trip.purpose  %></p>
-          <p>Customer : <%= @trip.customer %></p>
-          <ul class="pl-0 mt-1"><strong>Employees :</strong>
-            <% @trip.users.each do |user| %>
-              <p class="mt-1"><strong><%= link_to [user.first_name, user.last_name].join(" "), user_show_path(user)%></strong>, <%= user.job_title %></p>
-            <% end %>
-          </ul>
+        <div class="trip-collapse">
+          <%= render 'collapse', trip: @trip %>
         </div>
       </div>
     </div>
       <ul class="pl-0">
-
-    <%= link_to "Add a receipt", new_trip_receipt_path(@trip), class: "btn btn-approve w-30" %>
-    <%= link_to "Generate report pdf", report_path(format: :pdf), class: "btn btn-approve w-30" %>
-    <%= link_to "Edit this trip", edit_trip_path, class: "btn btn-approve w-30" %>
-    <% if current_user.manager %>
-      <%= link_to "Delete this trip", trip_path(@trip), method: :delete, class: "btn btn-approve w-30" %>
-    <% end %>
-    <% if current_user.manager %>
-      <%= link_to "Go Back", employer_dashboard_path, class: "btn btn-approve w-30" %>
-    <% else %>
-      <%= link_to "Go Back", employer_dashboard_path, class: "btn btn-approve w-30" %>
-    <% end %>
-
-    <h3 class="mt-3">Trip Receipts</h3>
+    <div class="nav-btns d-flex justify-content-around">
+      <%= link_to "Add a receipt", new_trip_receipt_path(@trip), class: "btn btn-approve w-30" %>
+      <%= link_to "Generate report pdf", report_path(format: :pdf), class: "btn btn-approve w-30" %>
+      <%= link_to "Edit this trip", edit_trip_path, class: "btn btn-approve w-30" %>
+      <% if current_user.manager %>
+        <%= link_to "Delete this trip", trip_path(@trip), method: :delete, class: "btn btn-approve w-30" %>
+      <% end %>
+      <% if current_user.manager %>
+        <%= link_to "Go Back", employer_dashboard_path, class: "btn btn-approve w-30" %>
+      <% else %>
+        <%= link_to "Go Back", employer_dashboard_path, class: "btn btn-approve w-30" %>
+      <% end %>
+    </div>
+    <div class="w-100 border"></div>
+    <h3 class="my-3 text-center">Trip Receipts</h3>
     <div class="row">
       <% @trip.receipts.each do |receipt| %>
         <article class="receipt" style="margin-bottom:150px;">
