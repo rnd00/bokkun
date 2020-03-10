@@ -245,13 +245,13 @@ puts "...finished with connections"
 
 puts "\nGenerating 2 receipts for yamada..."
 # get all 4 budgets instances
-food = yamada.trips.last.budgets.find_by(name: 'food')
-trav = yamada.trips.last.budgets.find_by(name: 'travel')
-acco = yamada.trips.last.budgets.find_by(name: 'accomodation')
-misc = yamada.trips.last.budgets.find_by(name: 'miscellaneous')
+Food = yamada.trips.last.budgets.find_by(name: 'Food')
+trav = yamada.trips.last.budgets.find_by(name: 'Travel')
+acco = yamada.trips.last.budgets.find_by(name: 'Accomodation')
+misc = yamada.trips.last.budgets.find_by(name: 'Miscellaneous')
 
 # defining all the trip-budget types
-yamada_food = yamada.trips.last.trip_budgets.find_by(budget: food)
+yamada_Food = yamada.trips.last.trip_budgets.find_by(budget: Food)
 yamada_trav = yamada.trips.last.trip_budgets.find_by(budget: trav)
 yamada_acco = yamada.trips.last.trip_budgets.find_by(budget: acco)
 yamada_misc = yamada.trips.last.trip_budgets.find_by(budget: misc)
@@ -260,9 +260,9 @@ yamada_misc = yamada.trips.last.trip_budgets.find_by(budget: misc)
 START = yamada.trips.last.start_date
 
 # template = receipt_gen(company, total, date, tax, user, trip_budget)
-konbini = receipt_gen("Convenience Store", "1230", START + 1, 10, yamada, yamada_food)
-distillery = receipt_gen("Omary's Umeshu Distillery", "3300", START + 1, 10, yamada, yamada_food)
-bar = receipt_gen("Bar Heise & Warren", "3700", START + 2, 10, yamada, yamada_food)
+konbini = receipt_gen("Convenience Store", "1230", START + 1, 10, yamada, yamada_Food)
+distillery = receipt_gen("Omary's Umeshu Distillery", "3300", START + 1, 10, yamada, yamada_Food)
+bar = receipt_gen("Bar Heise & Warren", "3700", START + 2, 10, yamada, yamada_Food)
 
 train_one = receipt_gen("Train (Shinjuku - Chiba)", "814", START, 10, yamada, yamada_trav)
 train_two = receipt_gen("Train (Chiba - Shinjuku)", "814", START + 2, 10, yamada, yamada_trav)
@@ -278,7 +278,7 @@ puts "...finished with receipts generation!"
 # GENERATE RECEIPT ITEMS
 # ============================================================================
 
-puts "\nGenerating items on Yamada's food receipts..."
+puts "\nGenerating items on Yamada's Food receipts..."
 
 # template = items_gen(name, amt, tax, receipt)
 gyudon = items_gen('Gyudon', 450, 10, konbini)
@@ -339,7 +339,7 @@ puts "\nGenerating receipts..."
 Trip.all.each do |trip|
   trip.trip_budgets.each do |trip_budget|
     (trip.length).times do
-      if trip_budget.budget.name == "accomodation"
+      if trip_budget.budget.name == "Accomodation"
         Receipt.create!(
           company: ['Comfort Inn', 'Tokyo Hotel'].sample,
           date: trip.start_date + rand(0..(trip.end_date - trip.start_date).to_i),
@@ -347,7 +347,7 @@ Trip.all.each do |trip|
           total_amount: 1000,
           trip_budget: trip_budget
           )
-      elsif trip_budget.budget.name == "travel"
+      elsif trip_budget.budget.name == "Travel"
         Receipt.create!(
           company: ['JR', 'Kanto Bus', 'Keisei Electric Railway'].sample,
           date: trip.start_date + rand(0..(trip.end_date - trip.start_date).to_i),
@@ -371,14 +371,14 @@ puts "...finished!"
 
 puts "\nGenerating receipt items..."
 Receipt.all.each do |receipt|
-  if receipt.budget.name == 'accomodation'
+  if receipt.budget.name == 'Accomodation'
     item = ReceiptItem.create!(
         name: ['Single room', 'Double'].sample,
         tax: [8, 10].sample,
         receipt: receipt,
         amount: rand(1..5) * 3000
       )
-  elsif receipt.budget.name == 'travel'
+  elsif receipt.budget.name == 'Travel'
     item = ReceiptItem.create!(
         name: ['Train', 'Shinkansen', 'Express Buss'].sample,
         tax: [8, 10].sample,

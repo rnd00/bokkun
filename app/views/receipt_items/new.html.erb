@@ -1,6 +1,6 @@
 <%= render 'shared/side-bar' if current_user.manager %>
 <div class="container employer-content">
-  <%= cl_image_tag @receipt.photo.key, height: 300, width: 400, crop: :fill if @receipt.photo.attached? %>
+  <p style="text-align:center;"><%= cl_image_tag @receipt.photo.key, height: 300, width: 400, crop: :fill if @receipt.photo.attached? %></p>
   <h1 style="text-align:center;">ADD AN ITEM</h1>
   <%= simple_form_for [@receipt, @receipt_item], html: {class: "form-style" } do |f| %>
     <%= f.input :name %>
