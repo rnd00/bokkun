@@ -21,6 +21,7 @@ class OCR
     a.each do |value|
       b << value.scan(/\d+/).map(&:to_i)
     end
+    raise
     b.sort[-2][0]
   end
 end
