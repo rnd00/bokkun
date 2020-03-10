@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "bokkun",
+  "private_key_id": "4d1fc186402ac6fb99b93dc11e8ce5d220e356bf",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQCO4GoK6FbzRfZ6\nUkzbym7z7jqrHRnGUeQfHSJgn/NNnuOc3auQs4IFtH/ipvAIcPCfvXf9C3n+XO6p\n1nUn1YL/VFcn7CBIb0VukMNT7H7epFtgMdifh/67YN0aYW5GCbr5x5OQ6ajHvGYS\nMtsA1XNBG16aIWjKjhdwiCU5h5aOewnfKgW3J/JJHw9siI9PCzpzWc40wZU7PV+R\np1afC45bJLYY2vufLiYTtD0HCb49UP7+yoDGyGwGW4n4z4l8uIOgCSMKrM+MMvGt\nt707S0yVcyMmKaSzHRvhoixf7mxaaUfzXrJHQBfcuV8iPtLYyeagn89xk4OTuzNM\nq8GAjNTTAgMBAAECggEAC8sPRbY20x6/wQoBCRVVAjJ0SkJ9KacBxuWvPD2Hpi0K\nyZxseGWwwkrLUYiJAJFd8zl+6Xaki6/dDUzD39VaWjv6c7OkWIZCu2UcklVPhY4Y\ncsC6ijR9/LZ6mZ5YLVTJR6vHDOuUgGQXIsJq3E9CE6owLVW7ohiHa8T5GZ4M+daj\nf3KRzSKmYbBL4md+n637Q4x0etP/oMpBJb9Es9j2iZGvMnlL0P31tjkAr1zWGYkr\nIDkUikg92B8HPwjhS9BewkuiWaMUxBSqQEfXYrkLfwtTPpSObnLvpR2NLp4Wcq8V\nOjG530B7tq+9EFCgO7XaGQ2CgJE57N0IUYL0HsCCMQKBgQDBVWvUpaQHxNu47QP0\n5HWJbKspGenhATk+54FTF0jsY1/m/4xVX7QvgZR8iSplkckglCi0TYS8kl0j5XRp\nORmr1PHLzFbJDnE+fWkxZ8/Wi36/1XyFhHwGheXDhlxIHbir4g7JUKrJkatvNTBS\nKUhBPSYFVkZIE0dgkidx7tojowKBgQC9MCGnv2kC8Yy785wfOSxf0QGaU0EGptHl\nXg4kIZRg93NgC5ViobthEK6s28lFfHRE2tPtHDY3NXwM9hR6pOMs8f8muTFajhAl\nz3QdG7PENtOOE7VhGrxWc0U7t+MQEGqrMr+1zo3IbcTbXHLf+wIRt9NxRouPBk+Q\ncvMpUk0dEQKBgBaTiA0D7rytg0779ntRdlw+4VniWcpZnzq2RAbU8EISdK9/5f5O\nN7dYdWN5jQbhWFBCnOI5LyfqG5BGiiqDbXkAW+AFk5jU4+p9MJyBV+bg0UNLhcf9\nqZIFbsg/V2VgeyEvO7TMg7UYGqHY3zSo93QO1PLImVpvTeV8C7klQDnrAoGBAISW\neN/Ba+0eME2A24eeYBT+u6rWchohS7T+B9cWmZCjm35SX+1x/4p1UJXgqtxB7pJa\n8m+Yd/6VQ00qIQwbBwN2ziTrYUVfjr2Q+IV15rS63+UQtutI+3ly67CAnWeiub8l\nn+ngyskO9Qnvbqq+laKpPEyE7kXcXGKVzQjGnzihAoGAMOB159aFp7H0HRLVga90\nexPIHOLFqHT8R3KMGgv9ocUhgwCOnHDdvWhlr3GgoYjXpJKSty4SeUU9gYMNYmH7\nZfcu6HFkMADNvbY4Dv16ikWnE0AUHJVDolqwOkf88yXJxxdG+a73YXIiCUUTJepN\n5cfQT64dsTWewweSIuBSTVQ=\n-----END PRIVATE KEY-----\n",
+  "client_email": "bokkun@bokkun.iam.gserviceaccount.com",
+  "client_id": "112713232859355341286",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/bokkun%40bokkun.iam.gserviceaccount.com"
+}
