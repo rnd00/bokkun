@@ -3,10 +3,16 @@
   <%= f.input :destination, class: "form-control"  %>
   <%= f.input :purpose, class: "form-control" %>
   <%= f.input :customer, class: "form-control" %>
-  <%= f.input :start_date, class: "form-control" %>
-  <%= f.input :end_date, class: "form-control" %>
-  <%= f.association :users,  as: :check_boxes, label: "Employees", label_method: lambda {|employee| "#{employee.first_name} #{employee.last_name} - #{employee.job_title}"}, include_hidden: false %>
-  <%= f.association :budgets,  as: :check_boxes, label: "Budgets", label_method: lambda {|budget| "#{budget.name} - #{number_to_currency(budget.amount, unit: "￥", separator: ",", precision: 0)}"}, include_hidden: false %>
+   <div class="row justify-content-between">
+    <div class="col-md-6">
+      <%= f.input :start_date, as: :string, class: "form-control", input_html: {class: "datepicker"} %>
+    </div>
+    <div class="col-md-6">
+      <%= f.input :end_date, as: :string, class: "form-control", input_html: {class: "datepicker"} %>
+    </div>
+  </div>
+  <%= f.association :users, label: "Employees", label_method: lambda {|employee| "#{employee.first_name} #{employee.last_name} - #{employee.job_title}"}, include_hidden: false, input_html: {class: "select2"}  %>
+  <%= f.association :budgets, as: :check_boxes, label: "Allowances", label_method: lambda {|budget| "#{budget.name}"}, include_hidden: false %>
   <%= f.button :submit, class: "btn btn-approve w-30" %>
   <%= link_to "Go back", :back, class: "btn btn-approve w-30" %>
 <% end %>
