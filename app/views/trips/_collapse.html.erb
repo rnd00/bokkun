@@ -1,0 +1,25 @@
+<h5>
+  <% if trip.users.length == 1 %>
+    <strong><%= link_to [trip.users.first.first_name, trip.users.first.last_name].join(" "), user_show_path(trip.users.first)%></strong>
+  <% elsif trip.users.length == 4 %>
+    <% trip.users.first(3).each do |user| %>
+      <strong><%= link_to [user.first_name, user.last_name].join(" "), user_show_path(user)%></strong>,
+    <% end %>
+    and one other are
+  <% elsif trip.users.length >= 5  %>
+    <% trip.users.first(3).each do |user| %>
+      <strong><%= link_to [user.first_name, user.last_name].join(" "), user_show_path(user)%></strong>,
+    <% end %>
+    and <%= (trip.users.length - 3) %>  others are
+  <% else %>
+    <% trip.users.each do |user| %>
+      <% if user == trip.users[-1] %>
+        and <strong><%= link_to [user.first_name, user.last_name].join(" "), user_show_path(user)%></strong> are
+      <% elsif trip.users.length > 2 && user != trip.users[-2] %>
+        <strong><%= link_to [user.first_name, user.last_name].join(" "), user_show_path(user)%></strong>,
+      <% else %>
+        <strong><%= link_to [user.first_name, user.last_name].join(" "), user_show_path(user)%></strong>
+      <% end %>
+    <% end %>
+  <% end %>
+  visting <%= trip.customer %> in <%= trip.destination %> with the purpose of <%= trip.purpose  %></h5>
