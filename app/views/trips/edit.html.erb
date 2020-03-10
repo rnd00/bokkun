@@ -1,11 +1,6 @@
 <%= render 'shared/side-bar' %>
 
-<div class="container">
-  <h1>EDIT A TRIP</h1>
+<div class="container employer-content">
+    <h1 style="text-align:center;">EDIT A TRIP</h1>
   <%= render 'form' %>
-  <% if current_user.manager %>
-    <%= link_to "Go back", trip_path(@trip), class: "btn btn-approve w-30" %>
-  <% else %>
-    <%= link_to "Go back", trip_path(@trip), class: "btn btn-approve w-30" %>
-  <% end %>
 </div>
