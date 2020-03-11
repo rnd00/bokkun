@@ -4,10 +4,12 @@
       <p>Please enter each item from your receipt below.</p>
     </div>
   <% end %>
+  <div id="new-item-form">
+    <%= render 'receipt_items/form', receipt: @receipt, receipt_item: @receipt_item %>
+  </div>
   <table class="table table-hover receipt-table">
-    <thead>
-      <%= render 'receipt_items/form', receipt: @receipt, receipt_item: @receipt_item %>
-      <tr style="border-bottom: 3px solid black;">
+    <thead id="receipt-table-head">
+      <tr id="head-row" style="border-bottom: 3px solid black;">
         <th width="50%">Item</th>
         <th width="20%">Tax</th>
         <th width="25%">Price</th>
@@ -29,7 +31,7 @@
             <%= link_to edit_receipt_item_path(item), class: "btn btn-table-edit" do %>
               <i class="fas fa-pencil-alt"></i>
             <% end %>
-          <td style="text-align: center;" class="btn-td center" colspan="2" width="50%">
+          <td style="text-align: center;" class="btn-td center" width="50%">
             <%= link_to receipt_item_path(item), method: :delete, class: "btn btn-table-delete" do %>
               <i class="fas fa-trash"></i>
             <% end %>
@@ -43,9 +45,9 @@
         <td width="5%"></td>
       </tr>
       <tr>
-        <td width="45%" style="text-align: right;"><b>Total: </b></td>
-        <td width="50%" <%=raw 'style=color: red' if receipt.all_items? %>><%= number_to_currency(receipt.total, unit: "￥", separator: ",", precision: 0) %> / <%= number_to_currency(receipt.total_amount, unit: "￥", separator: ",", precision: 0) %></td>
-        <td width="5"></td>
+        <td width="45%" style="text-align: right; border-top: none;"><b>Total: </b></td>
+        <td width="50%" style="text-align: center; border-top: none;" <%=raw 'style=color: red' if receipt.all_items? %>><%= number_to_currency(receipt.total, unit: "￥", separator: ",", precision: 0) %> / <%= number_to_currency(receipt.total_amount, unit: "￥", separator: ",", precision: 0) %></td>
+        <td width="5" style="border-top: none;"></td>
       </tr>
     </tbody>
   </table>
