@@ -2,6 +2,7 @@ import "bootstrap";
 import { toggleReceipt } from '../receiptEmployer/receipt-ticket';
 import { employeeNavbarToggle } from '../employeeNavbar/toggle';
 import '../plugins/flatpickr'
+import { submitButton } from '../loadingOcr/loading_ocr'
 
 // Select2 requirements
 import {initSelect2} from '../plugins/init_select2'
