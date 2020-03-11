@@ -1,5 +1,29 @@
 <%= render 'shared/side-bar' %>
 <div class="container employer-content">
   <h1 style="text-align:center;">New Trip Assignment</h1>
+  <% @cal_items = GoogleCal.get_cal %>
+  <% if @cal_items %>
+    <div class="container">
+      <div class="items">
+        <div class="items-head">
+          <p>GCal Import</p>
+          <hr>
+        </div>
+        <div class="items-body">
+          <% @cal_items.each do |cal_item| %>
+            <div class="items-body-content">
+              <a class="cal-item" id="cal-name"> <%= cal_item.summary %> </a>
+              <i class="fa fa-angle-right"></i>
+            <div class="d-none cal-desc"><%= cal_item.description %></div>
+            <div class="d-none cal-location"><%= cal_item.location %></div>
+            <div class="d-none cal-start"><%= cal_item.start.date %></div>
+            <div class="d-none cal-end"><%= cal_item.end.date %></div>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  <% end %>
   <%= render 'form' %>
 </div>
+

@@ -2,7 +2,7 @@
   <%= f.input :company %>
   <%= f.input :date, as: :string, input_html: {class: "datepicker", value: Date.today} %>
   <%= f.input :total_amount, as: :hidden %>
-  <%= f.association :trip_budget, collection: trip.trip_budgets, label_method: lambda {|trip_budget| "#{trip_budget.budget.name}"}, include_blank: false %>
+  <%= f.association :trip_budget, collection: trip.trip_budgets, label_method: lambda {|trip_budget| "#{trip_budget.budget.name}"}, include_blank: false, as: :radio_buttons %>
   <%= f.input :photo, as: :file  %>
   <%= button_tag type: :submit, class: "btn btn-approve w-30 submit-button" do %>
     Add the receipt

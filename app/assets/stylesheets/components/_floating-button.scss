@@ -1,23 +1,38 @@
-.float{
+.float {
   position:fixed;
   width:60px;
   height:60px;
   bottom:40px;
   right:40px;
-  color: $yellow;
   text-align:center;
   font-size: 24px;
   z-index: 10;
+}
+
+.float-check {
+  position:fixed;
+  width:60px;
+  height:60px;
+  bottom:40px;
+  right:40px;
+  text-align:center;
+  z-index: 10;
+}
+
+.my-float-check {
+  margin-top: 4px;
+  margin-left: 0px;
+  z-index: 10;
+  font-size: 40px !important;
+}
+
+.halo {
   background-color: $blue;
   border-radius: 50%;
 }
 
-.my-float{
+.my-float-receipt {
   margin-top: 18px;
   margin-left: 8px;
   z-index: 10;
-
-  i {
-    font-size: 36px;
-  }
 }

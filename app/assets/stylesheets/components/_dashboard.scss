@@ -8,6 +8,11 @@
   // max-height: 150px;
 }
 
+.title {
+  display: flex;
+  flex-wrap: flex;
+}
+
 .dash-stats{
   // margin-left: $spacer * 2;
   // border: 2px solid $blue;
@@ -20,3 +25,16 @@
     margin-bottom: 0;
   }
 }
+
+@media screen and (max-width: 1000px) {
+  .dash-container {
+    display: flex;
+    flex-wrap: wrap;
+  }
+}
+
+// @media screen and (max-width: 800) {
+//   .title {
+//     display: block !important;
+//   }
+// }

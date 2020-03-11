@@ -1,16 +1,16 @@
-<%= simple_form_for [@receipt, @receipt_item], html: {class: "form-style m-0 p-0"} do |f| %>
-  <table>
-    <tbody>
-      <tr>
-        <td colspan="1"><%= f.input :name, label: false, placeholder: 'item' %></td>
-        <td colspan="1"><%= f.input :amount, label: false, placeholder: 'amount' %></td>
-        <td colspan="2"><%= f.input :tax, as: :radio_buttons, collection: [[8, '8%'], [10, '10%']], label: false, label_method: :second, value_method: :first %></td>
-        <td>
-          <%= button_tag type: 'submit', class: "btn btn-approve m-0" do %>
-            <i class="fas fa-plus p-2"></i>
-          <% end %>
-        </td>
-      </tr>
-    </tbody>
-  </table>
+<%= simple_form_for([receipt, receipt_item], remote: true, html: {class: "form-style m-0 p-0"}) do |f| %>
+  <div class="form-row mt-3 receipt-input">
+    <div class="col-5">
+      <%= f.input :name, label: false, placeholder: 'item' %>
+    </div>
+    <div class="col-3">
+      <%= f.input :tax, as: :radio_buttons, collection: [[8, '8%'], [10, '10%']], label: false, label_method: :second, value_method: :first %>
+    </div>
+    <div class="col-3">
+      <%= f.input :amount, label: false, placeholder: 'price' %>
+    </div>
+  </div>
+  <%= button_tag type: 'submit', class: "btn btn-approve m-0" do %>
+    <i class="fas fa-plus p-2"></i>
+  <% end %>
 <% end %>

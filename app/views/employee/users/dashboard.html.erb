@@ -1,5 +1,11 @@
-<div class="mobile-wrapper">
-  <%= render 'shared/employee_heading', current_trip: current_user.current_trip %>
-  <%= render 'receipts/employee_receipt_index', current_trip: current_user.current_trip %>
-  <%= render 'shared/floating_button', current_trip: current_user.current_trip %>
-</div>
+<% if current_user.current_trip.nil? %>
+  <div class="container mt-5">
+    <p>Your employer hasn't assigned any trips yet.</p>
+  </div>
+<% else %>
+  <div class="mobile-wrapper">
+    <%= render 'shared/employee_heading', current_trip: current_user.current_trip %>
+    <%= render 'receipts/employee_receipt_index', current_trip: current_user.current_trip %>
+    <%= render 'shared/floating_button', current_trip: current_user.current_trip %>
+  </div>
+<% end %>

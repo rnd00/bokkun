@@ -3,7 +3,7 @@ class Trip < ApplicationRecord
   has_many :trip_budgets, dependent: :destroy
   has_many :users, through: :trip_users
   has_many :budgets, through: :trip_budgets
-  has_many :receipts, through: :trip_budgets
+  has_many :receipts, through: :trip_budgets, dependent: :destroy
 
   validates :destination, :purpose, :customer, :start_date, :end_date, presence: true
 
@@ -39,7 +39,18 @@ class Trip < ApplicationRecord
     self.budgets.map { |budget| budget.name }
   end
 
+  # this go by only taking the receipt's total_amount (faster)
   def self.total_spend(days)
+    result = {}
+    query = Trip.joins(receipts: :budget).select('budgets.name, SUM(receipts.total_amount) AS total').group('budgets.name').where("start_date > ?", (Date.today - days))
+    query.map do |element|
+      result[element[:name]] = element[:total]
+    end
+    result
+  end
+
+  # this go by getting sum of the receipt items' price (lags)
+  def self.old_total_spend(days)
     @trips = Trip.where("start_date > ?", (Date.today - days))
     @spend = {}
     @trips.each do |trip|
@@ -54,7 +65,16 @@ class Trip < ApplicationRecord
     @spend
   end
 
+  # this go with only one queries
   def self.location_spend
+    query = Trip.joins(:receipts).select('destination, SUM(total_amount) AS total').group(:destination).order(total: :desc).limit(5)
+    query.map do |element|
+      { name: element[:destination], data: { total: element[:total] } }
+    end
+  end
+
+  # n+1 problems described by adil's friend
+  def self.old_location_spend
     @trip_budgets = TripBudget.all
     @spend = {}
     @trip_budgets.each do |trip_budget|
