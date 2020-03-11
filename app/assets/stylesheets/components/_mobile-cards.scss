@@ -6,6 +6,7 @@
   position: relative;
   bottom: 50px;
   margin-top: 28px;
+  margin-left: 0;
 }
 
 .mobile-card {
@@ -36,10 +37,14 @@
 .symbol {
   background-color: $blue;
   border-radius: 12px;
-  height: 56px;
-  width: 56px;
+  height: 72px;
+  width: 72px;
   padding: $spacer;
   color: $off-white;
   margin-right: -2px;
   margin-bottom: 0;
+  i {
+    margin-top: 4px;
+    font-size: 48px;
+  }
 }

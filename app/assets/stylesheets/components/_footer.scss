@@ -42,3 +42,9 @@
   color: $off-white;
   font-size: 1vw;
 }
+
+@media screen and (max-width: 700px) {
+  .footer-copyright {
+    display: none;
+  }
+}
