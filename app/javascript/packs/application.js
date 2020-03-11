@@ -7,14 +7,22 @@ import { autoSubmitPhoto } from '../plugins/submit_photo';
 // Select2 requirements
 import {initSelect2} from '../plugins/init_select2'
 import 'select2/dist/css/select2.css';
-
 // Collapse toggle
 import {collapseToggle} from '../plugins/collapse_toggle'
+// GCal Autofil
+import {calAutofill} from '../plugins/cal-autofill'
 
 initSelect2();
 if(document.querySelector("#employeeNavbarToggle")){
   employeeNavbarToggle();
 }
 toggleReceipt();
-collapseToggle();
+if(document.getElementById("collapse-link")){
+  collapseToggle();
+}
+
+if(document.querySelectorAll('.items-body-content')){
+calAutofill();
+}
+
 autoSubmitPhoto();
