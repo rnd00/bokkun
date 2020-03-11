@@ -1,11 +1,8 @@
 <div class="mobile-wrapper">
   <%= render 'receipts/employee_receipt_heading', receipt: @receipt %>
-  <div class="container receipt-container">
-    <%= cl_image_tag @receipt.photo.key, effect: "trim:20" if @receipt.photo.attached? %>
-  </div>
-  <% if @receipt.receipt_items.empty? %>
-    <div class="container">
-      <p>Please enter each item from your receipt below.</p>
+  <% if @receipt.photo.attached? %>
+    <div class="container receipt-container">
+      <%= cl_image_tag @receipt.photo.key, effect: "trim:20" if @receipt.photo.attached? %>
     </div>
   <% else %>
     <%= simple_form_for [@receipt.trip, @receipt ], html: {class: "form-style form_submit_photo" } do |f| %>
@@ -17,8 +14,8 @@
   <% end %>
   <%= render 'receipts/employee_receipt_item_list', receipt: @receipt %>
   <%= link_to trip_path(@receipt.trip) do %>
-    <div class="new-button">
-      <i class="far fa-check-circle"></i>
+    <div class="new-button float">
+      <i class="far fa-check-circle my-float"></i>
     </div>
   <% end %>
 </div>
