@@ -24,6 +24,6 @@ var updateTotal = (totalValue) => {
 <% else %>
   addReceiptItem('<%= j render "receipt_items/row", item: @receipt_item %>');
   refreshForm('<%= j render "receipt_items/form", receipt: @receipt, receipt_item: ReceiptItem.new %>');
-  updateTotalTax('<%= @receipt.total_tax %>');
-  updateTotal('<%= @receipt.total %>' );
+  updateTotalTax('<%= number_to_currency(@receipt.total_tax, unit: "￥", separator: ",", precision: 0) %>');
+  updateTotal('<%= number_to_currency(@receipt.total, unit: "￥", separator: ",", precision: 0) %>' );
 <% end %>

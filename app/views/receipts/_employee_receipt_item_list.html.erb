@@ -50,7 +50,7 @@
           <div id="receipt-total">
             <%= number_to_currency(receipt.total, unit: "￥", separator: ",", precision: 0) %>
           </div>
-          <div class="d-flex"> / <%= number_to_currency(receipt.total_amount, unit: "￥", separator: ",", precision: 0) %>
+          <div class="d-flex">&nbsp;/ <%= number_to_currency(receipt.total_amount, unit: "￥", separator: ",", precision: 0) %>
           </div>
         </td>
         <td width="5%" style="border-top: none;"></td>
