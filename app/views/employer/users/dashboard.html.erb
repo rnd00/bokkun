@@ -1,44 +1,48 @@
 <%= render 'shared/side-bar' %>
-<div class="container employer-content">
-  <div class="title d-flex m-3">
-    <div class="title-text">
-      <h1 class="m-auto">Dashboard</h1>
-    </div>
-    <div class="nav-btns">
-      <%= link_to "Create a new trip", new_trip_path, class: "btn btn-approve w-30 m-auto"  %>
-    </div>
+<div class="d-flex justify-content-center">
+  <div class="width-200">
   </div>
-  <!-- linebreak -->
-  <div class="w-100 border"></div>
-  <!-- linebreak -->
-  <div class="dash-container my-3 text-center justify-content-around">
-    <div class="dash-stats m-3">
-      <h3>Spending - 30 days</h3>
-      <%= pie_chart(Trip.total_spend(30), colors: ['#AD5A5D', '#2A3347', '#EFC125', '#96B4C2'], donut: true) %>
-    </div>
-    <div class="dash-stats m-3">
-      <h3> Top 5 locations</h3>
-      <% @location_spend = Trip.location_spend %>
-      <%= column_chart(@location_spend.first(5), colors: ['#2A3347', '#EFC125', '#96B4C2']) %>
-    </div>
-  </div>
-  <!-- linebreak -->
-  <div class="w-100 border"></div>
-  <!-- linebreak -->
-  <div class="trip my-3 text-center justify-content-around">
-    <div class="text-center m-auto">
-      <h3>Recent Trip</h3>
-    </div>
-    <div class="trip-img" style='background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url("https://source.unsplash.com/featured/?<%= @user.trips.last.destination %>}")'>
-      <%= @user.trips.last.destination %>
-      <div class="trip-dates">
-        <%= @user.trips.last.start_date.strftime("%a, %d %b") %> - <%= @user.trips.last.end_date.strftime("%a, %d %b") %>
+  <div class="container employer-content">
+    <div class="title m-3">
+      <div class="title-text">
+        <h1 class="m-auto">Dashboard</h1>
       </div>
-      <div class="trip-total">
-        <p>Total Budget: <%= number_to_currency(@user.trips.last.total_budget, unit: "￥", separator: ",", precision: 0) %></p>
-        <p>Remaining Budget: <%= number_to_currency(@user.trips.last.total_remaining, unit: "￥", separator: ",", precision: 0) %> (<%=@user.trips.last.budget_percent%>%)</p>
+      <div class="nav-btns">
+        <%= link_to "Add a new Business Trip", new_trip_path, class: "btn btn-approve w-30 m-auto"  %>
       </div>
-      <a id="collapse-link" href="/trips/<%= @user.trips.last.id %>" ></a>
+    </div>
+    <!-- linebreak -->
+    <div class="w-100 border"></div>
+    <!-- linebreak -->
+    <div class="dash-container my-3 text-center justify-content-around">
+      <div class="dash-stats m-3">
+        <h3>Spending - 30 days</h3>
+        <%= pie_chart(Trip.total_spend(30), colors: ['#AD5A5D', '#2A3347', '#EFC125', '#96B4C2'], donut: true) %>
+      </div>
+      <div class="dash-stats m-3">
+        <h3> Top 5 locations</h3>
+        <% @location_spend = Trip.location_spend %>
+        <%= column_chart(@location_spend, colors: ['#AD5A5D', '#2A3347', '#EFC125', '#96B4C2']) %>
+      </div>
+    </div>
+    <!-- linebreak -->
+    <div class="w-100 border"></div>
+    <!-- linebreak -->
+    <div class="trip my-3 text-center justify-content-around">
+      <div class="text-center m-auto">
+        <h3>Recent Trip</h3>
+      </div>
+      <div class="trip-img" style='background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url("https://source.unsplash.com/featured/?<%= @user.trips.last.destination %>}")'>
+        <%= @user.trips.last.destination %>
+        <div class="trip-dates">
+          <%= @user.trips.last.start_date.strftime("%a, %d %b") %> - <%= @user.trips.last.end_date.strftime("%a, %d %b") %>
+        </div>
+        <div class="trip-total">
+          <p>Total Budget: <%= number_to_currency(@user.trips.last.total_budget, unit: "￥", separator: ",", precision: 0) %></p>
+          <p>Remaining Budget: <%= number_to_currency(@user.trips.last.total_remaining, unit: "￥", separator: ",", precision: 0) %> (<%=@user.trips.last.budget_percent%>%)</p>
+        </div>
+        <a id="collapse-link" href="/trips/<%= @user.trips.last.id %>" ></a>
+      </div>
     </div>
   </div>
 </div>

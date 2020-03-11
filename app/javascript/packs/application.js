@@ -2,6 +2,8 @@ import "bootstrap";
 import { toggleReceipt } from '../receiptEmployer/receipt-ticket';
 import { employeeNavbarToggle } from '../employeeNavbar/toggle';
 import '../plugins/flatpickr'
+import { autoSubmitPhoto } from '../plugins/submit_photo';
+
 // Select2 requirements
 import {initSelect2} from '../plugins/init_select2'
 import 'select2/dist/css/select2.css';
@@ -22,3 +24,5 @@ if(document.getElementById("collapse-link")){
 if(document.querySelectorAll('.items-body-content')){
 calAutofill();
 }
+
+autoSubmitPhoto();

@@ -1,6 +1,12 @@
 <div class="container center">
+  <% if @receipt.receipt_items.empty? %>
+    <div class="container">
+      <p>Please enter each item from your receipt below.</p>
+    </div>
+  <% end %>
   <table class="table table-hover receipt-table">
     <thead>
+      <%= render 'receipt_items/form' %>
       <tr>
         <th width="50%">Item</th>
         <th width="25%">Tax</th>
