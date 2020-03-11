@@ -1,7 +1,7 @@
 class TripBudget < ApplicationRecord
   belongs_to :trip
   belongs_to :budget
-  has_many :receipts, dependent: :destroy
+  has_many :receipts
 
   def total_remaining
     self.total_amount - self.receipts.reduce(0) { |total, receipt| total + receipt.total }
