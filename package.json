@@ -11,6 +11,7 @@
     "moment-timezone": "^0.5.28",
     "popper.js": "^1.16.1",
     "select2": "^4.0.13",
+    "sweetalert": "^2.1.2",
     "tempusdominus-core": "^5.0.3",
     "webpack": "^4.42.0"
   },

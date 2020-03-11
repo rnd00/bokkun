@@ -1,21 +1,21 @@
 <div class="mobile-wrapper">
   <%= render 'receipts/employee_receipt_heading', receipt: @receipt %>
-  <div class="container receipt-container">
-    <%= cl_image_tag @receipt.photo.key, effect: "trim:20" if @receipt.photo.attached? %>
-  </div>
-  <div class="container">
-    <%= render 'receipt_items/form' %>
-  </div>
-  <% if @receipt.receipt_items.empty? %>
-    <div class="container">
-      <p>Please enter each item from your receipt below.</p>
+  <% if @receipt.photo.attached? %>
+    <div class="container receipt-container">
+      <%= cl_image_tag @receipt.photo.key, effect: "trim:20" if @receipt.photo.attached? %>
     </div>
   <% else %>
-    <%= render 'receipts/employee_receipt_item_list', receipt: @receipt %>
+    <%= simple_form_for [@receipt.trip, @receipt ], html: {class: "form-style form_submit_photo" } do |f| %>
+      <div class="container mt-5">
+        <p>Please add a photo of the receipt.</p>
+        <%= f.input :photo, label: false, as: :file, input_html: { id: :submit_photo } %>
+      </div>
+    <% end %>
   <% end %>
+  <%= render 'receipts/employee_receipt_item_list', receipt: @receipt %>
   <%= link_to trip_path(@receipt.trip) do %>
-    <div class="new-button">
-      <i class="far fa-check-circle"></i>
+    <div class="new-button float-check halo">
+      <i class="fas fa-check my-float-check yellow"></i>
     </div>
   <% end %>
 </div>

@@ -23,3 +23,4 @@
     <% end %>
   <% end %>
   visting <%= trip.customer %> in <%= trip.destination %> with the purpose of <%= trip.purpose  %></h5>
+  <%= link_to "Delete this trip", trip_path(trip), method: :delete, class: "btn btn-approve w-30" %>

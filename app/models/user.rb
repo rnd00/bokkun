@@ -16,6 +16,6 @@ class User < ApplicationRecord
   end
 
   def current_trip
-    self.trips.order(start_date: :desc).first
+    trip = self.trips.order(start_date: :desc).first
   end
 end

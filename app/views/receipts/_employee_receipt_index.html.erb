@@ -15,7 +15,7 @@
                 <% trip_budget.receipts.each do |receipt| %>
                     <%= link_to receipt_path(receipt), class: "receipt-line" do %>
                       <div><p><%= receipt.company %></p></div>
-                      <div><p><%= receipt.total %></p></div>
+                      <div><p><%= number_to_currency(receipt.total, unit: "￥", separator: ",", precision: 0) %></p></div>
                     <% end %>
                 <% end %>
               <% end %>

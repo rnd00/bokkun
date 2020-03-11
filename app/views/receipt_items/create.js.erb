@@ -1,0 +1,29 @@
+var refreshForm = (innerHTML) => {
+  var newReceiptItemForm = document.getElementById('new-item-form');
+  newReceiptItemForm.innerHTML = innerHTML;
+}
+
+var addReceiptItem = (receiptItemHTML) => {
+  var receiptItem = document.getElementById('receipt-table-body').firstElementChild;
+  receiptItem.insertAdjacentHTML('beforebegin', receiptItemHTML);
+}
+
+var updateTotalTax = (totalTaxValue) => {
+  var totalTax = document.getElementById('receipt-total-tax');
+  console.log(totalTax);
+  totalTax.innerText = totalTaxValue;
+}
+
+var updateTotal = (totalValue) => {
+  var total = document.getElementById('receipt-total');
+  total.innerText = totalValue;
+}
+
+<% if @receipt_item.errors.any? %>
+  refreshForm('<%= j render "receipt_items/form", receipt: @receipt, receipt_item: @receipt_item %>');
+<% else %>
+  addReceiptItem('<%= j render "receipt_items/row", item: @receipt_item %>');
+  refreshForm('<%= j render "receipt_items/form", receipt: @receipt, receipt_item: ReceiptItem.new %>');
+  updateTotalTax('<%= number_to_currency(@receipt.total_tax, unit: "￥", separator: ",", precision: 0) %>');
+  updateTotal('<%= number_to_currency(@receipt.total, unit: "￥", separator: ",", precision: 0) %>' );
+<% end %>
