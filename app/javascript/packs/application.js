@@ -2,6 +2,7 @@ import "bootstrap";
 import { toggleReceipt } from '../receiptEmployer/receipt-ticket';
 import { employeeNavbarToggle } from '../employeeNavbar/toggle';
 import '../plugins/flatpickr'
+import { submitButton } from '../loadingOcr/loading_ocr'
 import { autoSubmitPhoto } from '../plugins/submit_photo';
 
 // Select2 requirements
@@ -17,6 +18,7 @@ if(document.querySelector("#employeeNavbarToggle")){
   employeeNavbarToggle();
 }
 toggleReceipt();
+submitButton();
 if(document.getElementById("collapse-link")){
   collapseToggle();
 }
