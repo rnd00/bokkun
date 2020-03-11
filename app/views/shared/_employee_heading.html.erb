@@ -1,17 +1,13 @@
 <div class='mobile-heading'>
   <div class="heading-text">
-    <% if current_user.current_trip.nil? %>
-      <h4>No trips yet!</h4>
-      <% else %>
-        <% if current_user.current_trip.end_date >= Date.today %>
-          <h4>Ongoing trip to</h4>
-        <% else %>
-          <h4><%= current_user.current_trip.start_date.strftime("%m/%d/%y") %> &#8212;
-     <%= current_user.current_trip.end_date.strftime("%m/%d/%y") %> </h4>
-      <% end %>
-      <h1><%= current_trip.destination %></h1>
-      <h4>visiting <%= current_trip.customer %></h4>
+    <% if current_user.current_trip.end_date >= Date.today %>
+      <h4>Ongoing trip to</h4>
+    <% else %>
+      <h4><%= current_user.current_trip.start_date.strftime("%m/%d/%y") %> &#8212;
+ <%= current_user.current_trip.end_date.strftime("%m/%d/%y") %> </h4>
     <% end %>
+    <h1><%= current_trip.destination %></h1>
+    <h4>visiting <%= current_trip.customer %></h4>
   </div>
   <div class="budget">
     <p>Remaining Budget</p>
