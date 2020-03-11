@@ -12,10 +12,17 @@ class ReceiptItemsController < ApplicationController
     @receipt_item.receipt = @receipt
     authorize @receipt_item
     if @receipt_item.save
-      redirect_to receipt_path(@receipt_item.receipt)
+      respond_to do |format|
+        format.html { redirect_to receipt_path(@receipt_item.receipt) }
+        format.js  # <-- will render `app/views/reviews/create.js.erb`
+      end
     else
-      render :new
+      respond_to do |format|
+        format.html { render :new }
+        format.js  # <-- idem
+      end
     end
+
   end
 
   def edit

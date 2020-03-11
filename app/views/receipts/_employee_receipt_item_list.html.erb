@@ -6,14 +6,14 @@
   <% end %>
   <table class="table table-hover receipt-table">
     <thead>
-      <%= render 'receipt_items/form' %>
+      <%= render 'receipt_items/form', receipt: @receipt, receipt_item: @receipt_item %>
       <tr>
         <th width="50%">Item</th>
         <th width="25%">Tax</th>
         <th width="25%">Price</th>
       </tr>
     </thead>
-    <tbody>
+    <tbody id='receipt-table-body'>
       <% receipt.receipt_items.each do |item| %>
         <tr data-toggle="collapse" data-target="#a-<%= item.id %>" aria-expanded="false" aria-controls="<%= item.id %>">
           <td width="50%"><%= item.name %></td>
