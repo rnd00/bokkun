@@ -1,0 +1,16 @@
+function refreshForm(innerHTML) {
+  const newReceiptItemForm = document.getElementById('new-item-form');
+  newReceiptItemForm.innerHTML = innerHTML;
+}
+
+function addReceiptItem(receiptItemHTML) {
+  const receiptItem = document.getElementById('receipt-table-body').firstElementChild;
+  receiptItem.insertAdjacentHTML('beforebegin', receiptItemHTML);
+}
+
+<% if @receipt_item.errors.any? %>
+  refreshForm('<%= j render "receipt_items/form", receipt: @receipt, receipt_item: @receipt_item %>');
+<% else %>
+  addReceiptItem('<%= j render "receipt_items/row", item: @receipt_item %>');
+  refreshForm('<%= j render "receipt_items/form", receipt: @receipt, receipt_item: ReceiptItem.new %>');
+<% end %>
