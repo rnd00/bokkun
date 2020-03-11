@@ -4,10 +4,16 @@
   height:60px;
   bottom:40px;
   right:40px;
-  color: $yellow;
   text-align:center;
   font-size: 24px;
   z-index: 10;
+}
+
+.halo-sm {
+
+}
+
+.halo {
   background-color: $blue;
   border-radius: 50%;
 }

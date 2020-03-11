@@ -12,13 +12,10 @@
       </div>
     <% end %>
   <% end %>
-  <div class="container">
-    <%= render 'receipt_items/form' %>
-  </div>
   <%= render 'receipts/employee_receipt_item_list', receipt: @receipt %>
   <%= link_to trip_path(@receipt.trip) do %>
-    <div class="new-button">
-      <i class="far fa-check-circle"></i>
+    <div class="new-button float">
+      <i class="far fa-check-circle my-float"></i>
     </div>
   <% end %>
 </div>
