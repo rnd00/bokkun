@@ -19,7 +19,7 @@ class GoogleCal
   # the user's default browser will be launched to approve the request.
   #
   # @return [Google::Auth::UserRefreshCredentials] OAuth2 credentials
-  def authorize
+  def self.authorize
     client_id = Google::Auth::ClientId.from_file CREDENTIALS_PATH
     token_store = Google::Auth::Stores::FileTokenStore.new file: TOKEN_PATH
     authorizer = Google::Auth::UserAuthorizer.new client_id, SCOPE, token_store
@@ -44,7 +44,8 @@ class GoogleCal
     service.authorization = authorize
 
     # Fetch the next 10 events for the user
-    calendar_id = "primary"
+    # This is for demo day specific calendar, after change to 'primary' to use main cal
+    calendar_id = "bqpgbdu8nkn81v0l3edb2g5ft8@group.calendar.google.com"
     response = service.list_events(calendar_id,
                                    max_results:   5,
                                    single_events: true,
