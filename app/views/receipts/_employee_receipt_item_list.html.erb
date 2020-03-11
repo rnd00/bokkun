@@ -7,34 +7,45 @@
   <table class="table table-hover receipt-table">
     <thead>
       <%= render 'receipt_items/form', receipt: @receipt, receipt_item: @receipt_item %>
-      <tr>
+      <tr style="border-bottom: 3px solid black;">
         <th width="50%">Item</th>
-        <th width="25%">Tax</th>
+        <th width="20%">Tax</th>
         <th width="25%">Price</th>
+        <th width="5%"></th>
       </tr>
     </thead>
     <tbody id='receipt-table-body'>
       <% receipt.receipt_items.each do |item| %>
         <tr data-toggle="collapse" data-target="#a-<%= item.id %>" aria-expanded="false" aria-controls="<%= item.id %>">
           <td width="50%"><%= item.name %></td>
-          <td width="25%"><%= number_to_currency(item.tax_amount, unit: "￥", separator: ",", precision: 0) %></td>
+          <td width="20%"><%= number_to_currency(item.tax_amount, unit: "￥", separator: ",", precision: 0) %></td>
           <td width="25%"><%= number_to_currency(item.amount, unit: "￥", separator: ",", precision: 0) %></td>
+          <td width="5%">
+            <i class="fas fa-ellipsis-v"></i>
+          </td>
         </tr>
-        <tr class="collapse" id="a-<%= item.id %>">
-          <td class="btn-td" width="50%">
-            <%= link_to "Edit", edit_receipt_item_path(item), class: "btn btn-table-edit" %>
-          <td class="btn-td" colspan="2" width="50%">
-            <%= link_to "Delete", receipt_item_path(item), method: :delete, class: "btn btn-table-delete" %>
+        <tr class="collapse center" id="a-<%= item.id %>">
+          <td style="text-align: center;" class="btn-td" width="50%">
+            <%= link_to edit_receipt_item_path(item), class: "btn btn-table-edit" do %>
+              <i class="fas fa-pencil-alt"></i>
+            <% end %>
+          <td style="text-align: center;" class="btn-td center" colspan="2" width="50%">
+            <%= link_to receipt_item_path(item), method: :delete, class: "btn btn-table-delete" do %>
+              <i class="fas fa-trash"></i>
+            <% end %>
           </td>
         </tr>
       <% end %>
-      <tr>
-        <td colspan="2" width="50%" style="text-align: right;"><b>Total tax: </b></td>
-        <td><%= number_to_currency(receipt.total_tax, unit: "￥", separator: ",", precision: 0) %></td>
+      <tr style="border-top: 2px solid black;">
+        <td width="45%" style="text-align: right;"><b>Total tax: </b></td>
+        <td width="25%"></td>
+        <td width="25%" style="text-align: left;"><%= number_to_currency(receipt.total_tax, unit: "￥", separator: ",", precision: 0) %></td>
+        <td width="5%"></td>
       </tr>
       <tr>
-        <td colspan="2" width="50%" style="text-align: right;"><b>Total: </b></td>
-        <td <%=raw 'style=color: red' if receipt.all_items? %>><%= number_to_currency(receipt.total, unit: "￥", separator: ",", precision: 0) %> / <%= number_to_currency(receipt.total_amount, unit: "￥", separator: ",", precision: 0) %></td>
+        <td width="45%" style="text-align: right;"><b>Total: </b></td>
+        <td width="50%" <%=raw 'style=color: red' if receipt.all_items? %>><%= number_to_currency(receipt.total, unit: "￥", separator: ",", precision: 0) %> / <%= number_to_currency(receipt.total_amount, unit: "￥", separator: ",", precision: 0) %></td>
+        <td width="5"></td>
       </tr>
     </tbody>
   </table>
