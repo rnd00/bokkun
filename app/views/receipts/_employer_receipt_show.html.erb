@@ -2,12 +2,12 @@
 <div class="container employer-content">
   <h1 style="text-align:center;"><%= @receipt.company.titleize %> </h1>
   <div class="nav-btns d-flex justify-content-around">
-      <%= link_to "Add a item", new_receipt_receipt_item_path(@receipt), class: "btn btn-approve w-30" %>
-      <%= link_to "Edit this ticket", edit_receipt_path, class: "btn btn-approve w-30" %>
-      <% if current_user.manager %>
-        <%= link_to "Delete this ticket", receipt_path(@receipt), method: :delete, class: "btn btn-approve w-30" %>
-      <% end %>
-      <%= link_to "Go Back", trip_path(@receipt.trip), class: "btn btn-approve w-30" %>
+    <%= link_to "Add a item", new_receipt_receipt_item_path(@receipt), class: "btn btn-approve w-30" %>
+    <%= link_to "Edit this ticket", edit_receipt_path, class: "btn btn-approve w-30" %>
+    <% if current_user.manager %>
+      <%= link_to "Delete this ticket", receipt_path(@receipt), method: :delete, class: "btn btn-approve w-30" %>
+    <% end %>
+    <%= link_to "Go Back", trip_path(@receipt.trip), class: "btn btn-approve w-30" %>
   </div>
 
   <ul>
@@ -24,23 +24,19 @@
       <p> No Items on this receipt Yet...</p>
     <% else %>
       <% @receipt.receipt_items.each do |item| %>
-
         <p>Name : <%= item.name %></p>
         <p>Amount : <%= item.amount %></p>
-
         <%= link_to edit_receipt_item_path(item) do %>
           <%= puts " " %>
           <div class="edit-button">
             <i class="fas fa-pencil-alt"></i>
           </div>
         <% end %>
-
         <%= link_to receipt_item_path(item), method: :delete do %>
           <div class="delete-button">
             <i class="fas fa-trash"></i>
           </div>
         <% end %>
-
       <% end %>
     <% end %>
   </ul>
