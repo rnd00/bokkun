@@ -16,3 +16,4 @@ if(document.querySelector("#employeeNavbarToggle")){
 }
 toggleReceipt();
 collapseToggle();
+submitButton();
