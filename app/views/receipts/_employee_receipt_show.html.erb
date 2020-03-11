@@ -3,9 +3,9 @@
   <div class="container receipt-container">
     <%= cl_image_tag @receipt.photo.key, effect: "trim:20" if @receipt.photo.attached? %>
   </div>
-  <div class="container">
-    <%= render 'receipt_items/form' %>
-  </div>
+  <!-- <div class="container">
+    <%#= render 'receipt_items/form' %>
+  </div> -->
   <% if @receipt.receipt_items.empty? %>
     <div class="container">
       <p>Please enter each item from your receipt below.</p>

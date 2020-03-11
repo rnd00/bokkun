@@ -8,6 +8,7 @@
       </tr>
     </thead>
     <tbody>
+      <%= render 'receipt_items/form' %>
       <% receipt.receipt_items.each do |item| %>
         <tr data-toggle="collapse" data-target="#a-<%= item.id %>" aria-expanded="false" aria-controls="<%= item.id %>">
           <td width="50%"><%= item.name %></td>
