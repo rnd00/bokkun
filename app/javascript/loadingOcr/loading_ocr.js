@@ -1,4 +1,4 @@
-const submitButton = document.querySelector(".submit-button")
+const submitButton = document.querySelector(".submit-button");
   const form = document.querySelector("#new_receipt")
   if (submitButton) {
     submitButton.addEventListener('click', (e) => {

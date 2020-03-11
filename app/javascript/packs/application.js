@@ -17,8 +17,15 @@ initSelect2();
 if(document.querySelector("#employeeNavbarToggle")){
   employeeNavbarToggle();
 }
-toggleReceipt();
-submitButton();
+
+if(document.querySelectorAll('.receipt')){
+  toggleReceipt();
+}
+
+if(document.querySelector(".submit-button")){
+  submitButton();
+}
+
 if(document.getElementById("collapse-link")){
   collapseToggle();
 }
