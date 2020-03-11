@@ -1,4 +1,3 @@
-
 const collapseToggle = () => {
   const collapse = document.getElementById("collapse-link");
   collapse.addEventListener("click", () => {
