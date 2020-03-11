@@ -41,12 +41,12 @@
       <tr style="border-top: 2px solid black;">
         <td width="45%" style="text-align: right;"><b>Total tax: </b></td>
         <td width="25%"></td>
-        <td width="25%" style="text-align: left;"><%= number_to_currency(receipt.total_tax, unit: "￥", separator: ",", precision: 0) %></td>
+        <td id="receipt-total-tax" width="25%" style="text-align: left;"><%= number_to_currency(receipt.total_tax, unit: "￥", separator: ",", precision: 0) %></td>
         <td width="5%"></td>
       </tr>
       <tr>
         <td width="45%" style="text-align: right; border-top: none;"><b>Total: </b></td>
-        <td width="50%" style="text-align: center; border-top: none;" <%=raw 'style=color: red' if receipt.all_items? %>><%= number_to_currency(receipt.total, unit: "￥", separator: ",", precision: 0) %> / <%= number_to_currency(receipt.total_amount, unit: "￥", separator: ",", precision: 0) %></td>
+        <td id="receipt-total" width="50%" style="text-align: center; border-top: none;" <%=raw 'style=color: red' if receipt.all_items? %>><%= number_to_currency(receipt.total, unit: "￥", separator: ",", precision: 0) %> / <%= number_to_currency(receipt.total_amount, unit: "￥", separator: ",", precision: 0) %></td>
         <td width="5" style="border-top: none;"></td>
       </tr>
     </tbody>

@@ -1,11 +1,22 @@
-function refreshForm(innerHTML) {
-  const newReceiptItemForm = document.getElementById('new-item-form');
+var refreshForm = (innerHTML) => {
+  var newReceiptItemForm = document.getElementById('new-item-form');
   newReceiptItemForm.innerHTML = innerHTML;
 }
 
-function addReceiptItem(receiptItemHTML) {
-  const receiptItem = document.getElementById('receipt-table-body').firstElementChild;
+var addReceiptItem = (receiptItemHTML) => {
+  var receiptItem = document.getElementById('receipt-table-body').firstElementChild;
   receiptItem.insertAdjacentHTML('beforebegin', receiptItemHTML);
+}
+
+var updateTotalTax = (totalTaxValue) => {
+  var totalTax = document.getElementById('receipt-total-tax');
+  console.log(totalTax);
+  totalTax.innerText = totalTaxValue;
+}
+
+var updateTotal = (totalValue) => {
+  var total = document.getElementById('receipt-total');
+  total.innerText = totalValue;
 }
 
 <% if @receipt_item.errors.any? %>
@@ -13,4 +24,6 @@ function addReceiptItem(receiptItemHTML) {
 <% else %>
   addReceiptItem('<%= j render "receipt_items/row", item: @receipt_item %>');
   refreshForm('<%= j render "receipt_items/form", receipt: @receipt, receipt_item: ReceiptItem.new %>');
+  updateTotalTax('<%= @receipt.total_tax %>');
+  updateTotal('<%= @receipt.total %>' );
 <% end %>
