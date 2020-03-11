@@ -3,7 +3,7 @@ class Trip < ApplicationRecord
   has_many :trip_budgets, dependent: :destroy
   has_many :users, through: :trip_users
   has_many :budgets, through: :trip_budgets
-  has_many :receipts, through: :trip_budgets
+  has_many :receipts, through: :trip_budgets, dependent: :destroy
 
   validates :destination, :purpose, :customer, :start_date, :end_date, presence: true
 
