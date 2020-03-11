@@ -20,7 +20,7 @@
           </a>
         </div>
         <div class="collapse" id="collapseExample">
-          <div class="trip-collapse">
+          <div class="trip-collapse text-center">
             <%= render 'collapse', trip: @trip %>
           </div>
         </div>
@@ -28,12 +28,10 @@
     </div>
       <ul class="pl-0">
     <div class="nav-btns d-flex justify-content-around">
-      <%= link_to "Add a receipt", new_trip_receipt_path(@trip), class: "btn btn-approve w-30" %>
+     <!--  removed linnk to add receipt as not needed for employer -->
+      <%# link_to "Add a receipt", new_trip_receipt_path(@trip), class: "btn btn-approve w-30" %>
       <%= link_to "Generate report pdf", report_path(format: :pdf), class: "btn btn-approve w-30" %>
       <%= link_to "Edit this trip", edit_trip_path, class: "btn btn-approve w-30" %>
-      <% if current_user.manager %>
-        <%= link_to "Delete this trip", trip_path(@trip), method: :delete, class: "btn btn-approve w-30" %>
-      <% end %>
     </div>
     <div class="w-100 border"></div>
     <h3 class="my-3 text-center">Trip Receipts</h3>
@@ -41,7 +39,9 @@
       <% @trip.receipts.each do |receipt| %>
         <article class="receipt" style="margin-bottom:150px;">
           <section class="receipt__half upper">
-            <h3><%= link_to receipt.company, receipt_path(receipt)%></h3> <%= receipt.date.strftime("%a, %d %b") %></p>
+            <h3><%= receipt.company %></h3>
+            <p class="m-0"> <%= receipt.date.strftime("%a, %d %b") %></p>
+            <p class="m-0"><%= "Submitted by: #{receipt.user.first_name} #{receipt.user.last_name}" %> </p>
             <h1><%= number_to_currency(receipt.total, unit: "￥", separator: ",", precision: 0) %></h1>
               <div class="receipt__content">
                 <table>
