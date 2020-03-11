@@ -5,6 +5,7 @@
   justify-content: center;
   position: relative;
   bottom: 50px;
+  margin-top: 28px;
 }
 
 .mobile-card {
@@ -15,7 +16,7 @@
   padding: $spacer;
   margin-top: $spacer;
   display: flex;
-  margin-bottom: 0;
+  margin-bottom: 16px;
   padding-bottom: 0;
 
   p {
