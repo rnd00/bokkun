@@ -16,6 +16,26 @@
   position: relative;
 }
 
+.coag-edit{
+  position: absolute;
+  color:white;
+  right: 16px;
+  top: 10px;
+  z-index:99;
+}
+
+.trash-delete{
+  position: absolute;
+  color:white;
+  left: 16px;
+  top: 10px;
+  z-index:99;
+}
+
+.trip-dashboard-box {
+  width: 50%;
+}
+
 .trip {
   position: relative;
 }
@@ -59,4 +79,8 @@
   border-bottom-right-radius: 8px;
   border: 1px solid rgba(55,55,55,0.5);
   border-style: none solid solid solid;
+}
+
+.trip-list {
+  padding: 0 !important;
 }

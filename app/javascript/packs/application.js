@@ -22,7 +22,7 @@ if(document.querySelectorAll('.receipt')){
   toggleReceipt();
 }
 
-if(document.querySelector(".submit-button")){
+if(document.getElementById("submit-receipt")){
   submitButton();
 }
 

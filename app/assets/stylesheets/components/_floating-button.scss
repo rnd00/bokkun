@@ -1,29 +1,36 @@
 .float {
   position:fixed;
-  width:60px;
-  height:60px;
-  bottom:40px;
-  right:40px;
+  width:72px;
+  height:72px;
+  bottom:64px;
+  right:35px;
   text-align:center;
-  font-size: 24px;
+  font-size: 32px;
   z-index: 10;
+
+  i{
+    padding-top: 2px;
+  }
 }
 
 .float-check {
   position:fixed;
   width:60px;
   height:60px;
-  bottom:40px;
-  right:40px;
+  bottom:54px;
+  right:35px;
   text-align:center;
   z-index: 10;
 }
 
 .my-float-check {
+  text-align: center;
+  padding: $spacer;
   margin-top: 4px;
   margin-left: 0px;
   z-index: 10;
   font-size: 40px !important;
+  color: $blue;
 }
 
 .halo {
