@@ -69,7 +69,7 @@ class Trip < ApplicationRecord
   def self.location_spend
     query = Trip.joins(:receipts).select('destination, SUM(total_amount) AS total').group(:destination).order(total: :desc).limit(5)
     query.map do |element|
-      { name: element[:destination], data: { total: element[:total] } }
+      { name: element[:destination], data: { "Total Spending" => element[:total] } }
     end
   end
 

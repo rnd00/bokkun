@@ -17,12 +17,22 @@
     <div class="dash-container my-3 text-center justify-content-around">
       <div class="dash-stats m-3">
         <h3>Spending - 30 days</h3>
-        <%= pie_chart(Trip.total_spend(30), colors: ['#AD5A5D', '#2A3347', '#EFC125', '#96B4C2'], donut: true) %>
+        <%= pie_chart( Trip.total_spend(30),
+            colors: ['#AD5A5D', '#2A3347', '#EFC125', '#96B4C2'],
+            prefix: '￥',
+            thousands: ",",
+            donut: true,
+            legend: :bottom,
+            library: { tooltips: { pieSliceText: 'value' } } ) %>
       </div>
       <div class="dash-stats m-3">
         <h3> Top 5 locations</h3>
         <% @location_spend = Trip.location_spend %>
-        <%= column_chart(@location_spend, colors: ['#AD5A5D', '#2A3347', '#EFC125', '#96B4C2']) %>
+        <%= column_chart( @location_spend,
+            colors: ['#AD5A5D', '#2A3347', '#EFC125', '#96B4C2'],
+            prefix: '￥',
+            thousands: ",",
+            legend: :bottom ) %>
       </div>
     </div>
     <!-- linebreak -->
