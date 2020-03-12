@@ -41,6 +41,12 @@
 
 }
 
+.opaque-budget {
+  background-color: $o-yellow;
+  height: 100%;
+  border-radius: 4px;
+}
+
 .budget {
   text-align: center;
   color: $white;
