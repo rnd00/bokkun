@@ -42,7 +42,7 @@
 }
 
 .opaque-budget {
-  background-color: $o-yellow;
+  background-color: rgba($yellow, 0.5);
   height: 100%;
   border-radius: 4px;
 }
