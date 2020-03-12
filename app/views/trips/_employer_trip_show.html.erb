@@ -6,11 +6,6 @@
       <div class="trip">
         <div class="trip-img" style='background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url("https://source.unsplash.com/featured/?<%= @trip.destination %>}")'>
           <%= @trip.name.titleize %>
-          <div class="trash-delete" style="color:white;">
-            <%= link_to trip_path(@trip), method: :delete do %>
-              <i class="fas fa-trash-alt" style="color:white;"></i>
-            <% end %>
-          </div>
           <div class="coag-edit">
             <%= link_to edit_trip_path do %>
               <i class="fas fa-cog" style="color:white;"></i>
