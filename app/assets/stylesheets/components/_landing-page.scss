@@ -5,6 +5,13 @@ $bp-xs: 34.375em; //550px;
 
 @import url(//fonts.googleapis.com/css?family=Open+Sans:400,700,800,300);
 
+.landing-page-wrapper{
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+
 
 *{
   box-sizing: border-box;
@@ -86,6 +93,7 @@ section{
   &.section--primary{
     background: $blue;
     color: #fff;
+    flex-grow: 1;
   }
   &.section--primary--alt{
     background: desaturate(lighten($blue,15%),10%);
