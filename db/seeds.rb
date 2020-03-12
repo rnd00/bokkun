@@ -378,6 +378,8 @@ Receipt.all.each do |receipt|
         receipt: receipt,
         amount: rand(1..5) * 3000
       )
+    receipt.total_amount += item.amount
+    receipt.save!
   elsif receipt.budget.name == 'Travel'
     item = ReceiptItem.create!(
         name: ['Train', 'Shinkansen', 'Express Bus'].sample,
@@ -385,15 +387,19 @@ Receipt.all.each do |receipt|
         receipt: receipt,
         amount: rand(1..5) * 1000
       )
+    receipt.total_amount += item.amount
+    receipt.save!
   else
     rand(1..10).times do
       break if receipt.trip_budget.total_remaining < 10000
       item = ReceiptItem.create!(
-        name: Faker::Food.dish,
-        tax: [8, 10].sample,
-        receipt: receipt,
-        amount: rand(1..10) * rand(1..10) * 10
-      )
+          name: Faker::Food.dish,
+          tax: [8, 10].sample,
+          receipt: receipt,
+          amount: rand(1..10) * rand(1..10) * 10
+        )
+      receipt.total_amount += item.amount
+      receipt.save!
     end
   end
 end
