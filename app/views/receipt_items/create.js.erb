@@ -21,7 +21,9 @@ var updateTotal = (totalValue) => {
 
 var removeNoItemsMessage = () => {
   var noItemsDiv = document.getElementById('no-items');
-  noItemsDiv.innerText = "";
+  if (noItemsDiv !== null) {
+    noItemsDiv.innerText = "";
+  }
 }
 
 <% unless @receipt.receipt_items.empty? %>

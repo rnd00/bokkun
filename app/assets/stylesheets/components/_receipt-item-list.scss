@@ -44,14 +44,14 @@
   tr {
     margin: 0;
   }
-
-  td {
-    padding: 8px 8px;
-  }
 }
 
 .receipt_item_tax {
   legend {
     display: none;
   }
+}
+
+#new-item-form {
+  margin-top: -20px;
 }

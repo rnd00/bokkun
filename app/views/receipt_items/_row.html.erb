@@ -1,7 +1,7 @@
 <tr data-toggle="collapse" data-target="#a-<%= item.id %>" aria-expanded="false" aria-controls="<%= item.id %>">
-  <td width="50%"><%= item.name %></td>
-  <td width="20%"><%= number_to_currency(item.tax_amount, unit: "￥", separator: ",", precision: 0) %></td>
-  <td width="25%"><%= number_to_currency(item.amount, unit: "￥", separator: ",", precision: 0) %></td>
+  <td width="50%" class="text-break"><%= item.name %></td>
+  <td width="20%" class="text-break"><%= number_to_currency(item.tax_amount, unit: "￥", separator: ",", precision: 0) %></td>
+  <td width="25%" class="text-right text-break"><%= number_to_currency(item.amount, unit: "￥", separator: ",", precision: 0) %></td>
   <td width="5%">
     <i class="fas fa-ellipsis-v"></i>
   </td>

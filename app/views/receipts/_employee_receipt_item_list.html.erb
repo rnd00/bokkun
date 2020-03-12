@@ -4,25 +4,27 @@
       <p>Please enter each item from your receipt below.</p>
     </div>
   <% end %>
+  <table>
+    <thead id="receipt-table-head">
+      <tr id="head-row" style="border-bottom: 3px solid black;">
+        <th width="45%">Item</th>
+        <th width="20%">Tax</th>
+        <th width="25%">Price</th>
+        <th width="15%"></th>
+      </tr>
+    </thead>
+  </table>
   <div id="new-item-form">
     <%= render 'receipt_items/form', receipt: @receipt, receipt_item: @receipt_item %>
   </div>
   <table class="table table-hover receipt-table">
-    <thead id="receipt-table-head">
-      <tr id="head-row" style="border-bottom: 3px solid black;">
-        <th width="50%">Item</th>
-        <th width="20%">Tax</th>
-        <th width="25%" style="text-align: right;">Price</th>
-        <th width="5%"></th>
-      </tr>
-    </thead>
     <tbody id='receipt-table-body'>
       <% receipt.receipt_items.each do |item| %>
         <tr data-toggle="collapse" data-target="#a-<%= item.id %>" aria-expanded="false" aria-controls="<%= item.id %>">
-          <td width="50%"><%= item.name %></td>
-          <td width="20%"><%= number_to_currency(item.tax_amount, unit: "￥", separator: ",", precision: 0) %></td>
-          <td width="25%" style="text-align: right;"><%= number_to_currency(item.amount, unit: "￥", separator: ",", precision: 0) %></td>
-          <td width="5%">
+          <td width="45%" class="text-break"><%= item.name %></td>
+          <td width="20%" class="text-break"><%= number_to_currency(item.tax_amount, unit: "￥", separator: ",", precision: 0) %></td>
+          <td width="25%" class="text-break text-right"><%= number_to_currency(item.amount, unit: "￥", separator: ",", precision: 0) %></td>
+          <td width="15%" class="text-center">
             <i class="fas fa-ellipsis-v"></i>
           </td>
         </tr>
