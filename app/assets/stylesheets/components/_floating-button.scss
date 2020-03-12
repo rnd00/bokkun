@@ -17,21 +17,24 @@
   position:fixed;
   width:60px;
   height:60px;
-  bottom:40px;
+  bottom:54px;
   right:35px;
   text-align:center;
   z-index: 10;
 }
 
 .my-float-check {
+  text-align: center;
+  padding: $spacer;
   margin-top: 4px;
   margin-left: 0px;
   z-index: 10;
   font-size: 40px !important;
+  color: $blue;
 }
 
 .halo {
-  background-color: $blue;
+  background-color: $yellow;
   border-radius: 50%;
 }
 
