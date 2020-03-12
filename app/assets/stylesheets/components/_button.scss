@@ -96,9 +96,9 @@
 }
 
 .btn-approve-outline {
-  border: 1px solid $blue;
-  color: $off-white;
-  background-color: transparent;
+  border: none !important;
+  color: $blue !important;
+  background-color: transparent !important;
   padding: 4px !important;
   border-radius: 30px;
   margin-right: $spacer * 2;
