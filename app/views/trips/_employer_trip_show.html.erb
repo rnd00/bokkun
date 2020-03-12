@@ -4,6 +4,16 @@
     <div class="trip">
       <div class="trip-img" style='background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url("https://source.unsplash.com/featured/?<%= @trip.destination %>}")'>
         <%= @trip.name.titleize %>
+        <div class="trash-delete" style="color:white;">
+          <%= link_to trip_path(@trip), method: :delete do %>
+            <i class="fas fa-trash-alt" style="color:white;"></i>
+          <% end %>
+        </div>
+        <div class="coag-edit">
+          <%= link_to edit_trip_path do %>
+            <i class="fas fa-cog" style="color:white;"></i>
+          <% end %>
+        </div>
         <div class="trip-dates">
           <%= @trip.start_date.strftime("%a, %d %b") %> ~ <%= @trip.end_date.strftime("%a, %d %b") %>
         </div>
@@ -26,44 +36,70 @@
       </div>
     </div>
   </div>
-  <ul class="pl-0">
-    <div class="nav-btns d-flex justify-content-around">
-      <%= link_to "Generate report pdf", report_path(format: :pdf), class: "btn btn-approve w-30" %>
-      <%= link_to "Edit this trip", edit_trip_path, class: "btn btn-approve w-30" %>
-    </div>
-    <div class="w-100 border"></div>
-    <h3 class="my-3 text-center">Trip Receipts</h3>
-    <div class="row">
-      <% @trip.receipts.each do |receipt| %>
-        <article class="receipt" style="margin-bottom:150px;">
-          <section class="receipt__half upper">
-            <h3><%= receipt.company %></h3>
-            <p class="m-0"><%= receipt.date.strftime("%a, %d %b") %></p>
-            <p class="m-0"><%= receipt.user.first_name %> <%= receipt.user.last_name %> </p>
-            <p class="m-0">
-              <% avatar = receipt.user.avatar.nil? ? 'https://res.cloudinary.com/kinzame-herokuapp-com/image/upload/v1583746668/placeholder/Missing_avatar_u1azml.svg' : receipt.user.avatar %>
-              <%= image_tag avatar, class: "avatar", alt: "avatar-large", style: "border: 1px solid white; margin-right: 8px;" %>
-            </p>
-            <h2 style="margin-bottom: 0rem;"><%= number_to_currency(receipt.total, unit: "￥", separator: ",", precision: 0) %></h2>
-            <div class="receipt__content">
-              <table>
-                <tbody>
-                  <% receipt.receipt_items.each do |item| %>
-                    <tr>
-                      <td><%= item.name  %></td>
-                      <td><%= number_to_currency(item.amount, unit: "￥", separator: ",", precision: 0) %></td>
-                    </tr>
-                  <% end %>
-                </tbody>
-              </table>
-            </div>
-          </section>
-          <section class="receipt__half lower">
-            <button>More info</button>
-          </section>
-        </article>
-      <% end %>
-    </div>
+  <div class="nav-btns d-flex justify-content-around">
+    <%= link_to "Export PDF", report_path(format: :pdf), class: "btn btn-approve w-30" %>
   </div>
+  <div class="w-100 border"></div>
+  <h3 class="my-3 text-center">Trip Receipts</h3>
+  <div class="row">
+    <% @trip.receipts.each do |receipt| %>
+      <article class="receipt" style="margin-bottom:150px;">
+        <section class="receipt__half upper">
+          <h3><%= receipt.company %></h3>
+          <p class="m-0"> <%= receipt.date.strftime("%a, %d %b") %></p>
+          <p class="m-0"><%= "Submitted by: #{receipt.user.first_name} #{receipt.user.last_name}" %> </p>
+          <h1><%= number_to_currency(receipt.total, unit: "￥", separator: ",", precision: 0) %></h1>
+          <div class="receipt__content">
+            <table>
+              <tbody>
+                <% receipt.receipt_items.each do |item| %>
+                  <tr>
+                    <td><%= item.name  %></td>
+                    <td><%= number_to_currency(item.amount, unit: "￥", separator: ",", precision: 0) %></td>
+                  </tr>
+                <% end %>
+              </tbody>
+            </table>
+          </div>
+        </section>
+        <section class="receipt__half lower">
+          <button>More info</button>
+        </section>
+      </article>
+    <% end %>
+  </div>
+  <div class="nav-btns d-flex justify-content-around">
+    <%= link_to "Generate report pdf", report_path(format: :pdf), class: "btn btn-approve w-30" %>
+  </div>
+  <div class="w-100 border"></div>
+  <h3 class="my-3 text-center">Trip Receipts</h3>
+  <div class="row">
+    <% @trip.receipts.each do |receipt| %>
+      <article class="receipt" style="margin-bottom:150px;">
+        <section class="receipt__half upper">
+          <h3><%= receipt.company %></h3>
+          <p class="m-0"> <%= receipt.date.strftime("%a, %d %b") %></p>
+          <p class="m-0"><%= "Submitted by: #{receipt.user.first_name} #{receipt.user.last_name}" %> </p>
+          <h1><%= number_to_currency(receipt.total, unit: "￥", separator: ",", precision: 0) %></h1>
+          <div class="receipt__content">
+            <table>
+              <tbody>
+                <% receipt.receipt_items.each do |item| %>
+                  <tr>
+                    <td><%= item.name  %></td>
+                    <td><%= number_to_currency(item.amount, unit: "￥", separator: ",", precision: 0) %></td>
+                  </tr>
+                <% end %>
+              </tbody>
+            </table>
+          </div>
+        </section>
+        <section class="receipt__half lower">
+          <button>More info</button>
+        </section>
+      </article>
+    <% end %>
+  </div>
+</div>
 </div>
 </div>

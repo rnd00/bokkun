@@ -1,60 +1,46 @@
 <div class="container center">
   <% if @receipt.receipt_items.empty? %>
-    <div class="container">
-      <p>Enter each item from the receipt</p>
+    <div class="container" id="no-items">
+      <p class="text-center">Enter the items from receipt.</p>
     </div>
   <% end %>
+  <table>
+    <thead id="receipt-table-head">
+      <tr id="head-row" style="border-bottom: 3px solid black;">
+        <th width="45%">Item</th>
+        <th width="20%">Tax</th>
+        <th width="25%">Price</th>
+        <th width="15%"></th>
+      </tr>
+    </thead>
+  </table>
   <div id="new-item-form">
     <%= render 'receipt_items/form', receipt: @receipt, receipt_item: @receipt_item %>
   </div>
   <table class="table table-hover receipt-table">
-    <thead id="receipt-table-head">
-      <tr id="head-row" style="border-bottom: 3px solid black;">
-        <th width="50%">Item</th>
-        <th width="20%">Tax</th>
-        <th width="25%" style="text-align: right;">Price</th>
-        <th width="5%"></th>
-      </tr>
-    </thead>
     <tbody id='receipt-table-body'>
       <% receipt.receipt_items.each do |item| %>
-        <tr data-toggle="collapse" data-target="#a-<%= item.id %>" aria-expanded="false" aria-controls="<%= item.id %>">
-          <td width="50%"><%= item.name %></td>
-          <td width="20%"><%= number_to_currency(item.tax_amount, unit: "￥", separator: ",", precision: 0) %></td>
-          <td width="25%" style="text-align: right;"><%= number_to_currency(item.amount, unit: "￥", separator: ",", precision: 0) %></td>
-          <td width="5%">
-            <i class="fas fa-ellipsis-v"></i>
-          </td>
-        </tr>
-        <tr class="collapse center" id="a-<%= item.id %>">
-          <td style="text-align: center;" class="btn-td" width="50%">
-            <%= link_to edit_receipt_item_path(item), class: "btn btn-table-edit" do %>
-              <i class="fas fa-pencil-alt"></i>
-            <% end %>
-            <td style="text-align: center;" class="btn-td center" width="50%">
-              <%= link_to receipt_item_path(item), method: :delete, class: "btn btn-table-delete" do %>
-                <i class="fas fa-trash"></i>
-              <% end %>
-            </td>
-          </tr>
-        <% end %>
-        <tr style="border-top: 2px solid black;">
-          <td width="50%" style="text-align: right;"><b>Total tax: </b></td>
-          <td width="20%"></td>
-          <td id="receipt-total-tax" width="25%" style="text-align: right;"><%= number_to_currency(receipt.total_tax, unit: "￥", separator: ",", precision: 0) %></td>
-          <td width="5%"></td>
-        </tr>
-        <tr>
-          <td width="50%" style="text-align: right; border-top: none;"><b>Total: </b></td>
-          <td width="45%" class="d-flex justify-content-end" style="border-top: none;" <%=raw 'style=color: red' if receipt.all_items? %>>
-            <div id="receipt-total">
-              <%= number_to_currency(receipt.total, unit: "￥", separator: ",", precision: 0) %>
-            </div>
+        <%= render 'receipt_items/row', item: item %>
+      <% end %>
+      <tr style="border-top: 2px solid black;">
+        <td width="50%" style="text-align: right;"><b>Total tax: </b></td>
+        <td width="20%"></td>
+        <td id="receipt-total-tax" width="25%" style="text-align: right;"><%= number_to_currency(receipt.total_tax, unit: "￥", separator: ",", precision: 0) %></td>
+        <td width="5%"></td>
+      </tr>
+      <tr>
+        <td width="50%" style="text-align: right; border-top: none;"><b>Total: </b></td>
+        <td width="45%" class="d-flex justify-content-end" style="border-top: none;" <%=raw 'style=color: red' if receipt.all_items? %>>
+          <div id="receipt-total">
+            <%= number_to_currency(receipt.total, unit: "￥", separator: ",", precision: 0) %>
+          </div>
+          <% unless receipt.total_amount == 0 %>
             <div class="d-flex">&nbsp;/ <%= number_to_currency(receipt.total_amount, unit: "￥", separator: ",", precision: 0) %>
             </div>
-          </td>
-          <td width="5%" style="border-top: none;"></td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
+          <% end %>
+        </td>
+        <td width="5%" style="border-top: none;"></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
