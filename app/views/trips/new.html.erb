@@ -13,6 +13,7 @@
           <% @cal_items.each do |cal_item| %>
             <div class="items-body-content">
               <a class="cal-item" id="cal-name"> <%= cal_item.summary %> </a>
+              <p class="sm"><%= cal_item.description %></p>
               <i class="fa fa-angle-right"></i>
             <div class="d-none cal-desc"><%= cal_item.description %></div>
             <div class="d-none cal-location"><%= cal_item.location %></div>
