@@ -22,5 +22,7 @@
       <% end %>
     <% end %>
   <% end %>
-  visting <%= trip.customer %> in <%= trip.destination %> with the purpose of <%= trip.purpose  %></h5>
-  <%= link_to "Delete Trip", trip_path(trip), method: :delete, class: "btn btn-approve w-30" %>
+  visting <%= trip.customer %> in <%= trip.destination %> with the purpose of <%= trip.purpose  %>
+</h5>
+  <%= link_to "Delete", trip_path(trip), method: :delete, class: "btn btn-approve w-30" %>
+  <%= link_to "Edit", edit_trip_path, class: "btn btn-approve w-30" %>
