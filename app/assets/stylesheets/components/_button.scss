@@ -80,3 +80,17 @@
     box-shadow: 2px 2px 2px 1px rgba(0,0,0,0.3);
   }
 }
+
+.btn-approve-outline {
+  border: 1px solid $blue;
+  color: $off-white;
+  background-color: transparent;
+  padding: 4px !important;
+  border-radius: 30px;
+  margin-right: $spacer * 2;
+  transition: 0.5s;
+  justify-content: center;
+  &:hover {
+    box-shadow: 2px 2px 2px 1px rgba(0,0,0,0.3);
+  }
+}

@@ -2,12 +2,12 @@
   <%= render 'receipts/employee_receipt_heading', receipt: @receipt %>
   <% if @receipt.photo.attached? %>
     <div class="container receipt-container">
-      <%= cl_image_tag @receipt.photo.key, effect: "trim:20" if @receipt.photo.attached? %>
+      <%= cl_image_tag @receipt.photo.key, effect: "trim:40" if @receipt.photo.attached? %>
     </div>
   <% else %>
     <%= simple_form_for [@receipt.trip, @receipt ], html: {class: "form-style form_submit_photo" } do |f| %>
       <div class="container mt-5">
-        <p>Please add a photo of the receipt.</p>
+        <p class="text-center">Please add a photo of the receipt.</p>
         <%= f.input :photo, label: false, as: :file, input_html: { id: :submit_photo } %>
       </div>
     <% end %>
