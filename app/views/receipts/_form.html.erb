@@ -1,5 +1,5 @@
 <%= simple_form_for [trip, receipt], html: {class: "form-style" } do |f| %>
-  <%= f.input :company %>
+  <%= f.input :company, label: "Purchased at" %>
   <%= f.input :total_amount, as: :hidden %>
   <div class="form-row">
     <div class="col-6">

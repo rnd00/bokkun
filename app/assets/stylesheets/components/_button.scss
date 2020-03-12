@@ -10,28 +10,42 @@
 }
 
 .btn-table-edit {
-  border: 1px solid $off-white;
-  color: $blue;
-  background-color: $yellow !important;
+  color: $yellow !important;
+  background-color: $off-white !important;
   border-radius: 30px;
   transition: 0.5s;
   justify-content: center;
   margin: 0 12.5% !important;
+  a {
+    color: $yellow !important;
+    background-color: $off-white !important;
+    border-radius: 30px;
+    transition: 0.5s;
+    justify-content: center;
+    margin: 0 12.5% !important;
+  }
   &:active {
-    box-shadow: 2px 2px 2px 1px rgba(0,0,0,0.3) !important;
+    box-shadow: 1px 1px 1px 1px rgba(0,0,0,0.3) !important;
   }
 }
 
 .btn-table-delete {
-  border: 1px solid $off-white;
-  color: $blue;
-  background-color: $red !important;
+  color: $red !important;
+  background-color: $off-white !important;
   border-radius: 30px;
   transition: 0.5s;
   justify-content: center;
   margin: 0 12.5% !important;
+  a {
+    color: $red !important;
+    background-color: $off-white !important;
+    border-radius: 30px;
+    transition: 0.5s;
+    justify-content: center;
+    margin: 0 12.5% !important;
+  }
   &:active {
-    box-shadow: 2px 2px 2px 1px rgba(0,0,0,0.3) !important;
+    box-shadow: 1px 1px 1px 1px rgba(0,0,0,0.3) !important;
   }
 }
 
@@ -82,9 +96,9 @@
 }
 
 .btn-approve-outline {
-  border: 1px solid $blue;
-  color: $off-white;
-  background-color: transparent;
+  border: none !important;
+  color: $blue !important;
+  background-color: transparent !important;
   padding: 4px !important;
   border-radius: 30px;
   margin-right: $spacer * 2;

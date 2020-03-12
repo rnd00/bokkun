@@ -4,6 +4,7 @@ class Trip < ApplicationRecord
   has_many :users, through: :trip_users
   has_many :budgets, through: :trip_budgets
   has_many :receipts, through: :trip_budgets, dependent: :destroy
+  has_many :receipt_items, through: :receipts, dependent: :destroy
 
   validates :destination, :purpose, :customer, :start_date, :end_date, presence: true
 
@@ -49,11 +50,11 @@ class Trip < ApplicationRecord
     result
   end
 
-  def total_spend_user(user)
+  def total_spend
     result = {}
-    query = Trip.joins(receipts: :budget).select('budgets.name, SUM(receipts.total_amount) AS total').group('budgets.name').order(total: :desc).where("trips.id = #{id}")
+    query = Trip.joins(receipt_items: :budget).select('budgets.name, SUM( receipt_items.amount * ( ( receipt_items.tax / 100.0 ) + 1.0 )) AS total').group('budgets.name').order(total: :desc).where("trips.id = #{id}")
     query.map do |element|
-      result[element[:name]] = element[:total]
+      result[element[:name]] = element[:total].round
     end
     result
   end

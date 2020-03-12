@@ -1,29 +1,31 @@
-<div class="banner">
-  <div class="container">
-    <h1><strong>Bokkun</strong></h1>
-    <p class="my-2">Simplified expenses for busy professionals.</p>
-    <%= link_to "Get started", new_user_session_path, class: "btn btn-flat" %>
+<div class="landing-page-wrapper">
+  <div class="banner">
+    <div class="container">
+      <h1><strong>Bokkun</strong></h1>
+      <p class="my-2">Simplified expenses for busy professionals.</p>
+      <%= link_to "Get started", new_user_session_path, class: "btn btn-flat" %>
+    </div>
   </div>
+  <section class="section--primary">
+    <div class="container row justify-content-center">
+      <div class="col-xs-12 col-sm-4 col-sm-offset-4 features">
+        <%= image_tag ("quick.png"), class: "icon-landing"%>
+        <p class="mr-3 m-md-3" style="color: $blue">
+          Simple list of expense categories for 1-click categorization.
+        </p>
+      </div>
+      <div class="col-xs-12 col-sm-4 col-sm-offset-4 features">
+        <%= image_tag ("idea.png"), class: "icon-landing"%>
+        <p class="mr-3 m-md-3">
+          OCR autofills input for hassle-free data entry.
+        </p>
+      </div>
+      <div class="col-xs-12 col-sm-4 col-sm-offset-4 features">
+        <%= image_tag ("policy.png"), class: "icon-landing"%>
+        <p class="mr-5 m-md-3">
+          Smart algorithm ensures your submissions comply with company policy!
+        </p>
+      </div>
+    </div>
+  </section>
 </div>
-<section class="section--primary">
-  <div class="container row justify-content-center">
-    <div class="col-xs-12 col-sm-4 col-sm-offset-4 features">
-      <%= image_tag ("quick.png"), class: "icon-landing"%>
-      <p class="mr-3 m-md-3" style="color: $blue">
-        Simple list of expense categories for 1-click categorization.
-      </p>
-    </div>
-    <div class="col-xs-12 col-sm-4 col-sm-offset-4 features">
-      <%= image_tag ("idea.png"), class: "icon-landing"%>
-      <p class="mr-3 m-md-3">
-        OCR autofills input for hassle-free data entry.
-      </p>
-    </div>
-    <div class="col-xs-12 col-sm-4 col-sm-offset-4 features">
-      <%= image_tag ("policy.png"), class: "icon-landing"%>
-      <p class="mr-5 m-md-3">
-        Smart algorithm ensures your submissions comply with company policy!
-      </p>
-    </div>
-  </div>
-</section>
