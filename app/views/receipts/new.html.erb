@@ -1,5 +1,5 @@
 <%= render 'shared/side-bar' if current_user.manager %>
 <div class="container <%=raw 'employer-content' if current_user.manager %>">
-  <h1 style="text-align:center;">NEW RECEIPT</h1>
+  <h1 style="text-align:center;">New Receipt</h1>
   <%= render 'form', receipt: @receipt, trip: @trip %>
 </div>

@@ -1,4 +1,4 @@
-<%= simple_form_for @trip, html: {class: "form-style"} do |f| %>
+<%= simple_form_for @trip, html: {class: "form-border form-margin form-background"} do |f| %>
   <%= f.input :name, class: "form-control" %>
   <%= f.input :destination, class: "form-control"  %>
   <%= f.input :purpose, class: "form-control" %>
@@ -13,6 +13,12 @@
   </div>
   <%= f.association :users, label: "Employees", label_method: lambda {|employee| "#{employee.first_name} #{employee.last_name} - #{employee.job_title}"}, include_hidden: false, input_html: {class: "select2"}  %>
   <%= f.association :budgets, as: :check_boxes, label: "Allowances", label_method: lambda {|budget| "#{budget.name}"}, include_hidden: false %>
-  <%= f.button :submit, class: "btn btn-approve w-30" %>
-  <%= link_to "Go back", :back, class: "btn btn-approve w-30" %>
+  <%= button_tag type: :submit, class: "btn btn-approve w-30 submit-button" do %>
+    Add a new Trip
+  <% end %>
+  <div class="icon-back mx-auto">
+    <%= link_to :back do %>
+      <%= image_tag "left-arrow" %>
+    <% end %>
+  </div>
 <% end %>

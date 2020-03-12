@@ -8,7 +8,7 @@
       <h2> <%= @user.job_title %></h2>
       <!-- img of the employee -->
       <img src=<%= user.avatar %> >
-       <% @user.trips.each do |trip| %>
+      <% @user.trips.each do |trip| %>
         <div class="argument">
           <div class="argument-info">
             <p><strong><%= link_to trip.name, trip_path(trip)%></strong></p>
