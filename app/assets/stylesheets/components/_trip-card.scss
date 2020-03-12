@@ -16,6 +16,23 @@
   position: relative;
 }
 
+.coag-edit{
+  position: absolute;
+  color:white;
+  right: 16px;
+  top: 10px;
+  z-index:99;
+}
+
+.trash-delete{
+  position: absolute;
+  color:white;
+  left: 16px;
+  top: 10px;
+  z-index:99;
+}
+
+
 .trip {
   position: relative;
 }
