@@ -4,9 +4,9 @@
       <h2 class='symbol'><%=raw trip_budget.budget.symbol %></h2>
       <%= render 'shared/budget_bar', trip_budget: trip_budget %>
     </button>
-      <div class="collapse" id="a-<%= trip_budget.id%>">
-        <div class="list-box mobile-card">
-          <div class="push"></div>
+    <div class="collapse" id="a-<%= trip_budget.id%>">
+      <div class="list-box mobile-card">
+        <div class="push"></div>
           <div class="receipt-list">
             <div class="receipt-name">
               <% if trip_budget.receipts.empty? %>
@@ -23,5 +23,6 @@
           </div>
         </div>
       </div>
+    </div>
   <% end %>
 </div>
