@@ -38,7 +38,7 @@ def user_gen(email, fname, lname, job, manager_status, avatar)
     last_name: lname,
     job_title: job,
     manager: manager_status,
-    avatar: avatar )
+  avatar: avatar )
 end
 
 def trip_gen(name, dest, purpose, customer, sdate, edate)
@@ -48,7 +48,7 @@ def trip_gen(name, dest, purpose, customer, sdate, edate)
     purpose: purpose,
     customer: customer,
     start_date: sdate,
-    end_date: edate )
+  end_date: edate )
 end
 
 def receipt_gen(company, total, date, tax, user, trip_budget)
@@ -57,7 +57,7 @@ def receipt_gen(company, total, date, tax, user, trip_budget)
     total_amount: total,
     date: date,
     user: user,
-    trip_budget: trip_budget )
+  trip_budget: trip_budget )
 end
 
 def items_gen(name, amt, tax, receipt)
@@ -65,26 +65,26 @@ def items_gen(name, amt, tax, receipt)
     name: name,
     amount: amt,
     tax: tax,
-    receipt: receipt )
+  receipt: receipt )
 end
 
 def budget_gen(name, amount, symbol)
   Budget.create!(
     name: name,
     amount: amount,
-    symbol: symbol )
+  symbol: symbol )
 end
 
 def trip_budget_gen(budget, trip)
   TripBudget.create!(
     trip: trip,
-    budget: budget )
+  budget: budget )
 end
 
 def trip_user_gen(user, trip)
   TripUser.create!(
     user: user,
-    trip: trip )
+  trip: trip )
 end
 
 # ============================================================================
@@ -94,10 +94,10 @@ end
 def temp_budget_gen
   types = [
     # add more type as you need
+    ['Accomodation', 20000, '<i class="fas fa-hotel"></i>'],
     ['Food', 15000, '<i class="fas fa-utensils"></i>'],
     ['Travel', 4000, '<i class="fas fa-train"></i>'],
-    ['Miscellaneous', 20000, '<i class="fas fa-tag"></i>'],
-    ['Accomodation', 20000, '<i class="fas fa-hotel"></i>']]
+  ['Miscellaneous', 20000, '<i class="fas fa-tag"></i>']]
   types.map do |type|
     budget_gen(type[0], type[1], type[2])
   end
@@ -154,11 +154,11 @@ end
 # trip = [city (has to be inside japan), purpose, customer, length-of-trip]
 
 USERDATA = [['segawa@bokkun.me', 'Taku', 'Segawa', 'Branch Manager', true],
-              ['hirai@bokkun.me', 'Kako', 'Hirai', 'Sales Rep', false],
-              ['y.hisoka@bokkun.me', 'Hisoka', 'Yamazaki', 'Sales Rep', false],
-              ['tanimoto@bokkun.me', 'Takao', 'Tanimoto', 'Sales Rep', false],
-              ['seo@bokkun.me', 'Chiyo', 'Seo', 'Sales Rep', false],
-              ['ueno@bokkun.me', 'Keisuke', 'Ueno', 'Sales Rep', false]]
+            ['hirai@bokkun.me', 'Kako', 'Hirai', 'Sales Rep', false],
+            ['y.hisoka@bokkun.me', 'Hisoka', 'Yamazaki', 'Sales Rep', false],
+            ['tanimoto@bokkun.me', 'Takao', 'Tanimoto', 'Sales Rep', false],
+            ['seo@bokkun.me', 'Chiyo', 'Seo', 'Sales Rep', false],
+            ['ueno@bokkun.me', 'Keisuke', 'Ueno', 'Sales Rep', false]]
 
 TRIPDATA = [["Tokyo", "First contact", "Adil Omary", 3],
             ["Fukuoka", "Currying favor", "Mike Warren", 4],
@@ -319,18 +319,18 @@ user = User.find_by(last_name: "Warren") # was Uemura
     customer: Faker::Company.name,
     start_date: Date.today - random,
     end_date: Date.today - random + rand(0..10)
-    )
+  )
   trip.name = "Trip to #{trip.destination} to visit #{trip.customer}"
   trip.save
   TripUser.create!(
     user: user,
     trip: trip
-    )
+  )
   Budget.all.each do |budget|
     TripBudget.create!(
       trip: trip,
       budget: budget
-      )
+    )
   end
 end
 puts "...finished!"
@@ -346,7 +346,7 @@ Trip.all.each do |trip|
           user: trip.users.take,
           total_amount: 1000,
           trip_budget: trip_budget
-          )
+        )
       elsif trip_budget.budget.name == "Travel"
         Receipt.create!(
           company: ['JR', 'Kanto Bus', 'Keisei Electric Railway'].sample,
@@ -354,7 +354,7 @@ Trip.all.each do |trip|
           user: trip.users.take,
           total_amount: 1000,
           trip_budget: trip_budget
-          )
+        )
       else
         Receipt.create!(
           company: Faker::Restaurant.name,
@@ -362,7 +362,7 @@ Trip.all.each do |trip|
           user: trip.users.take,
           total_amount: 1000,
           trip_budget: trip_budget
-          )
+        )
       end
     end
   end
@@ -378,6 +378,8 @@ Receipt.all.each do |receipt|
         receipt: receipt,
         amount: rand(1..5) * 3000
       )
+    receipt.total_amount += item.amount
+    receipt.save!
   elsif receipt.budget.name == 'Travel'
     item = ReceiptItem.create!(
         name: ['Train', 'Shinkansen', 'Express Bus'].sample,
@@ -385,15 +387,19 @@ Receipt.all.each do |receipt|
         receipt: receipt,
         amount: rand(1..5) * 1000
       )
+    receipt.total_amount += item.amount
+    receipt.save!
   else
     rand(1..10).times do
       break if receipt.trip_budget.total_remaining < 10000
       item = ReceiptItem.create!(
-        name: Faker::Food.dish,
-        tax: [8, 10].sample,
-        receipt: receipt,
-        amount: rand(1..10) * rand(1..10) * 10
-      )
+          name: Faker::Food.dish,
+          tax: [8, 10].sample,
+          receipt: receipt,
+          amount: rand(1..10) * rand(1..10) * 10
+        )
+      receipt.total_amount += item.amount
+      receipt.save!
     end
   end
 end

@@ -82,7 +82,7 @@ body {
   transition: transform $trs-time $trs-ease;
   transition-delay: $trs-time-sm;
   box-shadow: 0 11px 8px -6px gray;
-  z-index: 2;
+  z-index: 100;
 
   &::after {
     bottom: 100%;
