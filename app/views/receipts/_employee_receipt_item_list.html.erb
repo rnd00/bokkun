@@ -1,7 +1,7 @@
 <div class="container center">
   <% if @receipt.receipt_items.empty? %>
     <div class="container" id="no-items">
-      <p>Please enter each item from your receipt below.</p>
+      <p class="text-center">Enter the items from receipt.</p>
     </div>
   <% end %>
   <table>
@@ -34,8 +34,10 @@
           <div id="receipt-total">
             <%= number_to_currency(receipt.total, unit: "￥", separator: ",", precision: 0) %>
           </div>
-          <div class="d-flex">&nbsp;/ <%= number_to_currency(receipt.total_amount, unit: "￥", separator: ",", precision: 0) %>
-          </div>
+          <% unless receipt.total_amount == 0 %>
+            <div class="d-flex">&nbsp;/ <%= number_to_currency(receipt.total_amount, unit: "￥", separator: ",", precision: 0) %>
+            </div>
+          <% end %>
         </td>
         <td width="5%" style="border-top: none;"></td>
       </tr>
