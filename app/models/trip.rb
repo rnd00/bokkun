@@ -49,6 +49,23 @@ class Trip < ApplicationRecord
     result
   end
 
+  def total_spend_user(user)
+    result = {}
+    query = Trip.joins(receipts: :budget).select('budgets.name, SUM(receipts.total_amount) AS total').group('budgets.name').order(total: :desc).where("receipts.user_id = #{user.id} AND trips.id = #{id}")
+    query.map do |element|
+      result[element[:name]] = element[:total]
+    end
+    result
+  end
+
+  # this go with only one queries
+  def self.location_spend
+    query = Trip.joins(:receipts).select('destination, SUM(total_amount) AS total').group(:destination).order(total: :desc).limit(5)
+    query.map do |element|
+      { name: element[:destination], data: { "Total Spending" => element[:total] } }
+    end
+  end
+
   # this go by getting sum of the receipt items' price (lags)
   def self.old_total_spend(days)
     @trips = Trip.where("start_date > ?", (Date.today - days))
@@ -63,14 +80,6 @@ class Trip < ApplicationRecord
       end
     end
     @spend
-  end
-
-  # this go with only one queries
-  def self.location_spend
-    query = Trip.joins(:receipts).select('destination, SUM(total_amount) AS total').group(:destination).order(total: :desc).limit(5)
-    query.map do |element|
-      { name: element[:destination], data: { "Total Spending" => element[:total] } }
-    end
   end
 
   # n+1 problems described by adil's friend
