@@ -6,7 +6,7 @@ require "fileutils"
 class GoogleCal
   OOB_URI = "urn:ietf:wg:oauth:2.0:oob".freeze
   APPLICATION_NAME = "Google Calendar API Ruby Quickstart".freeze
-  CREDENTIALS_PATH = "/home/mike/Downloads/credentials.json".freeze
+  CREDENTIALS_PATH = ENV['CREDENTIALS']
   # The file token.yaml stores the user's access and refresh tokens, and is
   # created automatically when the authorization flow completes for the first
   # time.
@@ -28,7 +28,7 @@ class GoogleCal
     if credentials.nil?
       url = authorizer.get_authorization_url base_url: OOB_URI
       puts "Open the following URL in the browser and enter the " \
-           "resulting code after authorization:\n" + url
+        "resulting code after authorization:\n" + url
       code = gets
       credentials = authorizer.get_and_store_credentials_from_code(
         user_id: user_id, code: code, base_url: OOB_URI
@@ -52,11 +52,11 @@ class GoogleCal
                                    order_by:      "startTime",
                                    time_min:      DateTime.now.rfc3339)
     return "No upcoming events found" if response.items.empty?
-     # response.items.each do |event|
-     #   p event
-      # start = event.start.date || event.start.date_time
-      # puts "- #{event.summary} (#{start})"
-     # returns last 5 calendar event items
+    # response.items.each do |event|
+    #   p event
+    # start = event.start.date || event.start.date_time
+    # puts "- #{event.summary} (#{start})"
+    # returns last 5 calendar event items
     response.items
   end
 end
