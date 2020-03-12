@@ -40,12 +40,16 @@
     <h3 class="my-3 text-center">Trip Receipts</h3>
     <div class="row">
       <% @trip.receipts.each do |receipt| %>
-        <article class="receipt" style="margin-bottom:150px;">
+        <article class="receipt" style="margin-bottom:220px;">
           <section class="receipt__half upper">
-            <h3><%= receipt.company %></h3>
+            <h3 class="m-0"><%= receipt.company %></h3>
             <p class="m-0"> <%= receipt.date.strftime("%a, %d %b") %></p>
-            <p class="m-0"><%= "Submitted by: #{receipt.user.first_name} #{receipt.user.last_name}" %> </p>
-            <h1><%= number_to_currency(receipt.total, unit: "￥", separator: ",", precision: 0) %></h1>
+            <p class="m-0"><%= receipt.user.first_name %> <%= receipt.user.last_name %> </p>
+            <p class="m-0">
+              <% avatar = receipt.user.avatar.nil? ? 'https://res.cloudinary.com/kinzame-herokuapp-com/image/upload/v1583746668/placeholder/Missing_avatar_u1azml.svg' : receipt.user.avatar %>
+              <%= image_tag avatar, class: "avatar-large", alt: "avatar-large", style: "border: 1px solid white; margin-right: 8px;" %>
+            </p>
+            <h2 style="margin-bottom: 0rem;"><%= number_to_currency(receipt.total, unit: "￥", separator: ",", precision: 0) %></h2>
             <div class="receipt__content">
               <table>
                 <tbody>
