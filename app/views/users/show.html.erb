@@ -1,5 +1,5 @@
 <%= render 'shared/side-bar' %>
-<div class="d-flex justify-content-center">
+<div class="d-flex">
   <div class="width-200">
   </div>
   <div class="container employer-content">
@@ -11,7 +11,7 @@
         <%= link_to "Go Back", :back, class: "btn btn-approve w-30" %>
       </div>
     </div>
-    <ul>
+    <ul class="trip-list">
       <% @user.trips.each do |trip| %>
         <div class="trip my-3">
           <div class="trip-img" style='background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url("https://source.unsplash.com/featured/?<%= trip.destination %>}")'>
