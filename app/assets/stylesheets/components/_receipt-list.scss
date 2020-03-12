@@ -5,7 +5,7 @@
 }
 
 .receipt-list {
-  width: 90%;
+  width: 85%;
   border-radius: 4px;
   margin-top: -16px;
   padding: 0 4px;
@@ -19,6 +19,8 @@
     }
   }
   .receipt-name {
+    margin-top: -11px;
+    margin-left: 2px;
     width: 100%;
     border: 1px solid $blue;
     padding: $spacer;
