@@ -2,7 +2,14 @@
 <div class="d-flex">
   <div class="width-200"></div>
   <div class="container employer-content">
+    <div class="d-flex">
       <h1 style="text-align:center;">Edit a Trip</h1>
+      <div class="icon-back">
+        <%= link_to trip_path(@trip), method: :delete do %>
+          <i class="fas fa-trash-alt" style="color:black;"></i>
+        <% end %>
+      </div>
+    </div>
     <%= render 'form' %>
   </div>
 </div>

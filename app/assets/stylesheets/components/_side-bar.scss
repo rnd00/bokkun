@@ -1,4 +1,4 @@
-@import url(https://fonts.googleapis.com/css?family=Roboto:300);
+@import url(https://fonts.googleapis.com/css?family=Roboto:300,400,700,900);
 
 $pad:     0;
 
@@ -76,7 +76,7 @@ body{
           text-indent: -20em;
           white-space: nowrap;
           transition: text-indent 400ms ease-in-out;
-          font-weight: bold;
+          font-weight: 300;
       }
   }
   svg{
@@ -148,4 +148,12 @@ body{
 .width-200 {
   min-width: 200px;
   height: 100vh;
+}
+
+#user-name {
+  font-weight: 900;
+}
+
+#trip-show-spacer {
+  height: 4rem;
 }

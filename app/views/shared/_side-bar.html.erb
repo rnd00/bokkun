@@ -7,7 +7,7 @@
             <div class="mx-3">
               <%= image_tag @current_user.avatar, class: "avatar", alt: "avatar-large" %>
             </div>
-            <span class=""> <%= @current_user.first_name %> <%= @current_user.last_name %> </span>
+            <span id="user-name"><%= @current_user.first_name %> <%= @current_user.last_name %></span>
           <% end %>
         </li>
         <li class="justify-content-around">
