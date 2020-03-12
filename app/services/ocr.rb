@@ -23,6 +23,6 @@ class OCR
     end
     return nil if b.empty?
 
-    b.sort[-2][0]
+    b[-3][0]
   end
 end
