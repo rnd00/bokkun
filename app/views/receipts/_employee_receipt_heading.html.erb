@@ -3,9 +3,7 @@
     <h4><%= receipt.budget.name %> from <%= receipt.company %></h4>
     <h5>on <%= receipt.date.strftime("%B %d") %></h5>
     <%= link_to edit_receipt_path(@receipt) do %>
-      <div class="edit-button">
-        <i class="fas fa-pencil-alt"></i>
-      </div>
+      <i class="fas fa-pencil-alt edit-button"></i>
     <% end %>
   </div>
 </div>
