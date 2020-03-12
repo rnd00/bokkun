@@ -1,32 +1,43 @@
 <%= render 'shared/side-bar' %>
 <div class="container employer-content">
   <h1 style="text-align:center;">New Trip Assignment</h1>
+  <div class="w-100 border"></div>
   <% @cal_items = GoogleCal.get_cal %>
-  <% if @cal_items %>
-    <div class="container">
-      <div class="items">
-        <div class="items-head">
-          <p>GCal Import</p>
-          <hr>
-        </div>
-        <div class="items-body">
-          <% @cal_items.each do |cal_item| %>
-            <div class="items-body-content">
-              <div>
-                <a class="cal-item" id="cal-name"> <%= cal_item.summary %> </a>
-                <p class="sm"><%= cal_item.description %></p>
+  <div class="row justify-content-between">
+    <% if @cal_items %>
+      <div class="col-md-4 form-margin">
+        <div class="items">
+          <div class="items-head">
+            <p>GCal Import</p>
+            <hr>
+          </div>
+          <div class="items-body">
+            <% @cal_items.each do |cal_item| %>
+            <% time_start = cal_item.start.date || cal_item.start.date_time %>
+            <% time_end = cal_item.end.date || cal_item.end.date_time %>
+              <div class="items-body-content">
+                <div>
+                  <a class="cal-item" id="cal-name"> <%= cal_item.summary %> </a>
+                  <% if time_start.strftime("%m/%d/%y") == time_end.strftime("%m/%d/%y") %>
+                    <p class="sm m-0"><%= time_start.strftime("%m/%d") %> <%= time_start.strftime("%H:%M %p") %> ~ <%= time_end.strftime("%H:%M %p") %></p>
+                  <% else %>
+                    <p class="sm m-0"><%= time_start.strftime("%m/%d") %> ~ <%= time_end.strftime("%m/%d") %></p>
+                  <% end %>
+                </div>
+                <i class="fa fa-angle-right"></i>
+              <div class="d-none cal-desc"><%= cal_item.description %></div>
+              <div class="d-none cal-location"><%= cal_item.location %></div>
+              <div class="d-none cal-start"><%= time_start %></div>
+              <div class="d-none cal-end"><%= time_end %></div>
               </div>
-              <i class="fa fa-angle-right"></i>
-            <div class="d-none cal-desc"><%= cal_item.description %></div>
-            <div class="d-none cal-location"><%= cal_item.location %></div>
-            <div class="d-none cal-start"><%= cal_item.start.date %></div>
-            <div class="d-none cal-end"><%= cal_item.end.date %></div>
-            </div>
-          <% end %>
+            <% end %>
+          </div>
         </div>
       </div>
-    </div>
-  <% end %>
-  <%= render 'form' %>
+    <% end %>
+  <div class="col-md-6">
+    <%= render 'form' %>
+  </div>
+  </div>
 </div>
 
