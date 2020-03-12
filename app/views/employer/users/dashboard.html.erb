@@ -77,7 +77,7 @@
           <div class="border w-100 my-3"></div>
           <!-- piechart barchart start -->
           <div class="text-center font-weight-bold" id="dashboard-barchart">
-            <%= bar_chart( @user.current_trip.total_spend_user(@user),
+            <%= bar_chart( @user.current_trip.total_spend,
                 colors: ['#AD5A5D', '#2A3347', '#EFC125', '#96B4C2'],
                 prefix: '￥',
                 thousands: ",",
