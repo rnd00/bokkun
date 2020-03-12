@@ -51,7 +51,7 @@ class Trip < ApplicationRecord
 
   def total_spend_user(user)
     result = {}
-    query = Trip.joins(receipts: :budget).select('budgets.name, SUM(receipts.total_amount) AS total').group('budgets.name').order(total: :desc).where("receipts.user_id = #{user.id} AND trips.id = #{id}")
+    query = Trip.joins(receipts: :budget).select('budgets.name, SUM(receipts.total_amount) AS total').group('budgets.name').order(total: :desc).where("trips.id = #{id}")
     query.map do |element|
       result[element[:name]] = element[:total]
     end

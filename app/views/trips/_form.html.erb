@@ -12,13 +12,15 @@
     </div>
   </div>
   <%= f.association :users, label: "Employees", label_method: lambda {|employee| "#{employee.first_name} #{employee.last_name} - #{employee.job_title}"}, include_hidden: false, input_html: {class: "select2"}  %>
-  <%= f.association :budgets, as: :check_boxes, label: "Allowances", label_method: lambda {|budget| "#{budget.name}"}, include_hidden: false %>
+  <%= f.association :budgets, as: :check_boxes, label: "Allowances", label_method: lambda {|budget| "#{budget.name}"}, include_hidden: false, input_html: {checked: true} %>
   <%= button_tag type: :submit, class: "btn btn-approve w-30 submit-button" do %>
     Add a new Trip
   <% end %>
-  <div class="icon-back mx-auto">
-    <%= link_to :back do %>
-      <%= image_tag "left-arrow.png" %>
-    <% end %>
+  <div class="d-flex">
+    <div class="icon-back mx-auto">
+      <%= link_to :back do %>
+        <%= image_tag "left-arrow.png" %>
+      <% end %>
+    </div>
   </div>
 <% end %>
