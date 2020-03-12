@@ -19,6 +19,17 @@ var updateTotal = (totalValue) => {
   total.innerText = totalValue;
 }
 
+var removeNoItemsMessage = () => {
+  var noItemsDiv = document.getElementById('no-items');
+  if (noItemsDiv !== null) {
+    noItemsDiv.innerText = "";
+  }
+}
+
+<% unless @receipt.receipt_items.empty? %>
+  removeNoItemsMessage();
+<% end %>
+
 <% if @receipt_item.errors.any? %>
   refreshForm('<%= j render "receipt_items/form", receipt: @receipt, receipt_item: @receipt_item %>');
 <% else %>

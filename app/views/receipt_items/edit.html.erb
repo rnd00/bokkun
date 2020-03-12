@@ -1,3 +1,3 @@
 <div class="container <%=raw 'employer-content' if current_user.manager %>">
-  <%= render 'receipt_items/form' %>
+  <%= render 'receipt_items/form', receipt: @receipt, receipt_item: @receipt_item %>
 </div>
