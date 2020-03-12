@@ -12,7 +12,7 @@
       <tr id="head-row" style="border-bottom: 3px solid black;">
         <th width="50%">Item</th>
         <th width="20%">Tax</th>
-        <th width="25%">Price</th>
+        <th width="25%" style="text-align: right;">Price</th>
         <th width="5%"></th>
       </tr>
     </thead>
@@ -21,7 +21,7 @@
         <tr data-toggle="collapse" data-target="#a-<%= item.id %>" aria-expanded="false" aria-controls="<%= item.id %>">
           <td width="50%"><%= item.name %></td>
           <td width="20%"><%= number_to_currency(item.tax_amount, unit: "￥", separator: ",", precision: 0) %></td>
-          <td width="25%"><%= number_to_currency(item.amount, unit: "￥", separator: ",", precision: 0) %></td>
+          <td width="25%" style="text-align: right;"><%= number_to_currency(item.amount, unit: "￥", separator: ",", precision: 0) %></td>
           <td width="5%">
             <i class="fas fa-ellipsis-v"></i>
           </td>
@@ -39,15 +39,21 @@
         </tr>
       <% end %>
       <tr style="border-top: 2px solid black;">
-        <td width="45%" style="text-align: right;"><b>Total tax: </b></td>
-        <td width="25%"></td>
-        <td width="25%" style="text-align: left;"><%= number_to_currency(receipt.total_tax, unit: "￥", separator: ",", precision: 0) %></td>
+        <td width="50%" style="text-align: right;"><b>Total tax: </b></td>
+        <td width="20%"></td>
+        <td id="receipt-total-tax" width="25%" style="text-align: right;"><%= number_to_currency(receipt.total_tax, unit: "￥", separator: ",", precision: 0) %></td>
         <td width="5%"></td>
       </tr>
       <tr>
-        <td width="45%" style="text-align: right; border-top: none;"><b>Total: </b></td>
-        <td width="50%" style="text-align: center; border-top: none;" <%=raw 'style=color: red' if receipt.all_items? %>><%= number_to_currency(receipt.total, unit: "￥", separator: ",", precision: 0) %> / <%= number_to_currency(receipt.total_amount, unit: "￥", separator: ",", precision: 0) %></td>
-        <td width="5" style="border-top: none;"></td>
+        <td width="50%" style="text-align: right; border-top: none;"><b>Total: </b></td>
+        <td width="45%" class="d-flex justify-content-end" style="border-top: none;" <%=raw 'style=color: red' if receipt.all_items? %>>
+          <div id="receipt-total">
+            <%= number_to_currency(receipt.total, unit: "￥", separator: ",", precision: 0) %>
+          </div>
+          <div class="d-flex">&nbsp;/ <%= number_to_currency(receipt.total_amount, unit: "￥", separator: ",", precision: 0) %>
+          </div>
+        </td>
+        <td width="5%" style="border-top: none;"></td>
       </tr>
     </tbody>
   </table>
