@@ -20,25 +20,7 @@
   <table class="table table-hover receipt-table">
     <tbody id='receipt-table-body'>
       <% receipt.receipt_items.each do |item| %>
-        <tr data-toggle="collapse" data-target="#a-<%= item.id %>" aria-expanded="false" aria-controls="<%= item.id %>">
-          <td width="45%" class="text-break"><%= item.name %></td>
-          <td width="20%" class="text-break"><%= number_to_currency(item.tax_amount, unit: "￥", separator: ",", precision: 0) %></td>
-          <td width="25%" class="text-break text-right"><%= number_to_currency(item.amount, unit: "￥", separator: ",", precision: 0) %></td>
-          <td width="15%" class="text-center">
-            <i class="fas fa-ellipsis-v"></i>
-          </td>
-        </tr>
-        <tr class="collapse center" id="a-<%= item.id %>">
-          <td style="text-align: center;" class="btn-td" width="50%">
-            <%= link_to edit_receipt_item_path(item), class: "btn btn-table-edit" do %>
-              <i class="fas fa-pencil-alt"></i>
-            <% end %>
-          <td style="text-align: center;" class="btn-td center" width="50%">
-            <%= link_to receipt_item_path(item), method: :delete, class: "btn btn-table-delete" do %>
-              <i class="fas fa-trash"></i>
-            <% end %>
-          </td>
-        </tr>
+        <%= render 'receipt_items/row', item: item %>
       <% end %>
       <tr style="border-top: 2px solid black;">
         <td width="50%" style="text-align: right;"><b>Total tax: </b></td>
