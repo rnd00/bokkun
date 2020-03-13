@@ -36,6 +36,8 @@ class OCR
       end
     end
     y = []
+    return if x.empty?
+
     x.each do |arr|
       arr.each do|str|
         y << str.split(" ")
