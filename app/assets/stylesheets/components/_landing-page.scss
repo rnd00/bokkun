@@ -94,6 +94,7 @@ section{
     background: $blue;
     color: #fff;
     flex-grow: 1;
+    padding-bottom: 96px;
   }
   &.section--primary--alt{
     background: desaturate(lighten($blue,15%),10%);
