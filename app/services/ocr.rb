@@ -44,9 +44,9 @@ class OCR
 
     prices = []
 
-    prices << [y[0][1], y[1][0].gsub('¥', '').to_i]
-    prices << [y[2][1], y[3][0].gsub('¥', '').to_i]
-    prices << [y[4][1], y[4][2].gsub('¥', '').to_i]
+    prices << y[0][1]
+    prices << y[2][1]
+    prices << y[4][1]
     prices
   end
 end

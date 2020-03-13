@@ -63,9 +63,9 @@ class ReceiptsController < ApplicationController
 
   def demo_items(lines, receipt)
     items = OCR.sukiya(lines)
-    x = ReceiptItem.new(name: items[0][0], amount: 324)
-    y = ReceiptItem.new(name: items[1][0], amount: 121)
-    z = ReceiptItem.new(name: items[2][0], amount: 74)
+    x = ReceiptItem.new(name: items[0], amount: 324)
+    y = ReceiptItem.new(name: items[1], amount: 121)
+    z = ReceiptItem.new(name: items[2], amount: 74)
     x.receipt = receipt
     y.receipt = receipt
     z.receipt = receipt
