@@ -14,8 +14,8 @@
   <% end %>
   <%= render 'receipts/employee_receipt_item_list', receipt: @receipt %>
   <%= link_to trip_path(@receipt.trip) do %>
-    <div class="float-check yellow-halo">
-      <i class="fas fa-check my-float-check"></i>
+    <div class="float-check disabled-halo" id="check-button">
+      <i class="fas fa-check disabled-check"></i>
     </div>
   <% end %>
 </div>

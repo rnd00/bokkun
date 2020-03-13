@@ -10,7 +10,6 @@ var addReceiptItem = (receiptItemHTML) => {
 
 var updateTotalTax = (totalTaxValue) => {
   var totalTax = document.getElementById('receipt-total-tax');
-  console.log(totalTax);
   totalTax.innerText = totalTaxValue;
 }
 
@@ -26,8 +25,18 @@ var removeNoItemsMessage = () => {
   }
 }
 
+var activateButton = () => {
+  var receiptTotal = document.getElementById("receipt-total");
+  var checkButton = document.getElementById("check-button");
+  checkButton.classList.add("yellow-halo");
+  checkButton.firstElementChild.classList.add("my-float-check");
+  checkButton.classList.remove("disabled-halo");
+  checkButton.firstElementChild.classList.remove("disabled-check");
+}
+
 <% unless @receipt.receipt_items.empty? %>
   removeNoItemsMessage();
+  window.activateButton();
 <% end %>
 
 <% if @receipt_item.errors.any? %>
