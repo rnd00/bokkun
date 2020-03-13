@@ -1,9 +1,11 @@
 <div class='mobile-heading'>
   <div class="heading-text receipt">
     <h4><%= receipt.budget.name %> from <%= receipt.company %></h4>
-    <h5>on <%= receipt.date.strftime("%B %d") %></h5>
-    <%= link_to edit_receipt_path(@receipt) do %>
-      <i class="fas fa-pencil-alt edit-button"></i>
-    <% end %>
+    <div class="d-flex align-items-center justify-content-center">
+      <h5>on <%= receipt.date.strftime("%B %d") %></h5>
+      <%= link_to edit_receipt_path(@receipt) do %>
+        <i class="fas fa-pencil-alt edit-button"></i>
+      <% end %>
+    </div>
   </div>
 </div>
