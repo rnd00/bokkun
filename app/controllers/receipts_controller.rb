@@ -13,11 +13,13 @@ class ReceiptsController < ApplicationController
     @receipt.trip = Trip.find_by(id: params[:trip_id])
     authorize @receipt
     if @receipt.photo.attached?
-      @receipt.total_amount = OCR.total("https://res.cloudinary.com/kinzame-herokuapp-com/image/upload/#{@receipt.photo.key}.jpg") || 0
+      @lines = OCR.total("https://res.cloudinary.com/kinzame-herokuapp-com/image/upload/#{@receipt.photo.key}.jpg")
+      @receipt.total_amount = OCR.total_amount(@lines) || 0
     else
       @receipt.total_amount = 0
     end
     if @receipt.save
+      demo_items(@lines, @receipt)
       redirect_to receipt_path(@receipt)
     else
       render :new
@@ -58,6 +60,19 @@ class ReceiptsController < ApplicationController
   end
 
   private
+
+  def demo_items(lines, receipt)
+    items = OCR.sukiya(lines)
+    x = ReceiptItem.new(name: items[0], amount: 324)
+    y = ReceiptItem.new(name: items[1], amount: 121)
+    z = ReceiptItem.new(name: items[2], amount: 74)
+    x.receipt = receipt
+    y.receipt = receipt
+    z.receipt = receipt
+    x.save
+    y.save
+    z.save
+  end
 
   def set_user
     @user = User.find(params[:user_id])

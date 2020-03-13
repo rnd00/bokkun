@@ -12,6 +12,7 @@ import 'select2/dist/css/select2.css';
 import {collapseToggle} from '../plugins/collapse_toggle'
 // GCal Autofil
 import {calAutofill} from '../plugins/cal-autofill'
+import { activateButton } from '../plugins/activate_button'
 
 initSelect2();
 if(document.querySelector("#employeeNavbarToggle")){
@@ -32,6 +33,10 @@ if(document.getElementById("collapse-link")){
 
 if(document.querySelectorAll('.items-body-content')){
 calAutofill();
+}
+
+if(document.getElementById("check-button")) {
+  activateButton();
 }
 
 autoSubmitPhoto();

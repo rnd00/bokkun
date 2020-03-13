@@ -4,14 +4,16 @@ class OCR
     image_annotator = Google::Cloud::Vision::ImageAnnotator.new
     file_path = img_path
     lines = []
-    response = image_annotator.text_detection(image: file_path)
+    response = image_annotator.document_text_detection(image: file_path)
     response.responses.each do |res|
       res.text_annotations.each do |text |
         lines << text.description
       end
     end
-
-    amounts = lines.select{|item| item[0] == "¥"}
+    lines
+  end
+  def self.total_amount(array)
+    amounts = array.select{|item| item[0] == "¥"}
     a = []
 
     amounts.each do |value|
@@ -23,6 +25,28 @@ class OCR
     end
     return nil if b.empty?
 
-    b[-3][0]
+    b[-2][0]
+  end
+  def self.sukiya(array)
+    response = array[0].split("\n")
+    x = []
+    response.select.with_index do |str, index|
+      if str[0] == "※"
+        x << [str, response[index + 1]]
+      end
+    end
+    y = []
+    x.each do |arr|
+      arr.each do|str|
+        y << str.split(" ")
+      end
+    end
+
+    prices = []
+
+    prices << y[0][1]
+    prices << y[2][1]
+    prices << y[4][1]
+    prices
   end
 end

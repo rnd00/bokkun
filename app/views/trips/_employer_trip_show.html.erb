@@ -5,7 +5,9 @@
     <div class="card-detail">
       <div class="trip">
         <div class="trip-img" style='background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url("https://source.unsplash.com/featured/?<%= @trip.destination %>}")'>
-          <%= @trip.name.titleize %>
+          <div class="trip-title">
+            <%= @trip.name.titleize %>
+          </div>
           <div class="coag-edit">
             <%= link_to edit_trip_path do %>
               <i class="fas fa-cog" style="color:white;"></i>
@@ -44,11 +46,13 @@
           <section class="receipt__half upper">
             <h3 class="m-0"><%= receipt.company %></h3>
             <p class="m-0"> <%= receipt.date.strftime("%a, %d %b") %></p>
-            <p class="m-0"><%= receipt.user.first_name %> <%= receipt.user.last_name %> </p>
-            <p class="m-0">
-              <% avatar = receipt.user.avatar.nil? ? 'https://res.cloudinary.com/kinzame-herokuapp-com/image/upload/v1583746668/placeholder/Missing_avatar_u1azml.svg' : receipt.user.avatar %>
-              <%= image_tag avatar, class: "avatar-large", alt: "avatar-large", style: "border: 1px solid white; margin-right: 8px;" %>
-            </p>
+            <div class="d-flex align-items-center">
+              <p class="m-0"><%= receipt.user.first_name %> <%= receipt.user.last_name %> </p>
+              <p class="m-0">
+                <% avatar = receipt.user.avatar.nil? ? 'https://res.cloudinary.com/kinzame-herokuapp-com/image/upload/v1583746668/placeholder/Missing_avatar_u1azml.svg' : receipt.user.avatar %>
+                <%= image_tag avatar, class: "avatar ml-2", alt: "avatar-large", style: "border: 1px solid white; margin-right: 8px;" %>
+              </p>
+            </div>
             <h2 style="margin-bottom: 0rem;"><%= number_to_currency(receipt.total, unit: "￥", separator: ",", precision: 0) %></h2>
             <div class="receipt__content">
               <table>

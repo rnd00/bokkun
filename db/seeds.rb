@@ -169,7 +169,7 @@ TRIPDATA = [["Tokyo", "First contact", "Adil Omary", 3],
             ["Gunma", "Attending a Convention", "Kikuchi Goro", 5]]
 
 # DO NOT USE IT YET
-# RECEIPTDATA = [["Sukiya", "2000", TODAY, 10, yamada, fukuoka.trip_budgets.first]]
+# RECEIPTDATA = [["Sukiya", "2000", TODAY, 10, adil, fukuoka.trip_budgets.first]]
 
 
 # ============================================================================
@@ -207,12 +207,12 @@ puts "\nGenerating default users..."
 # ----------------------------------------------------------------------------
 
 # two users we want to use for presentations
-# uemura = user_gen("uemura@bokkun.me", "Mitsuo", "Uemura", "Division Manager", true, fetch_avatar)
-# yamada = user_gen("yamada@bokkun.me", "Taro", "Yamada", "Sales Rep", false, fetch_avatar)
-uemura = user_gen("mike@bokkun.me", "Mike", "Warren", "Division Manager", true, 'https://avatars0.githubusercontent.com/u/28691463?s=460&v=4')
-yamada = user_gen("adil@bokkun.me", "Adil", "Omary", "Sales Rep", false, 'https://avatars0.githubusercontent.com/u/59479470?s=400&v=4')
+# mike = user_gen("mike@bokkun.me", "Mitsuo", "mike", "Division Manager", true, fetch_avatar)
+# adil = user_gen("adil@bokkun.me", "Taro", "adil", "Sales Rep", false, fetch_avatar)
+mike = user_gen("mike@bokkun.me", "Mike", "Warren", "Division Manager", true, 'https://avatars0.githubusercontent.com/u/28691463?s=460&v=4')
+adil = user_gen("adil@bokkun.me", "Adil", "Omary", "Sales Rep", false, 'https://avatars0.githubusercontent.com/u/59479470?s=400&v=4')
 
-TESTUSERS = [uemura, yamada]
+TESTUSERS = [mike, adil]
 
 # add another users for tests
 puts "\nGenerating dummy users..."
@@ -236,7 +236,7 @@ TEMPTRIPS.each do |trip|
 end
 # safety net
 chiba = temp_trip_gen("Chiba", "Inspecting the next company trip", "Shinagawa Kouki", 3)
-trip_user_gen(yamada, chiba)
+trip_user_gen(adil, chiba)
 temp_trip_budget_gen(TEMPBUDGET, chiba)
 puts "...finished with connections"
 
@@ -244,34 +244,34 @@ puts "...finished with connections"
 # GENERATE RECEIPTS
 # ============================================================================
 
-puts "\nGenerating 2 receipts for yamada..."
+puts "\nGenerating 2 receipts for adil..."
 # get all 4 budgets instances
-food = yamada.trips.last.budgets.find_by(name: 'Food')
-trav = yamada.trips.last.budgets.find_by(name: 'Travel')
-acco = yamada.trips.last.budgets.find_by(name: 'Accomodation')
-misc = yamada.trips.last.budgets.find_by(name: 'Miscellaneous')
+food = adil.trips.last.budgets.find_by(name: 'Food')
+trav = adil.trips.last.budgets.find_by(name: 'Travel')
+acco = adil.trips.last.budgets.find_by(name: 'Accomodation')
+misc = adil.trips.last.budgets.find_by(name: 'Miscellaneous')
 
 # defining all the trip-budget types
-yamada_food = yamada.trips.last.trip_budgets.find_by(budget: food)
-yamada_trav = yamada.trips.last.trip_budgets.find_by(budget: trav)
-yamada_acco = yamada.trips.last.trip_budgets.find_by(budget: acco)
-yamada_misc = yamada.trips.last.trip_budgets.find_by(budget: misc)
+adil_food = adil.trips.last.trip_budgets.find_by(budget: food)
+adil_trav = adil.trips.last.trip_budgets.find_by(budget: trav)
+adil_acco = adil.trips.last.trip_budgets.find_by(budget: acco)
+adil_misc = adil.trips.last.trip_budgets.find_by(budget: misc)
 
 # get the time for the last trip (ends on 3 days)
-START = yamada.trips.last.start_date
+START = adil.trips.last.start_date
 
 # template = receipt_gen(company, total, date, tax, user, trip_budget)
-konbini = receipt_gen("Convenience Store", "1230", START + 1, 10, yamada, yamada_food)
-distillery = receipt_gen("Omary's Umeshu Distillery", "3300", START + 1, 10, yamada, yamada_food)
-bar = receipt_gen("Bar Heise & Warren", "3700", START + 2, 10, yamada, yamada_food)
+konbini = receipt_gen("Convenience Store", "1230", START + 1, 10, adil, adil_food)
+distillery = receipt_gen("Omary's Umeshu Distillery", "3300", START + 1, 10, adil, adil_food)
+bar = receipt_gen("Bar Heise & Warren", "3700", START + 2, 10, adil, adil_food)
 
-train_one = receipt_gen("Train (Shinjuku - Chiba)", "814", START, 10, yamada, yamada_trav)
-train_two = receipt_gen("Train (Chiba - Shinjuku)", "814", START + 2, 10, yamada, yamada_trav)
+train_one = receipt_gen("Train (Shinjuku - Chiba)", "814", START, 10, adil, adil_trav)
+train_two = receipt_gen("Train (Chiba - Shinjuku)", "814", START + 2, 10, adil, adil_trav)
 
-hotel = receipt_gen("Hotel", "9500", START, 10, yamada, yamada_acco)
-ryokan = receipt_gen("Ryokan", "10500", START + 1, 10, yamada, yamada_acco)
+hotel = receipt_gen("Hotel", "9500", START, 10, adil, adil_acco)
+ryokan = receipt_gen("Ryokan", "10500", START + 1, 10, adil, adil_acco)
 
-# YAMADA_RECEIPTS = [konbini, distillery, bar]
+# adil_RECEIPTS = [konbini, distillery, bar]
 
 puts "...finished with receipts generation!"
 
@@ -279,7 +279,7 @@ puts "...finished with receipts generation!"
 # GENERATE RECEIPT ITEMS
 # ============================================================================
 
-puts "\nGenerating items on Yamada's food receipts..."
+puts "\nGenerating items on adil's food receipts..."
 
 # template = items_gen(name, amt, tax, receipt)
 gyudon = items_gen('Gyudon', 450, 10, konbini)
@@ -310,7 +310,7 @@ PREFECTURES = [ "Fukushima",
                 "Okinawa"]
 
 puts "\nGenerating random past trips"
-user = User.find_by(last_name: "Warren") # was Uemura
+user = User.find_by(last_name: "Warren") # was mike
 20.times do
   random = rand(10..100)
   trip = Trip.create!(
@@ -373,31 +373,31 @@ puts "\nGenerating receipt items..."
 Receipt.all.each do |receipt|
   if receipt.budget.name == 'Accomodation'
     item = ReceiptItem.create!(
-        name: ['Single room', 'Double'].sample,
-        tax: [8, 10].sample,
-        receipt: receipt,
-        amount: rand(1..5) * 3000
-      )
+      name: ['Single room', 'Double'].sample,
+      tax: [8, 10].sample,
+      receipt: receipt,
+      amount: rand(1..5) * 3000
+    )
     receipt.total_amount += item.amount
     receipt.save!
   elsif receipt.budget.name == 'Travel'
     item = ReceiptItem.create!(
-        name: ['Train', 'Shinkansen', 'Express Bus'].sample,
-        tax: [8, 10].sample,
-        receipt: receipt,
-        amount: rand(1..5) * 1000
-      )
+      name: ['Train', 'Shinkansen', 'Express Bus'].sample,
+      tax: [8, 10].sample,
+      receipt: receipt,
+      amount: rand(1..5) * 1000
+    )
     receipt.total_amount += item.amount
     receipt.save!
   else
-    rand(1..10).times do
+    rand(1..3).times do
       break if receipt.trip_budget.total_remaining < 10000
       item = ReceiptItem.create!(
-          name: Faker::Food.dish,
-          tax: [8, 10].sample,
-          receipt: receipt,
-          amount: rand(1..10) * rand(1..10) * 10
-        )
+        name: Faker::Food.dish,
+        tax: [8, 10].sample,
+        receipt: receipt,
+        amount: rand(1..10) * rand(1..10) * 10
+      )
       receipt.total_amount += item.amount
       receipt.save!
     end

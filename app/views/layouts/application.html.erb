@@ -15,6 +15,11 @@
     <meta property="og:description" content="Simplify your expenses using OCR and beautiful graphs, try Bokkun today!">
     <meta property="og:image" content="https://res.cloudinary.com/kinzame-herokuapp-com/image/upload/v1583718238/banner/bokkun_banner_f5pld9.png">
 
+    <!-- PWA tags -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="mobile-web-app-capable"  content="yes">
+    <link rel="manifest" href="<%= asset_path 'manifest.json' %>">
+    <%= render 'shared/ios_pwa_links' %>
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image">
     <meta property="twitter:url" content="https://www.bokkun.me/">
@@ -41,5 +46,6 @@
     </div>
     <%= render 'shared/footer' %>
     <%= javascript_pack_tag 'application' %>
+    <%= yield(:after_js) %>
   </body>
 </html>
