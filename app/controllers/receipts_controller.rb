@@ -19,7 +19,6 @@ class ReceiptsController < ApplicationController
       @receipt.total_amount = 0
     end
     if @receipt.save
-      demo_items(@lines, @receipt)
       redirect_to receipt_path(@receipt)
     else
       render :new
@@ -60,21 +59,6 @@ class ReceiptsController < ApplicationController
   end
 
   private
-
-  def demo_items(lines, receipt)
-    items = OCR.sukiya(lines)
-    unless items.nil?
-      x = ReceiptItem.new(name: items[0], amount: 324)
-      y = ReceiptItem.new(name: items[1], amount: 121)
-      z = ReceiptItem.new(name: items[2], amount: 74)
-      x.receipt = receipt
-      y.receipt = receipt
-      z.receipt = receipt
-      x.save
-      y.save
-      z.save
-    end
-  end
 
   def set_user
     @user = User.find(params[:user_id])
