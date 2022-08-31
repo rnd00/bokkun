@@ -8,7 +8,7 @@
     "chartkick": "^3.2.0",
     "flatpickr": "^4.6.3",
     "jquery": "^3.5.0",
-    "moment-timezone": "^0.5.28",
+    "moment-timezone": "^0.5.35",
     "popper.js": "^1.16.1",
     "select2": "^4.0.13",
     "sweetalert": "^2.1.2",
